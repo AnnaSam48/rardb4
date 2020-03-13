@@ -22,4 +22,10 @@ public class ReviewController {
 
         return "reviews-index";
     }
+
+    @GetMapping("/review/add")
+    public String addAReview(Model model) {
+        model.addAttribute("review", new Review());
+        return "add-review";
+    }
 }

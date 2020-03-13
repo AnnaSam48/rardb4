@@ -13,22 +13,15 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepository;
 
-    @GetMapping("/movies")
+    @GetMapping("/add-review-to-movie-search")
     public String movieIndex(Model model) {
 
         Iterable<Movie> movies = movieRepository.findAll();
         model.addAttribute("movies", movies);
 
-        return "movies-index";
+        return "add-review-to-movie-search";
     }
 
 
-    @GetMapping("/add-review-search")
-    public String searchMovieToAdd(Model model) {
 
-//   model.addAttribute("movies", movieRepository.findAll()){
-//        return"add-review-search";
-//    }
-        return null;
-    }
 }
