@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,22 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepository;
 
+    @GetMapping("/movies")
+    public String movieIndex(Model model) {
+
+        Iterable<Movie> movies = movieRepository.findAll();
+        model.addAttribute("movies", movies);
+
+        return "movies-index";
+    }
+
 
     @GetMapping("/add-review-search")
-    public String searchMovieToAdd(Model model){
+    public String searchMovieToAdd(Model model) {
 
-    //model.addAttribute("movies", movieRepository.findAll())
-        return"add-review-search";
+//   model.addAttribute("movies", movieRepository.findAll()){
+//        return"add-review-search";
+//    }
+        return null;
     }
 }
