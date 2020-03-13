@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/movies")
+    @GetMapping("/users")
     public String userIndex(Model model) {
 
         Iterable<User> users = userRepository.findAll();
