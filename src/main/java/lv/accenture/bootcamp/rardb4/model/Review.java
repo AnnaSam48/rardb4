@@ -1,4 +1,8 @@
 package lv.accenture.bootcamp.rardb4.model;
 
-public class Review {
+import javax.persistence.Entity;
+import java.io.Serializable;
+
+@Entity
+public class Review implements Serializable {
 }

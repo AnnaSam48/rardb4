@@ -1,4 +1,8 @@
 package lv.accenture.bootcamp.rardb4.model;
 
-public class User {
+import javax.persistence.Entity;
+import java.io.Serializable;
+
+@Entity
+public class User implements Serializable {
 }
