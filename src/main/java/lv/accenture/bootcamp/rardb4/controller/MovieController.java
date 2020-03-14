@@ -5,9 +5,12 @@ import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -25,14 +28,24 @@ public class MovieController {
         return "movies-index";
     }
 
-
     @GetMapping("/movie-to-add-review-to-search")
     public String searchMovieToAdd(@RequestParam String movieName, Model model) {
 
         List<Movie> matchedMovie = movieRepository.findByMovieName(movieName);
         model.addAttribute("movies", matchedMovie);
 
-        return"movies-index";
+        return "movies-index";
     }
 
+    @PostMapping("/movies/add-movie")
+    public String addMovie(@Valid Movie movieToAdd, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+
+            return "add-movie";
+        }
+
+        movieRepository.save(movieToAdd);
+
+        return "redirect:/movies";
+    }
 }

@@ -18,15 +18,17 @@ public class User implements Serializable {
 	   @Size(min = 2, max = 256)
 	    private String username;
 
+	public User() {
+
+	}
+
 	public User(Long userID, String username) {
 		super();
 		UserID = userID;
 		this.username = username;
 	}
 
-	public User() {
-	}
-	
+
 	 public Long getUserID() {
 		return UserID;
 	}
