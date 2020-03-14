@@ -13,7 +13,12 @@ public class Movie implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long movieID;
 	private String movieName;
-	private int Year;
+	private Integer Year;
+    private String imageUrl;
+    private String genre;
+    private Double imdbRating;
+    private Integer rotTomRating;
+    private String plot;
 	
 	
 	public Movie(Long movieID, String movieName, int year) {
