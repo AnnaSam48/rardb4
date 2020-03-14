@@ -1,4 +1,7 @@
 package lv.accenture.bootcamp.rardb4.controller;
+
+import lv.accenture.bootcamp.rardb4.MovieAPI.MovieAPIService;
+import lv.accenture.bootcamp.rardb4.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +13,21 @@ import java.util.List;
 @Controller
 public class MovieController {
 
+    @Autowired
+    MovieAPIService movieAPIService;
+
     @GetMapping("/add-review-search")
     public String addReviewSearchPage(Model model) {
 
-      //Iterable<Movie> movies = movieRepository.findAll();
-    //model.addAttribute("movies", movies);
         return "add-review-search";
- }
+    }
+
+    @GetMapping("/add-review-search/search")
+    public String searchMoviesByKeyword(Model model, @RequestParam String keyword) {
+        List<Movie> foundMovies = movieAPIService.getMovie(keyword);
+        model.addAttribute("movies", foundMovies);
+        return "add-review-search"; //if we do redirect then we loose parameter
+    }
+
+
 }
