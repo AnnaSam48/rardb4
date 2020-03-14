@@ -21,11 +21,12 @@ public class Movie implements Serializable {
     private String plot;
 	
 	
-	public Movie(Long movieID, String movieName, int year) {
+	public Movie(Long movieID, String movieName, Integer year) {
 		this.movieID = movieID;
 		this.movieName = movieName;
 		Year = year;
 	}
+
 
 
 	public Movie() {
