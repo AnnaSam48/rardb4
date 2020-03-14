@@ -17,16 +17,18 @@ public class Movie implements Serializable {
     private String Poster;
 
     //----Additional------
-    private Double imdbRating;
+    /*private Double imdbRating;
     private Integer rotTomRating;
     private String plot;
     private String actors;
-    private String directors;
+    private String directors;*/
 
-    public Movie(String imdbID, String Title, String year) {
+    public Movie(String imdbID, String title, String year, String type, String poster) {
         this.imdbID = imdbID;
-        this.Title = Title;
-        this.Year = year;
+        Title = title;
+        Year = year;
+        Type = type;
+        Poster = poster;
     }
 
     public Movie() {
@@ -60,11 +62,6 @@ public class Movie implements Serializable {
                 ", Year='" + Year + '\'' +
                 ", Type='" + Type + '\'' +
                 ", Poster='" + Poster + '\'' +
-                ", imdbRating=" + imdbRating +
-                ", rotTomRating=" + rotTomRating +
-                ", plot='" + plot + '\'' +
-                ", actors='" + actors + '\'' +
-                ", directors='" + directors + '\'' +
                 '}';
     }
 }
