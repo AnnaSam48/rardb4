@@ -7,41 +7,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-
 @Entity
 public class User implements Serializable {
-  
-  @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    private Long UserID;
-	 
-	   @Size(min = 2, max = 256)
-	    private String username;
 
-	public User() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long UserID;
 
-	}
+    @Size(min = 2, max = 256)
+    private String username;
 
-	public User(Long userID, String username) {
-		super();
-		UserID = userID;
-		this.username = username;
-	}
+    public User() {
+
+    }
+
+    public User(Long userID, String username) {
+        super();
+        UserID = userID;
+        this.username = username;
+    }
 
 
-	 public Long getUserID() {
-		return UserID;
-	}
+    public Long getUserID() {
+        return UserID;
+    }
 
-	public void setUserID(Long userID) {
-		UserID = userID;
-	}
+    public void setUserID(Long userID) {
+        UserID = userID;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

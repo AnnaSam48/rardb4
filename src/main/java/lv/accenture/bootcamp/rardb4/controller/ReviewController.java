@@ -67,4 +67,9 @@ public class ReviewController {
         reviewRepository.deleteById(reviewID);
         return "redirect:/reviews";
     }
+
+    @GetMapping("/reviews/add-comment/{reviewID}")
+    public String addComment(@PathVariable Long reviewID) {
+
+    }
 }

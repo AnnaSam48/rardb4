@@ -9,12 +9,10 @@ import javax.persistence.Id;
 @Entity
 public class Review implements Serializable {
 
-
 	@Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-
-	    private Long reviewID;
-   		private String comment;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long reviewID;
+	private String comment;
 
 	public String getComment() {
 		return comment;

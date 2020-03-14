@@ -28,14 +28,22 @@ public class MovieController {
         return "movies-index";
     }
 
-    @GetMapping("/movie-to-add-review-to-search")
-    public String searchMovieToAdd(@RequestParam String movieName, Model model) {
+    @GetMapping("/add-review-search")
+    public String searchMovieToAdd(Model model){
 
-        List<Movie> matchedMovie = movieRepository.findByMovieName(movieName);
-        model.addAttribute("movies", matchedMovie);
-
-        return "movies-index";
+        //model.addAttribute("movies", movieRepository.findAll())
+        return"add-review-search";
     }
+
+
+//    @GetMapping("/movie-to-add-review-to-search")
+//    public String searchMovieToAdd(@RequestParam String movieName, Model model) {
+//
+//        List<Movie> matchedMovie = movieRepository.findByMovieName(movieName);
+//        model.addAttribute("movies", matchedMovie);
+//
+//        return "movies-index";
+//    }
 
     @PostMapping("/movies/add-movie")
     public String addMovie(@Valid Movie movieToAdd, BindingResult bindingResult) {
