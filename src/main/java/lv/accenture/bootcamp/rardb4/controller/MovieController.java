@@ -12,7 +12,7 @@ public class MovieController {
 
     @GetMapping("/add-review-search")
     public String addReviewSearchPage(Model model) {
-        
+
       //Iterable<Movie> movies = movieRepository.findAll();
     //model.addAttribute("movies", movies);
         return "add-review-search";
