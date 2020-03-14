@@ -45,12 +45,12 @@ public class ReviewController {
         return "reviews-index";
     }
 
-    @GetMapping("/reviews/edit/{reviewID}")
-    public String editReview(@PathVariable Long reviewID, Model model) {
-        Optional<Review> reviewToEdit = reviewRepository.findById(reviewID);
-        model.addAttribute("review", reviewToEdit.get());
-        return "edit-review";
-    }
+//    @GetMapping("/reviews/edit/{reviewID}")
+//    public String editReview(@PathVariable Long reviewID, Model model) {
+//        Optional<Review> reviewToEdit = reviewRepository.findById(reviewID);
+//        model.addAttribute("review", reviewToEdit.get());
+//        return "edit-review";
+//    }
 
     @PostMapping("/reviews/edit-review/{reviewID}")
     public String editedReview(@PathVariable Long reviewID, @Valid Review editedReview, BindingResult bindingResult) {
@@ -68,8 +68,8 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
-    @GetMapping("/reviews/add-comment/{reviewID}")
-    public String addComment(@PathVariable Long reviewID) {
-
-    }
+//    @GetMapping("/reviews/add-comment/{reviewID}")
+//    public String addComment(@PathVariable Long reviewID) {
+//
+//    }
 }
