@@ -10,14 +10,9 @@ import java.util.List;
 @Controller
 public class MovieController {
 
-//    @Autowired
-//    private MovieRepository movieRepository;
-
-
     @GetMapping("/add-review-search")
     public String addReviewSearchPage(Model model) {
-
-
+        
       //Iterable<Movie> movies = movieRepository.findAll();
     //model.addAttribute("movies", movies);
         return "add-review-search";
