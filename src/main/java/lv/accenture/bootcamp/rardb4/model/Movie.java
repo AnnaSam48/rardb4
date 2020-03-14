@@ -2,112 +2,112 @@ package lv.accenture.bootcamp.rardb4.model;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Movie implements Serializable {
-  
-  @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long movieID;
-	private String movieName;
-	private Integer Year;
-    private String imageUrl;
-    private String genre;
+
+	//------acquired from API------
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+   private String imdbID;
+    private String Title;
+    private String Year;
+    private String Poster;
+    private String Type;
+
+    //----Additional------
     private Double imdbRating;
     private Integer rotTomRating;
-    private String plot;
-	private String actors;
-	private String directors;
-	
-	public Movie(Long movieID, String movieName, Integer year) {
-		this.movieID = movieID;
-		this.movieName = movieName;
-		Year = year;
-	}
+   private String plot;
+    //private String actors;
+    //private String directors;
 
-	public Movie() {
-	}
-	
-	public Long getMovieID() {
-		return movieID;
-	}
+    public Movie(String imdbID, String Title, String year) {
+        this.imdbID = imdbID;
+        this.Title = Title;
+        this.Year = year;
+    }
 
-	public void setMovieID(Long movieID) {
-		this.movieID = movieID;
-	}
+    public Movie() {
+    }
 
-	public String getMovieName() {
-		return movieName;
-	}
+    public String getImdbID() {
+        return imdbID;
+    }
 
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
-	}
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
 
-	public Integer getYear() {
-		return Year;
-	}
+    public String getTitle() {
+        return Title;
+    }
+    public void setTitle(String title) {
+        this.Title = title;
+    }
 
-	public void setYear(Integer year) {
-		Year = year;
-	}
+    public String getYear() {
+        return Year;
+    }
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    public void setYear(String year) {
+       Year = year;
+    }
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    public String getPoster() {
+       return Poster;
+    }
 
-	public String getGenre() {
-		return genre;
-	}
+   public void setPoster(String poster) {
+        this.Poster = poster;
+    }
 
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
+    public String getType() {
+        return Type;
+    }
 
-	public Double getImdbRating() {
-		return imdbRating;
-	}
+    public void setType(String type) {
+        this.Type = type;
+    }
+//
+//    public Double getImdbRating() {
+//        return imdbRating;
+//    }
+//
+//    public void setImdbRating(Double imdbRating) {
+//        this.imdbRating = imdbRating;
+//    }
+//
+//    public Integer getRotTomRating() {
+//        return rotTomRating;
+//    }
+//
+//    public void setRotTomRating(Integer rotTomRating) {
+//        this.rotTomRating = rotTomRating;
+//    }
+//
+//    public String getPlot() {
+//        return plot;
+//    }
+//
+//    public void setPlot(String plot) {
+//        this.plot = plot;
+//    }
+//
+////    public String getActors() {
+////        return actors;
+////    }
 
-	public void setImdbRating(Double imdbRating) {
-		this.imdbRating = imdbRating;
-	}
-
-	public Integer getRotTomRating() {
-		return rotTomRating;
-	}
-
-	public void setRotTomRating(Integer rotTomRating) {
-		this.rotTomRating = rotTomRating;
-	}
-
-	public String getPlot() {
-		return plot;
-	}
-
-	public void setPlot(String plot) {
-		this.plot = plot;
-	}
-
-	public String getActors() {
-		return actors;
-	}
-
-	public void setActors(String actors) {
-		this.actors = actors;
-	}
-
-	public String getDirectors() {
-		return directors;
-	}
-
-	public void setDirectors(String directors) {
-		this.directors = directors;
-	}
+////    public void setActors(String actors) {
+////        this.actors = actors;
+////    }
+////
+////    public String getDirectors() {
+////        return directors;
+////    }
+////
+////    public void setDirectors(String directors) {
+////        this.directors = directors;
+//    }
 }
