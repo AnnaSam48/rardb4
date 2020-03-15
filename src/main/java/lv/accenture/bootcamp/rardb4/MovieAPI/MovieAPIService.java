@@ -18,8 +18,16 @@ public class MovieAPIService {
     @Value("${movie.api.request}")
     private String requestURL;
 
+    private String prepareKeyword(String keyword){
+        keyword = keyword.trim();
+        String modifiedKeyword = keyword.replaceAll(" ", "_");
 
-    public List<Movie> getMovie(String requestedKeyword) {
+        return modifiedKeyword;
+    }
+
+    public List<Movie> getMovie(String keyword) {
+
+        String requestedKeyword = prepareKeyword(keyword);
 
         try {
 
