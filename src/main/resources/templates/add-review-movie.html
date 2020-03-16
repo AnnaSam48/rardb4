@@ -2,37 +2,34 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Cat</title>
+    <title>Add Review</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container">
-    <h1 class="display-4">Add review to the following movie</h1>
+    <h1 class="display-4"><span th:text="${movie.Title}"/> (<span th:text="${movie.Year}"/>)</h1>
+    <h7><span th:text="${movie.Genre}"/>    |    <span th:text="${movie.Released}"/>    |    <span th:text="${movie.Country}"/></h7>
+    <br>
 
     <div>
-        <table class="table table-hover">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">TITLE</th>
-                <th scope="col">YEAR</th>
-                <th scope="col">TYPE</th>
-                <th scope="col">POSTER</th>
-                <th></th>
-            </tr>
-            <tr th:each="movie: ${movies}">
-                <td th:text="${movie.imdbID}"/>
-                <td th:text="${movie.Title}"/>
-                <td th:text="${movie.Year}"/>
-                <td th:text="${movie.Type}"/>
-                <td><img height="200" th:src="${movie.Poster}"></td>
-            </tr>
-        </table>
+        <p>>
+        <img style="height=400px;float:left;margin-right:50px;margin-top:60px" th:src="${movie.Poster}">
+        <ul>
+            <li><span th:text="${movie.Director}"/></li>
+            <li><span th:text="${movie.Actors}"/></li>
+            <li><span th:text="${movie.Plot}"/></li>
+        </ul>
+        </p>
     </div>
 
-    <!-- ADD REVIEW FORM -->
+    <h1 class="display-4">Type in your review</h1>
 
+    <div>
+        <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
+            <span>Home</span></a>
+    </div>
 
 </div>
 
