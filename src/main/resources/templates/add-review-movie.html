@@ -24,19 +24,12 @@
         </p>
     </div>
 
-    <h1 class="display-4">Add your review to this movie</h1>
-    <form action="#"
-          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}" th:object="${review}" method="post" >
-        <div class="row">
-            <div class="form-group col-md-8">
-                <label for="text" class="col-form-label">Review text</label>
-                <input type="text"  th:field="*{text}" class="form-control" id="text" placeholder="Text">
-            </div>
-            <div class="form-group col-md-8">
-                <input type="submit" class="btn btn-primary" value="Add">
-            </div>
-        </div>
-    </form>
+    <h1 class="display-4">Type in your review</h1>
+
+    <div>
+        <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
+            <span>Home</span></a>
+    </div>
 
 </div>
 

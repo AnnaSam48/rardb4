@@ -12,13 +12,13 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-    private String text;
+    private String reviewText;
     private String movieID;
 
 
-    public Review(Long reviewID, String text, String movieID) {
+    public Review(Long reviewID, String reviewText, String movieID) {
         this.reviewID = reviewID;
-        this.text = text;
+        this.reviewText = reviewText;
         this.movieID = movieID;
     }
 
@@ -29,8 +29,8 @@ public class Review implements Serializable {
         this.reviewID = reviewID;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
     }
 
     public void setMovieID(String movieID) {

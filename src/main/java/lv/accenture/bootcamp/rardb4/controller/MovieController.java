@@ -54,16 +54,6 @@ public class MovieController {
         return "add-review-movie";
     }
 
-    /*@PostMapping("/add-review-search/add-review-movie/{id}")
-    public String addCat(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return "add-review-search/add-review-movie";
-        }else {
-            reviewToAdd.setMovieID(id);
-            reviewRepository.save(reviewToAdd); //adding to the model
-            return "redirect:/add-review-search";
-        }
-    }*/
 
 
 }
