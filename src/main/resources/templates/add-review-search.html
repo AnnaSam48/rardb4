@@ -23,7 +23,7 @@
 
 <!-- Table with found movies from API-->
     <div th:if="${not #lists.isEmpty(movies)}">
-        <table class="table table-hover">
+        <table class="table table-hover" >
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">TITLE</th>
@@ -39,7 +39,7 @@
                 <td th:text="${movie.Type}"/>
                 <td><img height="200" th:src="${movie.Poster}"></td>
                 <td>
-                    <a th:href="@{/add-review-search/add-review-movie}" class="btn btn-outline-primary btn-sm">
+                    <a th:href="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}" class="btn btn-outline-primary btn-sm">
                     <span>Add review</span></a>
                 </td>
             </tr>
