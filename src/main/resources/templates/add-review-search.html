@@ -11,16 +11,54 @@
 <div class="container">
     <h1 class="display-4">Search for movie you want to add review to</h1>
 
-
+<!--Search bar -->
     <div class="form-group col-md-8">
-        <form th:action="@{/cats/search}" method="get">
-            <input type="text" name="catName" id="catName" th:value="${catName}"/>
+        <form th:action="@{/add-review-search/search}" method="get">
+            <input type="text" name="keyword" id="keyword" th:value="${keyword}"/>
             <input type="submit" value="Search" class="btn btn-outline-primary btn-sm"/>
             <a th:href="@{/}" class="btn btn-outline-primary btn-sm">
                 <span>Home</span></a>
         </form>
-
     </div>
+
+<!-- Table with found movies from API-->
+    <div th:if="${not #lists.isEmpty(movies)}">
+        <table class="table table-hover">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">YEAR</th>
+                <th scope="col">TYPE</th>
+                <th scope="col">POSTER</th>
+                <th></th>
+            </tr>
+            <tr th:each="movie: ${movies}">
+                <td th:text="${movie.imdbID}"/>
+                <td th:text="${movie.Title}"/>
+                <td th:text="${movie.Year}"/>
+                <td th:text="${movie.Type}"/>
+                <td><img height="200" th:src="${movie.Poster}"></td>
+                <td>
+                    <a th:href="@{/add-review-search/add-review-movie}" class="btn btn-outline-primary btn-sm">
+                    <span>Add review</span></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:unless="${not #lists.isEmpty(movies)}">
+        <div class="card">
+            <div class="card-body">
+                There are no movies with this keyword.
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 </div>
 </body>
 </html>
