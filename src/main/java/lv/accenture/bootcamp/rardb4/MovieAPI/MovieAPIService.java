@@ -23,7 +23,6 @@ public class MovieAPIService {
     private String prepareKeyword(String keyword){
         keyword = keyword.trim();
         String modifiedKeyword = keyword.replaceAll(" ", "_");
-
         return modifiedKeyword;
     }
 
@@ -33,7 +32,7 @@ public class MovieAPIService {
 
         try {
 
-            URL url = new URL("http://www.omdbapi.com/?apikey=1d075b0b&i=" + idMovie);
+            URL url = new URL( requestURL +"i=" + idMovie);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(3000);
@@ -55,8 +54,6 @@ public class MovieAPIService {
             Gson gson = new Gson();
 
             Movie movie = gson.fromJson(JsonResponse, Movie.class);
-            //String title = movieAPIresponse.getSearch().get(1).getTitle();
-            //List<Movie> movieList = movieAPIresponse.getSearch();
             return movie;
 
         } catch (Exception e) {
@@ -65,13 +62,14 @@ public class MovieAPIService {
 
     }
 
+
     public List<Movie> getMovie(String keyword) {
 
         String requestedKeyword = prepareKeyword(keyword);
 
         try {
 
-            URL url = new URL(requestURL + requestedKeyword);
+            URL url = new URL(requestURL + "s="+ requestedKeyword);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(3000);
@@ -93,7 +91,6 @@ public class MovieAPIService {
             Gson gson = new Gson();
 
             MovieAPIResponse movieAPIresponse = gson.fromJson(JsonResponse, MovieAPIResponse.class);
-            //String title = movieAPIresponse.getSearch().get(1).getTitle();
             List<Movie> movieList = movieAPIresponse.getSearch();
             return movieList;
 
