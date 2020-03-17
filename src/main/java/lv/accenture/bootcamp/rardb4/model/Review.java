@@ -22,6 +22,18 @@ public class Review implements Serializable {
         this.movieID = movieID;
     }
 
+    public Long getReviewID() {
+        return reviewID;
+    }
+
+    public String getReviewText() {
+        return reviewText;
+    }
+
+    public String getMovieID() {
+        return movieID;
+    }
+
     public Review() {
     }
 

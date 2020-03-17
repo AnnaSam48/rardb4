@@ -39,7 +39,6 @@ public class MovieController {
     }
 
 
-
     @GetMapping("/add-review-search/search")
     public String searchMoviesByKeyword(Model model, @RequestParam String keyword) {
         List<Movie> foundMovies = movieAPIService.getMovie(keyword);
@@ -51,7 +50,24 @@ public class MovieController {
     public String viewAndAddReviewPage(@PathVariable String id, Model model) { //this id is the same id in URL
         Movie movieToShow = movieAPIService.getMovieByID(id);
         model.addAttribute("movie", movieToShow); //with what data we are working with
+        model.addAttribute("review", new Review());
         return "add-review-movie";
+    }
+
+    @PostMapping("/add-review-search/add-review-movie/{id}") //add cat to the model (we are getting that from add-cat html)
+    public String addCat(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "add-review-movie";
+        }else {
+            reviewToAdd.setMovieID(id);
+            reviewRepository.save(reviewToAdd);
+
+            if(!moviesRepository.existsById(id)){
+                Movie movieToAdd = movieAPIService.getMovieByID(id);
+                moviesRepository.save(movieToAdd);}
+
+            return "redirect:/";
+        }
     }
 
 
