@@ -14,7 +14,11 @@ public class Review implements Serializable {
     private Long reviewID;
     private String reviewText;
     private String movieID;
+    private double reviewRating;
 
+
+    public Review() {
+    }
 
     public Review(Long reviewID, String reviewText, String movieID) {
         this.reviewID = reviewID;
@@ -34,8 +38,6 @@ public class Review implements Serializable {
         return movieID;
     }
 
-    public Review() {
-    }
 
     public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
@@ -47,5 +49,14 @@ public class Review implements Serializable {
 
     public void setMovieID(String movieID) {
         this.movieID = movieID;
+    }
+
+
+    public double getReviewRating() {
+        return reviewRating;
+    }
+
+    public void setReviewRating(double reviewRating) {
+        this.reviewRating = reviewRating;
     }
 }

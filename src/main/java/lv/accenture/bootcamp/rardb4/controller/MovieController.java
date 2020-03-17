@@ -55,7 +55,7 @@ public class MovieController {
     }
 
     @PostMapping("/add-review-search/add-review-movie/{id}") //add cat to the model (we are getting that from add-cat html)
-    public String addCat(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
+    public String addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return "add-review-movie";
         }else {
