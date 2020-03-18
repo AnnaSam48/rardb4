@@ -1,4 +1,4 @@
-<!--
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -10,7 +10,7 @@
 
 <div class="container">
     <form action="#"
-          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID}/review}"
+          th:action="@{/reviews}"
           th:object="${review}" method="post">
         <div class="row">
             <div class="form-group col-md-8">
@@ -24,7 +24,7 @@
                 <span th:if="${#fields.hasErrors('reviewText')}" th:errors="*{reviewText}" class="text-danger"/>
             </div>
             <div class="form-group col-md-8">
-                <label for="userRatingForMovie" class="col-form-label">Photo:</label>
+                <label for="userRatingForMovie" class="col-form-label">Your rating for this movie:</label>
                 <input type="text" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
                 <span th:if="${#fields.hasErrors('userRatingForMovie')}" th:errors="*{userRatingForMovie}" class="text-danger"/>
             </div>

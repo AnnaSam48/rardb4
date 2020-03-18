@@ -12,12 +12,15 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
+
     private String reviewTitle;
     private String reviewText;
     private String movieID;
     private double userRatingForMovie;
     private double reviewRating;
 
+
+    Movie movie = new Movie();
 
     public Review() {
     }
@@ -26,7 +29,7 @@ public class Review implements Serializable {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
-        this.movieID = movieID;
+        this.movieID = movie.getImdbID();
         this.userRatingForMovie = getUserRatingForMovie();
     }
 

@@ -54,7 +54,7 @@ public class MovieController {
         return "add-review-movie";
     }
 
-    @PostMapping("/add-review-search/add-review-movie/{id}") //add  to the model (we are getting that from add-cat html)
+    @PostMapping("/add-review-search/add-review-movie/{id}/reviews") //add  to the model (we are getting that from add-cat html)
     public String addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return "add-review-movie";
@@ -66,7 +66,7 @@ public class MovieController {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);}
 
-            return "redirect:/";
+            return "/add-review-search/add-review-movie/reviews";
         }
     }
 
