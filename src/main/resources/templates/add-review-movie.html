@@ -26,7 +26,7 @@
     <!--Review Form-->
     <h1 class="display-4">Type in your review</h1>
     <form action="#"
-          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID}/reviews}"
+          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}"
           th:object="${review}" method="post">
         <div class="row">
             <div class="form-group col-md-8">

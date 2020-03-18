@@ -12,7 +12,6 @@ public class Movie implements Serializable {
     //------acquired from API------
     //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-
     private String imdbID;
     private String Title;
     private String Year;
