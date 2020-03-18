@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Review implements Serializable {
@@ -13,24 +14,26 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
 
+    //@Size(min = 2, max = 20, message = "Title should be longer than 2 letters")
     private String reviewTitle;
+
+    //@Size(min = 1, max = 400, message = "Insert text (up to 400 characters)")
     private String reviewText;
+
     private String movieID;
     private double userRatingForMovie;
     private double reviewRating;
 
-
-    Movie movie = new Movie();
-
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle,  String reviewText, double userRatingForMovie, String movieID) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, String movieID, double userRatingForMovie, double reviewRating) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
-        this.movieID = movie.getImdbID();
-        this.userRatingForMovie = getUserRatingForMovie();
+        this.movieID = movieID;
+        this.userRatingForMovie = userRatingForMovie;
+        this.reviewRating = reviewRating;
     }
 
     public String getReviewTitle() {

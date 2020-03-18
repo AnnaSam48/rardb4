@@ -70,11 +70,12 @@ public class MovieController {
         }
     }
 
-    @GetMapping("/add-review-movie/reviewSubmitted") //link to index page
+    @GetMapping("/add-review-movie/reviewSubmitted")
     public String resultSubmitted() {
         return "reviewSubmitted";
-        
     }
+
+
 
 
 
