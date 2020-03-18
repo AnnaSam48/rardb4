@@ -66,8 +66,13 @@ public class MovieController {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);}
 
-            return "redirect:/";
+            return "reviewSubmitted";
         }
+    }
+
+    @GetMapping("/add-review-movie/reviewSubmitted") //link to index page
+    public String resultSubmitted() {
+        return "reviewSubmitted";
     }
 
 
