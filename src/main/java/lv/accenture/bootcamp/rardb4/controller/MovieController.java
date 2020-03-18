@@ -73,6 +73,7 @@ public class MovieController {
     @GetMapping("/add-review-movie/reviewSubmitted") //link to index page
     public String resultSubmitted() {
         return "reviewSubmitted";
+        
     }
 
 
