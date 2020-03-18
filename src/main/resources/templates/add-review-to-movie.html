@@ -1,32 +1,16 @@
+<!--
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Add Review</title>
+    <title></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container">
-    <h1 class="display-4"><span th:text="${movie.Title}"/> (<span th:text="${movie.Year}"/>)</h1>
-    <h7><span th:text="${movie.Genre}"/>    |    <span th:text="${movie.Released}"/>    |    <span th:text="${movie.Country}"/></h7>
-    <br>
-    <div>
-        <p><img style="height=400px;float:left;margin-right:50px;margin-top:60px" th:src="${movie.Poster}">
-        <ul>
-            <li><span th:text="${movie.Director}"/></li>
-            <li><span th:text="${movie.Actors}"/></li>
-            <li><span th:text="${movie.Plot}"/></li>
-        </ul>
-        </p>
-    </div>
-
-
-    <!--Review Form-->
-    <h1 class="display-4">Type in your review</h1>
     <form action="#"
-          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID}/reviews}"
+          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID}/review}"
           th:object="${review}" method="post">
         <div class="row">
             <div class="form-group col-md-8">
@@ -40,24 +24,18 @@
                 <span th:if="${#fields.hasErrors('reviewText')}" th:errors="*{reviewText}" class="text-danger"/>
             </div>
             <div class="form-group col-md-8">
-                <label for="userRatingForMovie" class="col-form-label">Your rating for movie:</label>
+                <label for="userRatingForMovie" class="col-form-label">Photo:</label>
                 <input type="text" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
+                <span th:if="${#fields.hasErrors('userRatingForMovie')}" th:errors="*{userRatingForMovie}" class="text-danger"/>
             </div>
 
             <div class="form-group col-md-8">
-                <input type="submit" class="btn-outline-success" value="Ready to submit my review">
+                <input type="submit" class="btn-outline-success" value="Add your review">
             </div>
         </div>
     </form>
-
-    <!--Home button-->
-    <div>
-        <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
-            <span>Home</span></a>
-    </div>
-
 </div>
 
 </body>
-
 </html>
+-->
