@@ -16,22 +16,22 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
 
-    @Size(min = 2, max = 256)
+   // @Size(min = 2, max = 256)
     private String reviewTitle;
 
-    @NotNull
+   // @NotNull
     private String movieID;
 
-    @Size(min = 2, max = 256)
+  //  @Size(min = 2, max = 256)
     private String movieTitle;
 
     private String moviePicture;
 
-    @Size(min = 10, max = 256)
+    //@Size(min = 10, max = 256)
     private String reviewText;
 
-    @NotNull
-    @PositiveOrZero
+   // @NotNull
+   // @PositiveOrZero
     private double userRatingForMovie;
 
     private double reviewRating = 0.0;

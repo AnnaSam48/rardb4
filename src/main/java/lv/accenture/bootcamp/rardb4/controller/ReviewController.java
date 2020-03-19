@@ -28,22 +28,22 @@ public class ReviewController {
 
     @Autowired
     UserRepository userRepository;
-
-    @GetMapping("/reviews") //relative link to reviews
-    public String reviewIndex(Model model) {
-
-        Iterable<Review> reviews = reviewRepository.findAll();
-        model.addAttribute("reviews", reviews);
-
-        return "/reviews";//view name
-    }
-
-    @GetMapping("/reviews/search")
-    public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
-        List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
-        model.addAttribute("reviews", matchedReviews);
-        return "/reviews-on-movie";
-    }
+//
+//    @GetMapping("/reviews") //relative link to reviews
+//    public String reviewIndex(Model model) {
+//
+//        Iterable<Review> reviews = reviewRepository.findAll();
+//        model.addAttribute("reviews", reviews);
+//
+//        return "/reviews";//view name
+//    }
+//
+//    @GetMapping("/reviews/search")
+//    public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
+//        List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
+//        model.addAttribute("reviews", matchedReviews);
+//        return "/reviews-on-movie";
+//    }
 
 
 }
