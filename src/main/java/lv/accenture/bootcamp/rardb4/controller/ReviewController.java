@@ -12,8 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class ReviewController {
@@ -33,22 +35,15 @@ public class ReviewController {
         Iterable<Review> reviews = reviewRepository.findAll();
         model.addAttribute("reviews", reviews);
 
-        return "reviews-index";//view name
+        return "/reviews";//view name
     }
-//
-//    @GetMapping("/add-review-search/add-review-movie/{id}(id=${movie.imdbID}/reviews/add")
-//    public String addReviewPage(@PathVariable String id, Model model) {
-//        model.addAttribute("review", new Review());
-//        return "add-review";
-//    }
-//
-//    @PostMapping("/add-review-search/add-review-movie/{id}(id=${movie.imdbID}/reviews/add-review")
-//    public String addReview(@Valid Review reviewToAdd, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//
-//            return "add-review";
-//        }
-//        reviewRepository.save(reviewToAdd);
-//        return "redirect:/reviews";
-//    }
+
+    @GetMapping("/reviews/search")
+    public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
+        List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
+        model.addAttribute("reviews", matchedReviews);
+        return "/reviews-on-movie";
+    }
+
+
 }

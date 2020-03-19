@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 public class MovieController {
@@ -74,9 +74,5 @@ public class MovieController {
     public String resultSubmitted() {
         return "reviewSubmitted";
     }
-
-
-
-
 
 }

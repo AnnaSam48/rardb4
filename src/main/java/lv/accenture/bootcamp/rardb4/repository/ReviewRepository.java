@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
-//    @Query("SELECT review FROM Review review WHERE review.reviewRating (highest)")
-//    List<Review> findByReviewRating(@Param(value = "reviewRating") double reviewRating);
+    @Query("SELECT review FROM Review review WHERE review.movieTitle LIKE %:movieTitle%")
+    List<Review> findByMovieTitle(@Param(value = "movieTitle") String movieTitle);
 
 }
