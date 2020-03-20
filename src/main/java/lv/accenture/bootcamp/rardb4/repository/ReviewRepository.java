@@ -10,8 +10,9 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
-//
-//    @Query("SELECT review FROM Review review WHERE review.movieTitle LIKE %:movieTitle%")
-//    List<Review> findByMovieTitle(@Param(value = "movieTitle") String movieTitle);
+
+    @Query("SELECT m FROM Movie m JOIN review ON review.movieID = movie.imdbID" +
+            "WHERE m.title  LIKE %:title%")
+    List<Review> findByMovieTitle(@Param(value = "title") String title);
 
 }
