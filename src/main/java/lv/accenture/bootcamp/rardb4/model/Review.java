@@ -29,19 +29,22 @@ public class Review implements Serializable {
    // @PositiveOrZero
     private double userRatingForMovie;
 
-    private double reviewRating = 0.0;
+    private String userName;
+
+    private double reviewRating;
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
         this.movieID = movieID;
         this.userRatingForMovie = userRatingForMovie;
+        this.userName = userName;
     }
 
     public Long getReviewID() {
@@ -70,6 +73,9 @@ public class Review implements Serializable {
         return reviewRating;
     }
 
+    public String getUserName() { return userName; }
+
+    public void setUserName(String userName) { this.userName = userName; }
 
     public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
