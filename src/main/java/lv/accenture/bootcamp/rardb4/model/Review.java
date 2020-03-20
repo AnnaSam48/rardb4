@@ -16,22 +16,18 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
 
-   // @Size(min = 2, max = 256)
-    private String reviewTitle;
-
-   // @NotNull
     private String movieID;
 
-  //  @Size(min = 2, max = 256)
-    private String movieTitle;
+    //@NotNull
+    //@Size(min = 2, max = 250)
+    private String reviewTitle;
 
-    private String moviePicture;
 
-    //@Size(min = 10, max = 256)
+    //@Size(min = 2, max = 20, message = "Cat name should be longer than 2 letters")
     private String reviewText;
 
-   // @NotNull
-   // @PositiveOrZero
+    // @NotNull
+    // @PositiveOrZero
     private double userRatingForMovie;
 
     private double reviewRating = 0.0;
@@ -40,83 +36,60 @@ public class Review implements Serializable {
     public Review() {
     }
 
-    public Review(Long reviewID, String movieTitle, String moviePicture, String reviewTitle, String reviewText, double userRatingForMovie, String movieID) {
-
+    public Review(Long reviewID, String movieID, String reviewTitle, String reviewText, double userRatingForMovie, double reviewRating) {
         this.reviewID = reviewID;
+        this.movieID = movieID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
-        this.movieID = movieID;
-        this.movieTitle = movieTitle;
-        this.moviePicture = moviePicture;
         this.userRatingForMovie = userRatingForMovie;
+        this.reviewRating = reviewRating;
     }
 
     public Long getReviewID() {
         return reviewID;
     }
 
-    public String getMovieID() {
-        return movieID;
-    }
-
-    public String getReviewTitle() {
-        return reviewTitle;
-    }
-
-    public String getReviewText() {
-        return reviewText;
-    }
-
-    public String getMovieTitle() {
-        return movieTitle;
-    }
-
-    public double getUserRatingForMovie() {
-        return userRatingForMovie;
-    }
-
-    public String getMoviePicture() {
-        return moviePicture;
-    }
-
-    public double getReviewRating() {
-        return reviewRating;
-    }
-
-
     public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
     }
 
-    public void setReviewTitle(String reviewTitle) {
-        this.reviewTitle = reviewTitle;
+    public String getMovieID() {
+        return movieID;
     }
 
     public void setMovieID(String movieID) {
         this.movieID = movieID;
     }
 
-    public void setMovieTitle(String movieTitle) { this.movieTitle = movieTitle; }
+    public String getReviewTitle() {
+        return reviewTitle;
+    }
 
-    public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
+    public void setReviewTitle(String reviewTitle) {
+        this.reviewTitle = reviewTitle;
+    }
 
-    public void setReviewText(String reviewText) { this.reviewText = reviewText; }
+    public String getReviewText() {
+        return reviewText;
+    }
 
-    public void setUserRatingForMovie(double userRatingForMovie) { this.userRatingForMovie = userRatingForMovie; }
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
 
-    public void setReviewRating(double reviewRating) { this.reviewRating = reviewRating; }
+    public double getUserRatingForMovie() {
+        return userRatingForMovie;
+    }
 
-    @Override
-    public String toString() {
-        return "Review{" +
-                "reviewID=" + reviewID +
-                ", reviewTitle='" + reviewTitle + '\'' +
-                ", reviewText='" + reviewText + '\'' +
-                ", movieTitle='" + movieTitle + '\'' +
-                ", moviePicture='" + moviePicture + '\'' +
-                ", movieID='" + movieID + '\'' +
-                ", userRatingForMovie=" + userRatingForMovie +
-                ", reviewRating=" + reviewRating +
-                '}';
+    public void setUserRatingForMovie(double userRatingForMovie) {
+        this.userRatingForMovie = userRatingForMovie;
+    }
+
+    public double getReviewRating() {
+        return reviewRating;
+    }
+
+    public void setReviewRating(double reviewRating) {
+        this.reviewRating = reviewRating;
     }
 }
