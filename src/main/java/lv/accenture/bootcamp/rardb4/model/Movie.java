@@ -2,15 +2,12 @@ package lv.accenture.bootcamp.rardb4.model;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 
 @Entity
 public class Movie implements Serializable {
 
-    //------acquired from API------
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private String imdbID;
     private String Title;
@@ -67,13 +64,9 @@ public class Movie implements Serializable {
         this.imdbID = imdbID;
     }
 
-    public String getTitle() {
-        return Title;
-    }
+    public String getTitle() { return Title; }
 
-    public void setTitle(String title) {
-        Title = title;
-    }
+    public void setTitle(String title) { this.Title = title; }
 
     public String getYear() {
         return Year;
