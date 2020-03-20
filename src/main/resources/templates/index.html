@@ -10,12 +10,12 @@
     <h1>Home page</h1>
 
 
-    <form th:action="@{/reviews/search}" method="get">
+    <form th:action="@{/reviews-search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="Search" class="btn btn-outline-success"/>
     </form>
-
     <h3>Top reviews: </h3>
+
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table table-bordered table-dark">
             <tr>

@@ -9,8 +9,8 @@
 <div class="container">
     <h1>Reviews</h1>
 
-    <form th:action="@{/reviews/search}" method="get">
-        <input type="text" name="title" id="title" th:value="${title}"/>
+    <form th:action="@{/reviews-search}" method="get">
+        <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="Search" class="btn btn-outline-success"/>
     </form>
 
@@ -20,16 +20,19 @@
             <tr>
                 <th>Review rating</th>
                 <th>Review title</th>
-                <th>Movie title</th>
+              <!--  <th>Movie title</th>
                 <th>Photo</th>
+                -->
                 <th>Review</th>
             </tr>
             <tr th:each="review: ${reviews}">
-                <td th:text="${#numbers.formatDecimal(review.setUserRatingForReview,1,1,'POINT')}"/>
+                <td th:text="${review.reviewRating}"/>
                 <td th:text="${review.reviewTitle}">
+             <!--   <td th:text="${movie.title}">
                 <td>
                     <img th:src="${movie.moviePoster}" height="120"/>
                 </td>
+                -->
                 <td th:text="${review.reviewText}">
             </tr>
         </table>

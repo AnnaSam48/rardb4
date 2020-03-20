@@ -22,8 +22,6 @@ public class Review implements Serializable {
    // @NotNull
     private String movieID;
 
-  //  @Size(min = 2, max = 256)
-
     //@Size(min = 10, max = 256)
     private String reviewText;
 
@@ -37,7 +35,7 @@ public class Review implements Serializable {
     public Review() {
     }
 
-    public Review(Long reviewID, String movieTitle, String moviePicture, String reviewTitle, String reviewText, double userRatingForMovie, String movieID) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
