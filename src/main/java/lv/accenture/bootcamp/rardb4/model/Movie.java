@@ -36,9 +36,6 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-//    public Movie(String imdbID, String title, String year, String genre, String plot, String released, String country,
-//                 String poster, String director, String actors){}
-
     public Movie(String imdbID, String title, String year, String type, String poster, String rated, String released,
                  String runtime, String genre, String director, String writer, String actors, String plot, String language,
                  String country, String awards, String imdbRating, String DVD, String boxOffice, String production) {
