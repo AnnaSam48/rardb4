@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Add Review</title>
@@ -7,23 +7,64 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
+<div class="row">
+    <div class="col-sm">
+    <h1 class="display-4"><span th:text="${movie.Title}"/>(<span th:text="${movie.Year}"/>)</h1>
+    <h7><span th:text="${movie.Genre}"/> | Released <span th:text="${movie.Released}"/> | <span th:text="${movie.Country}"/></h7>
+</div>
+</div>
+</div>
+<br>
 
 <div class="container">
-    <h1 class="display-4"> <span th:text="${movie.Title}"/>(<span th:text="${movie.Year}"/>)</h1>
-    <h7><span th:text="${movie.Genre}"/>    |    <span th:text="${movie.Released}"/>    |    <span th:text="${movie.Country}"/></h7>
-    <br>
-    <div>
-        <p><img style="height=400px;float:left;margin-right:50px;margin-top:60px" th:src="${movie.Poster}">
-        <ul>
-            <li><span th:text="${movie.Director}"/></li>
-            <li><span th:text="${movie.Actors}"/></li>
-            <li><span th:text="${movie.Plot}"/></li>
-        </ul>
-        </p>
+    <div class="row row-cols-2">
+
+        <div class="col">
+        <p><img style="height=400px;float:left;margin-right:50px" th:src="${movie.Poster}"></p>
+        </div>
+
+        <div class="col">
+
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th scope="row">Director</th>
+                    <td><span th:text="${movie.Director}"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">Actors</th>
+                    <td><span th:text="${movie.Actors}"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">Production</th>
+                    <td><span th:text="${movie.Production}"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">Awards</th>
+                    <td><span th:text="${movie.Awards}"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">IMDB Rating</th>
+                    <td><span th:text="${movie.imdbRating}"/></td>
+                </tr>
+                <tr>
+                    <th scope="row">Language</th>
+                    <td><span th:text="${movie.Language}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span th:text="${movie.Plot}"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
+</div>
+<br><br>
 
-
-    <!--Review Form-->
+<!--Review Form-->
+<div class="container">
     <h1 class="display-4">Type in your review</h1>
     <form action="#"
           th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}"
@@ -32,12 +73,11 @@
             <div class="form-group col-md-8">
                 <label for="reviewTitle" class="col-form-label">Your review title</label>
                 <input type="text" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-                <span th:if="${#fields.hasErrors('reviewTitle')}" th:errors="*{reviewTitle}" class="text-danger"/>
                 <br>
             </div>
             <div class="form-group col-md-8">
                 <label for="reviewText" class="col-form-label">Your review:</label>
-                <textarea class="form-control" type="text" th:field="*{reviewText}" id="reviewText"></textarea>
+                <textarea type="text" th:field="*{reviewText}" class="form-control" id="reviewText"></textarea>
                 <span th:if="${#fields.hasErrors('reviewText')}" th:errors="*{reviewText}" class="text-danger"/>
             </div>
             <div class="form-group col-md-8">
@@ -46,19 +86,15 @@
             </div>
 
             <div class="form-group col-md-8">
-                <input type="submit" class="btn-outline-success" value="Ready to submit my review">
+                <input type="submit" class="btn btn-outline-primary btn-sm" value="Ready to submit my review">
+                <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
+                <span>Home</span></a>
             </div>
         </div>
     </form>
 
-    <!--Home button-->
-    <div>
-        <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
-            <span>Home</span></a>
-    </div>
-
 </div>
 
-</body>
 
+</body>
 </html>

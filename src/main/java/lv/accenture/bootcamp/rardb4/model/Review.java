@@ -40,12 +40,14 @@ public class Review implements Serializable {
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID) {
+    public Review(Long reviewID, String movieTitle, String moviePicture, String reviewTitle, String reviewText, double userRatingForMovie, String movieID) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
         this.movieID = movieID;
+        this.movieTitle = movieTitle;
+        this.moviePicture = moviePicture;
         this.userRatingForMovie = userRatingForMovie;
     }
 
@@ -65,11 +67,17 @@ public class Review implements Serializable {
         return reviewText;
     }
 
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
     public double getUserRatingForMovie() {
         return userRatingForMovie;
     }
 
-
+    public String getMoviePicture() {
+        return moviePicture;
+    }
 
     public double getReviewRating() {
         return reviewRating;
@@ -88,6 +96,9 @@ public class Review implements Serializable {
         this.movieID = movieID;
     }
 
+    public void setMovieTitle(String movieTitle) { this.movieTitle = movieTitle; }
+
+    public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
 
     public void setReviewText(String reviewText) { this.reviewText = reviewText; }
 
@@ -101,6 +112,8 @@ public class Review implements Serializable {
                 "reviewID=" + reviewID +
                 ", reviewTitle='" + reviewTitle + '\'' +
                 ", reviewText='" + reviewText + '\'' +
+                ", movieTitle='" + movieTitle + '\'' +
+                ", moviePicture='" + moviePicture + '\'' +
                 ", movieID='" + movieID + '\'' +
                 ", userRatingForMovie=" + userRatingForMovie +
                 ", reviewRating=" + reviewRating +
