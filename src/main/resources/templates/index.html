@@ -14,30 +14,37 @@
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="Search" class="btn btn-outline-dark"/>
     </form>
-    <h3>Top reviews: </h3>
 
-    <div th:if="${not #lists.isEmpty(highestRankedReviews)}">
-        <table class="table table-hover">
+
+   <h3>Top 5 reviews: </h3>
+    <div th:if="${not #lists.isEmpty(reviews)}">
+        <table class="table">
             <tr>
-                <th>Review rating</th>
-                <th>Review title</th>
-                <th>Review</th>
+                <th scope="col">Review rating</th>
+                <th scope="col">Review title</th>
+                <th scope="col">Review</th>
+                <!--<th scope="col">Movie</th>-->
+                <th>ACTIONS</th>
             </tr>
-            <tr th:each="review: ${highestRankedReviews}">
+            <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
-                <td th:text="${review.reviewTitle}">
-                <td th:text="${review.reviewText}">
+                <td th:text="${review.reviewTitle}"/>
+                <td th:text="${review.reviewText}"/>
+               <!-- <td th:text="${review.reviewRating}"/>-->
+                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}" class="btn btn-outline-dark">
+                    <span>Rate/comment</span></a><br></td>
             </tr>
         </table>
     </div>
-    <div th:unless="${not #lists.isEmpty(highestRankedReviews)}">
+
+
+    <div th:unless="${not #lists.isEmpty(reviews)}">
         <div class="card">
             <div class="card-body">
-                No reviews!
+                There are no reviews.
             </div>
         </div>
     </div>
-
 
 
  <div>
