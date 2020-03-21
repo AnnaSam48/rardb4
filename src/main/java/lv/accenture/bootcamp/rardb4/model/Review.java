@@ -1,5 +1,7 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
+@Component
 @Entity
 public class Review implements Serializable {
 
@@ -95,15 +98,4 @@ public class Review implements Serializable {
 
     public void setReviewRating(double reviewRating) { this.reviewRating = reviewRating; }
 
-    @Override
-    public String toString() {
-        return "Review{" +
-                "reviewID=" + reviewID +
-                ", reviewTitle='" + reviewTitle + '\'' +
-                ", reviewText='" + reviewText + '\'' +
-                ", movieID='" + movieID + '\'' +
-                ", userRatingForMovie=" + userRatingForMovie +
-                ", reviewRating=" + reviewRating +
-                '}';
-    }
 }

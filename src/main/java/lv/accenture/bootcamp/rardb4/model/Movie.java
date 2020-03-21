@@ -1,10 +1,13 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 import java.io.Serializable;
 
 import javax.persistence.Id;
 
+@Component
 @Entity
 public class Movie implements Serializable {
 

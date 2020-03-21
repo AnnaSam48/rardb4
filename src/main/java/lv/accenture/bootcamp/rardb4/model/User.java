@@ -1,5 +1,7 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-
+@Component
 @Entity
 public class User implements Serializable {
 

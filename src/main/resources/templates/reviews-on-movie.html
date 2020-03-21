@@ -20,8 +20,9 @@
             <tr>
                 <th>Review rating</th>
                 <th>Review title</th>
-                <th>Movie title</th>
+             <!--   <th>Movie title</th>
                 <th>Photo</th>
+                -->
                 <th>Review</th>
                 <th>Your movie rating:</th>
                 <th>Rated by user:</th>
@@ -30,11 +31,12 @@
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
                 <td th:text="${review.reviewTitle}"/>
-                <td th:text="${movieTitle}"/>
+             <!--   <td th:text="${review.movieTitle}"/>
                 <td>
-                    <img th:src="${moviePicture}" height="120"/>
+                    <img th:src="${review.moviePicture}" height="150"/>
                 </td>
-                <td th:text="${review.reviewText}"/>
+                -->
+                <td type="button" class="btn btn-dark"th:text="${review.reviewText}"/>
                 <td th:text="${review.userRatingForMovie}"/>
                 <td th:text="${review.userName}"/>
             </tr>

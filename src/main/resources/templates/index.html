@@ -26,7 +26,7 @@
                 <th>Review</th>
             </tr>
             <tr th:each="review: ${reviews}">
-                <td th:text="${#numbers.formatDecimal(review.setUserRatingForReview,1,1,'POINT')}"/>
+                <td th:text="${review.setUserRatingForReview}"/>
                 <td th:text="${review.reviewTitle}">
                 <td th:text="${review.movieTitle}">
                 <td>
