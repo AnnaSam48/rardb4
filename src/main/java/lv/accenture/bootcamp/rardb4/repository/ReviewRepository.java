@@ -14,8 +14,8 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
     String searchMovieTitleFromMovieId = "SELECT m.Title FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
     String moviePosterURL = "SELECT m.Poster FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
-    String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
-    String sortHighestRatedReviews = "SELECT r FROM Review r ORDER BY r.reviewRating";
+  //  String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
+  //  String sortHighestRatedReviews = "SELECT r FROM Review r ORDER BY r.reviewRating";
 
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);
@@ -26,9 +26,11 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     @Query(moviePosterURL)
     String posterURL(@Param(value = "imdbID") String imdbID);
 
-//    @Query(joinAllReviewsToUser)
-//    List<Review> allReviewsByUser(@Param(value = "userName") String userName);
+  /*  @Query(joinAllReviewsToUser)
+    List<Review> allReviewsByUser(@Param(value = "userName") String userName);
 
-    @Query
-    List<Review> findByOrderByReviewRatingDesc();
+    @Query(sortHighestRatedReviews)
+    List<Review> highestRankedReviews(@Param(value = "reviewRating") Double reviewRating);
+*/
+
 }
