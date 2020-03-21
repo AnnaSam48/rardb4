@@ -60,6 +60,8 @@ public class MovieController {
             return "add-review-movie";
         }else {
             reviewToAdd.setMovieID(id);
+            reviewToAdd.setRatesAmount(0);
+            reviewToAdd.setRatesSum(0);
             reviewRepository.save(reviewToAdd);
 
             if(!moviesRepository.existsById(id)){

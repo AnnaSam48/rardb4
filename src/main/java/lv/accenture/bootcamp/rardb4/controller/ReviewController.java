@@ -52,7 +52,16 @@ public class ReviewController {
         if (bindingResult.hasErrors()){
             return "rate-review";
         }else {
+            Optional<Review> reviewOld = reviewRepository.findById(id);
+            double newRatesSum = reviewOld.get().getRatesSum() + reviewRated.getReviewRating();
 
+            int newRatesAmount = reviewOld.get().getRatesAmount() + 1;
+
+            double rating = newRatesSum / newRatesAmount;
+
+            reviewRated.setReviewRating(rating);
+            reviewRated.setRatesAmount(newRatesAmount);
+            reviewRated.setRatesSum(newRatesSum);
             reviewRated.setReviewID(id);
             reviewRepository.save(reviewRated);
             return "redirect:/";

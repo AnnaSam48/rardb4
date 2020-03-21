@@ -36,15 +36,18 @@ public class Review implements Serializable {
 
     private String userName;
 
+    private double ratesSum;
     private double reviewRating;
 
     private String comment;
+
+    private int ratesAmount;
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName, String comment) {
+    public Review(double ratesSum, int ratesAmount, Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName, String comment) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
@@ -52,8 +55,25 @@ public class Review implements Serializable {
         this.userRatingForMovie = userRatingForMovie;
         this.userName = userName;
         this.comment = comment;
+        this.ratesAmount = ratesAmount;
+        this.ratesSum = ratesSum;
     }
 
+    public double getRatesSum() {
+        return ratesSum;
+    }
+
+    public void setRatesSum(double ratesSum) {
+        this.ratesSum = ratesSum;
+    }
+
+    public int getRatesAmount() {
+        return ratesAmount;
+    }
+
+    public void setRatesAmount(int ratesAmount) {
+        this.ratesAmount = ratesAmount;
+    }
 
     public Long getReviewID() {
         return reviewID;

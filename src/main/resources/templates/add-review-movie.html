@@ -71,6 +71,7 @@
           th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}"
           th:object="${review}" method="post">
         <div class="row">
+
             <div class="form-group col-md-8">
                 <label for="reviewTitle" class="col-form-label">Your review title</label>
                 <input type="text" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
