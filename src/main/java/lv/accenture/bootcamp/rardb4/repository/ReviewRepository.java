@@ -26,11 +26,9 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     @Query(moviePosterURL)
     String posterURL(@Param(value = "imdbID") String imdbID);
 
-    @Query(joinAllReviewsToUser)
-    List<Review> allReviewsByUser(@Param(value = "userName") String userName);
+//    @Query(joinAllReviewsToUser)
+//    List<Review> allReviewsByUser(@Param(value = "userName") String userName);
 
-    @Query(sortHighestRatedReviews)
-    List<Review> highestRankedReviews(@Param(value = "reviewRating") Double reviewRating);
-
-
+    @Query
+    List<Review> findByOrderByReviewRatingDesc();
 }

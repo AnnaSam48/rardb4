@@ -7,6 +7,7 @@ import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,6 +61,11 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/reviews/top-rated-reviews")
+    public String highestRatedReviews(Model model) {
+        List<Review> highestRankedReviews = reviewRepository.findByOrderByReviewRatingDesc();
+        return "/";
+    }
 //
 //    @GetMapping("/reviews/edit/{id}")
 //    public String editReviewPage(@PathVariable Long id, Model model) {
@@ -89,21 +95,21 @@ public class ReviewController {
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
 
-        // Ielādējām no DB atrastas filmas pēc to ID
+        //Load movies by their IDs from DB
         Set<String> movieIDS = new HashSet<>();
         for (Review matchedReview : matchedReviews) {
             movieIDS.add(matchedReview.getMovieID());
         }
         Iterable<Movie> matchedMovies = movieRepository.findAllById(movieIDS);
 
-        // Taisam no tām Map<> kur atslēga ir imdbID un vērtība - pati filma,
-        // lai tālāk vārētu ātri tos dabūt
+        // Make a Map<> ,where Key is imdbID and Value - movie, so we can later get them
+
         Map<String, Movie> movieMap = new HashMap<>();
         for (Movie matchedMovie : matchedMovies) {
             movieMap.put(matchedMovie.getImdbID(), matchedMovie);
         }
 
-        // Create collection from ReadyReview, with values from Movie and from Review classes
+        // Create collection from ReadyReviews, with values from Movie and from Review classes
         List<ReadyReview> readyReviews = new ArrayList<>();
         for (Review matchedReview : matchedReviews) {
             Movie movie = movieMap.get(matchedReview.getMovieID());
