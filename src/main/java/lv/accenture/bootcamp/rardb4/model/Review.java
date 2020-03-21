@@ -33,14 +33,10 @@ public class Review implements Serializable {
     // @NotNull
     // @PositiveOrZero
     private double userRatingForMovie;
-
     private String userName;
-
     private double ratesSum;
     private double reviewRating;
-
     private String comment;
-
     private int ratesAmount;
 
 

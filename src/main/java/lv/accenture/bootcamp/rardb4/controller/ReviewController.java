@@ -132,5 +132,12 @@ public class ReviewController {
         return "reviews-on-movie";
     }
 
+    @GetMapping("/reviews/highest-rated")
+    public String highestRatedReviews(Model model) {
+        List<Review> highestRatedReviews = reviewRepository.findByOrderByRatingReviewDesc();
+        model.addAttribute("reviews", highestRatedReviews);
+        return "/";
+    }
+
 
 }
