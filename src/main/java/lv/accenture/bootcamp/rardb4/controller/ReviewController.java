@@ -40,14 +40,14 @@ public class ReviewController {
     }
 
 
-    @GetMapping("/reviews-search/rate-review/{id}")
+    @GetMapping("/rate-review/{id}")
     public String rateReview(@PathVariable Long id, Model model) { //this id is the same id in URL
         Optional<Review> reviewToRate = reviewRepository.findById(id);
         model.addAttribute("review", reviewToRate.get()); //with what data we are working with
         return "rate-review";
     }
 
-    @PostMapping("/reviews-search/rate-review/{id}") //where we are getting data from
+    @PostMapping("/rate-review/{id}") //where we are getting data from
     public String saveEdits(@PathVariable Long id, @Valid Review reviewRated, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return "rate-review";
