@@ -31,14 +31,6 @@ public class ReviewController {
     UserRepository userRepository;
 
 
-
-/*    @GetMapping("/reviews") //relative link to reviews
-    public String reviewIndex(Model model) {
-        Iterable<Review> reviews = reviewRepository.findAll();
-        model.addAttribute("reviews", reviews);
-        return "/reviews-on-movie-index";//all reviews are here
-    }*/
-
     @GetMapping("/reviews-search/rate-review/{id}")
     public String editCatPage(@PathVariable Long id, Model model) { //this id is the same id in URL
         Optional<Review> reviewEdit = reviewRepository.findById(id);
@@ -49,9 +41,9 @@ public class ReviewController {
 
     @PostMapping("/reviews-search/rate-review/{id}") //where we are getting data from
     public String saveEdits(@PathVariable Long id, @Valid Review reviewRated, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "rate-review";
-        }else {
+        } else {
             Optional<Review> reviewOld = reviewRepository.findById(id);
             double newRatesSum = reviewOld.get().getRatesSum() + reviewRated.getReviewRating();
 
@@ -86,12 +78,11 @@ public class ReviewController {
 //        return "redirect:/cats";
 //    }
 
-/*    @GetMapping("/reviews/delete-review/{id}")
+    @GetMapping("/reviews/delete-review/{id}")
     public String deleteReview(@PathVariable Long id) {
         reviewRepository.deleteById(id);
         return "redirect:/reviews";
-
-    }*/
+    }
 
 
     @GetMapping("/reviews-search")
