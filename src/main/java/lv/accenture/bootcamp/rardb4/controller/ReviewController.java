@@ -39,19 +39,20 @@ public class ReviewController {
         return "/reviews-on-movie-index";//all reviews are here
     }*/
 
-
     @GetMapping("/reviews-search/rate-review/{id}")
-    public String rateReview(@PathVariable Long id, Model model) { //this id is the same id in URL
-        Optional<Review> reviewToRate = reviewRepository.findById(id);
-        model.addAttribute("review", reviewToRate.get()); //with what data we are working with
+    public String editCatPage(@PathVariable Long id, Model model) { //this id is the same id in URL
+        Optional<Review> reviewEdit = reviewRepository.findById(id);
+        model.addAttribute("review", reviewEdit.get()); //with what data we are working with
         return "rate-review";
     }
+
 
     @PostMapping("/reviews-search/rate-review/{id}") //where we are getting data from
     public String saveEdits(@PathVariable Long id, @Valid Review reviewRated, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return "rate-review";
         }else {
+
             reviewRated.setReviewID(id);
             reviewRepository.save(reviewRated);
             return "redirect:/";

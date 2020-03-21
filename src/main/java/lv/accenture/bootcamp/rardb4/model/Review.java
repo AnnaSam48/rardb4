@@ -4,6 +4,7 @@ package lv.accenture.bootcamp.rardb4.model;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,19 +38,22 @@ public class Review implements Serializable {
 
     private double reviewRating;
 
+    private String comment;
+
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName) {
-
+    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName, String comment) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
         this.movieID = movieID;
         this.userRatingForMovie = userRatingForMovie;
         this.userName = userName;
+        this.comment = comment;
     }
+
 
     public Long getReviewID() {
         return reviewID;
@@ -67,6 +71,13 @@ public class Review implements Serializable {
         return reviewText;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public double getUserRatingForMovie() {
         return userRatingForMovie;
