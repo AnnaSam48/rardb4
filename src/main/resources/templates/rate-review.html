@@ -7,73 +7,42 @@
 </head>
 <body>
 <div class="container">
-    <h1>Rate the following review:</h1><br><br>
+    <div>
+        <h1>Rate the following review:</h1><br><br>
 
-    <h6>Title: <span th:text="${review.reviewTitle}"/></h6>
-    <p>Review text: <span th:text="${review.reviewText}"/></p>
-
-    <div class="container">
-
-        <form action="#"
-              th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
-              th:object="${review}" method="post">
-
-            <div class="row">
-
-                <input type="hidden"  th:field="*{ratesAmount}" class="form-control" id="ratesAmount">
-                <input type="hidden"  th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-                <input type="hidden"  th:field="*{reviewText}" class="form-control" id="reviewText">
-                <input type="hidden"  th:field="*{movieID}" class="form-control" id="movieID">
-                <input type="hidden"  th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
-
-                <div class="form-group col-md-8">
-                    <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
-                    <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
-                </div>
-
-<!--                <div class="form-group col-md-8">
-                    <label for="comment" class="col-form-label">Comment</label>
-                    <textarea type="text" th:field="*{comment}" class="form-control" id="comment" placeholder="comment"></textarea>
-                </div>-->
-
-                <div class="form-group col-md-8">
-                    <input type="submit" class="btn btn-primary" value="Rate">
-                    <a th:href="@{/}" class="btn btn-dark">
-                        <span>Home</span></a>
-                </div>
-            </div>
-
-        </form>
-
-        <!--<form action="#"
-              th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}" th:object="${review}" method="post" >
-            <div class="row">
-                <div class="form-group col-md-8">
-
-                    &lt;!&ndash;<input type="hidden" id="custId" name="custId" value="3487">&ndash;&gt;
-                    <input type="hidden"  th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-                    <input type="hidden"  th:field="*{reviewText}" class="form-control" id="reviewText">
-                    <input type="hidden"  th:field="*{movieID}" class="form-control" id="movieID">
-                    <input type="hidden"  th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
-                    &lt;!&ndash;<span th:if="${#fields.hasErrors('reviewTitle')}" th:errors="*{reviewTitle}" class="text-danger"/>&ndash;&gt;
-                    <br>
-
-                    <label for="comment" class="col-form-label">Comment</label>
-                    <input type="text"  th:field="*{comment}" class="form-control" id="comment">
-                    <span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="text-danger"/>
-                    <br>
-
-                    <label for="reviewRating" class="col-form-label">reviewRating</label>
-                    <input type="text"  th:field="*{reviewRating}" class="form-control" id="reviewRating">
-                </div>
-
-                <div class="form-group col-md-8">
-                    <input type="submit" class="btn btn-primary" value="Rate">
-                </div>
-            </div>
-        </form>-->
+        <h6>Title: <span th:text="${review.reviewTitle}"/></h6>
+        <p>Review text: <span th:text="${review.reviewText}"/></p>
     </div>
+    <form action="#"
+          th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+          th:object="${review}" method="post">
 
+        <div class="row">
+
+            <input type="hidden" th:field="*{ratesAmount}" class="form-control" id="ratesAmount">
+            <input type="hidden" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
+            <input type="hidden" th:field="*{reviewText}" class="form-control" id="reviewText">
+            <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
+            <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
+
+            <div class="form-group col-md-8">
+                <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
+                <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
+            </div>
+
+            <!--                <div class="form-group col-md-8">
+                                <label for="comment" class="col-form-label">Comment</label>
+                                <textarea type="text" th:field="*{comment}" class="form-control" id="comment" placeholder="comment"></textarea>
+                            </div>-->
+
+            <div class="form-group col-md-8">
+                <input type="submit" class="btn btn-outline-dark" value="Rate">
+                <a th:href="@{/}" class="btn btn-outline-dark">
+                    <span>Home</span></a>
+            </div>
+        </div>
+
+    </form>
 
 </div>
 </body>

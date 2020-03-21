@@ -8,25 +8,22 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <h1 class="display-4"><span th:text="${movie.Title}"/>(<span th:text="${movie.Year}"/>)</h1>
-            <h7><span th:text="${movie.Genre}"/> | Released <span th:text="${movie.Released}"/> | <span
-                    th:text="${movie.Country}"/></h7>
-        </div>
-    </div>
-</div>
 
-<div class="container">
+   <div class="row">
+       <div class="col">
+            <h1 ><span th:text="${movie.Title}"/>(<span th:text="${movie.Year}"/>)</h1>
+            <h5 style="text-align:center"><span th:text="${movie.Genre}"/> | Released <span th:text="${movie.Released}"/> | <span
+                    th:text="${movie.Country}"/></h5>
+   </div>
+   </div>
+<br>
     <div class="row row-cols-2">
-
         <div class="col">
             <p><img style="height=400px;float:left;margin-right:50px" th:src="${movie.Poster}"></p>
         </div>
 
         <div class="col">
-
-            <table class="table table-hover">
+            <table class="table">
                 <tbody>
                 <tr>
                     <th scope="row">Director</th>
@@ -61,7 +58,6 @@
 
     </div>
 </div>
-<br><br>
 
 <!--Review Form-->
 <div class="container">
