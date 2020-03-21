@@ -108,7 +108,7 @@ public class ReviewController {
             Movie movie = movieMap.get(matchedReview.getMovieID());
 
             ReadyReview readyReview = new ReadyReview(
-                    movie.getImdbID(), matchedReview.getReviewRating(),
+                    movie.getImdbID(), matchedReview.getReviewID(), matchedReview.getReviewRating(),
                     matchedReview.getReviewTitle(), movie.getTitle(),
                     movie.getPoster(), matchedReview.getReviewText(),
                     matchedReview.getUserRatingForMovie(), matchedReview.getUserName()

@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class ReadyReview implements Serializable {
 
     private String imdbID;
+    private Long reviewID;
     private Double reviewRating;
     private String reviewTitle;
     private String Title;
@@ -14,10 +15,11 @@ public class ReadyReview implements Serializable {
     private Double userRatingForMovie;
     private String userName;
 
-    public ReadyReview(String imdbID, double reviewRating, String reviewTitle, String title,
+    public ReadyReview(String imdbID, Long reviewID, Double reviewRating, String reviewTitle, String title,
                        String poster, String reviewText, double userRatingForMovie, String userName) {
 
         this.imdbID = imdbID;
+        this.reviewID = reviewID;
         this.reviewRating = reviewRating;
         this.reviewTitle = reviewTitle;
         Title = title;
@@ -34,6 +36,14 @@ public class ReadyReview implements Serializable {
 
     public void setImdbID(String imdbID) {
         this.imdbID = imdbID;
+    }
+
+    public Long getReviewID() {
+        return reviewID;
+    }
+
+    public void setReviewID(Long reviewID) {
+        this.reviewID = reviewID;
     }
 
     public Double getReviewRating() {
