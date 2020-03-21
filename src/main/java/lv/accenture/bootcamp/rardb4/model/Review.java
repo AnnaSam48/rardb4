@@ -1,3 +1,4 @@
+
 package lv.accenture.bootcamp.rardb4.model;
 
 import org.springframework.stereotype.Component;
@@ -18,47 +19,42 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-   // @Size(min = 2, max = 256)
+
+    // @Size(min = 2, max = 256)
     private String reviewTitle;
-   // @NotNull
+
+    // @NotNull
     private String movieID;
+
     //@Size(min = 10, max = 256)
     private String reviewText;
+
+    // @NotNull
+    // @PositiveOrZero
     private double userRatingForMovie;
 
     private String userName;
+
     private double reviewRating;
-    private String comment;
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, String movieID, String userName, String comment, double userRatingForMovie) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
         this.movieID = movieID;
-        this.userName = userName;
-        this.comment = comment;
         this.userRatingForMovie = userRatingForMovie;
+        this.userName = userName;
     }
 
     public Long getReviewID() {
         return reviewID;
     }
 
-    public double getUserRatingForMovie() {
-        return userRatingForMovie;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
     public String getMovieID() {
         return movieID;
     }
@@ -70,6 +66,12 @@ public class Review implements Serializable {
     public String getReviewText() {
         return reviewText;
     }
+
+
+    public double getUserRatingForMovie() {
+        return userRatingForMovie;
+    }
+
 
     public double getReviewRating() {
         return reviewRating;
@@ -92,6 +94,8 @@ public class Review implements Serializable {
     }
 
     public void setReviewText(String reviewText) { this.reviewText = reviewText; }
+
+    public void setUserRatingForMovie(double userRatingForMovie) { this.userRatingForMovie = userRatingForMovie; }
 
     public void setReviewRating(double reviewRating) { this.reviewRating = reviewRating; }
 

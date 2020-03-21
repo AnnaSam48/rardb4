@@ -30,32 +30,13 @@ public class ReviewController {
     @Autowired
     UserRepository userRepository;
 
-
-
     @GetMapping("/reviews") //relative link to reviews
     public String reviewIndex(Model model) {
+
         Iterable<Review> reviews = reviewRepository.findAll();
         model.addAttribute("reviews", reviews);
+
         return "/reviews-on-movie-index";//all reviews are here
-    }
-
-
-    @GetMapping("/reviews-search/rate-review/{id}")
-    public String rateReview(@PathVariable Long id, Model model) { //this id is the same id in URL
-        Optional<Review> reviewToRate = reviewRepository.findById(id);
-        model.addAttribute("review", reviewToRate.get()); //with what data we are working with
-        return "rate-review";
-    }
-
-    @PostMapping("/reviews-search/rate-review/{id}") //where we are getting data from
-    public String saveEdits(@PathVariable Long id, @Valid Review reviewRated, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return "rate-review";
-        }else {
-            reviewRated.setReviewID(id);
-            reviewRepository.save(reviewRated);
-            return "redirect:/";
-        }
     }
 
 //
@@ -101,7 +82,7 @@ public class ReviewController {
             movieMap.put(matchedMovie.getImdbID(), matchedMovie);
         }
 
-        // Create collection from ReadyReview, with values from Movie and from Review classes
+        // Veidojam kollekciju no ReadyReview, kur ieliekam vērtības gan no Review, gan no Movie
         List<ReadyReview> readyReviews = new ArrayList<>();
         for (Review matchedReview : matchedReviews) {
             Movie movie = movieMap.get(matchedReview.getMovieID());
