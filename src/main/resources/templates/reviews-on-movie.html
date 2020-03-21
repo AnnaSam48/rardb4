@@ -17,7 +17,8 @@
 
     <h3>All reviews: </h3>
     <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table table-bordered table-dark">
+        <table class="table table-striped" style="color:#ffbb33">
+            <thead class="thead-info" bgcolor="#3333cc">
             <tr>
                 <th>Review rating</th>
                 <th>Review title</th>
@@ -25,9 +26,9 @@
                 <th>Photo</th>
                 <th>Review</th>
                 <th>Your movie rating:</th>
-                <th>Rated by user:</th>
-
+                <th>Review by:</th>
             </tr>
+            </thead>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
@@ -35,11 +36,12 @@
                 <td>
                     <img th:src="${readyReview.Poster}" height="150"/>
                 </td>
-                <td type="button"  class="btn btn-dark"th:text="${review.reviewText}"/>
-                <td th:text="${readyReview.userRatingForMovie}"/>
-                <td><a th:href="@{/rate-review/{id}(id=${review.reviewID})}" class="btn btn-dark">
-                    <span>Add rating</span></a>
+                <td>
+                    <a th:href="@{/rate-review/{id}(id=${readyReview.reviewID})}" type="button"
+                       class="btn btn-info" style="color:#ffbb33" th:text="${readyReview.reviewText}">
+                    </a>
                 </td>
+                <td th:text="${readyReview.userRatingForMovie}"/>
                 <td th:text="${readyReview.userName}"/>
 
             </tr>
