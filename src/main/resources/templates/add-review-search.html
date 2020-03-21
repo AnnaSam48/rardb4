@@ -2,21 +2,21 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Movie List</title>
+    <title>Movie List</title>e>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container">
-    <h1 class="display-4">Search for movie you want to add review to</h1>
+    <h3 class="display-4">Search for movie you want to add review to</h3>
 
 <!--Search bar -->
     <div class="form-group col-md-8">
         <form th:action="@{/add-review-search/search}" method="get">
             <input type="text" name="keyword" id="keyword" th:value="${keyword}"/>
-            <input type="submit" value="Search" class="btn btn-outline-primary btn-sm"/>
-            <a th:href="@{/}" class="btn btn-outline-primary btn-sm">
+            <input type="submit" value="Search" class="btn btn-dark"/>
+            <a th:href="@{/}" class="btn btn-outline-dark">
                 <span>Home</span></a>
         </form>
     </div>
@@ -39,7 +39,7 @@
                 <td th:text="${movie.Type}"/>
                 <td><img height="200" th:src="${movie.Poster}"></td>
                 <td>
-                    <a th:href="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}" class="btn btn-outline-primary btn-sm">
+                    <a th:href="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}" class="btn btn-dark">
                     <span>Add review</span></a>
                 </td>
             </tr>
