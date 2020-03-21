@@ -1,0 +1,10 @@
+body{
+
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-image: url(Ppan.jpg) ;
+	background-size: cover;
+}
+.container{
+ color: rgb(240, 204, 60)
+}

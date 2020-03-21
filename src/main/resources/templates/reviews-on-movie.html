@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Review list on movie</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reviews-on-movie.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body id="app-body">
@@ -11,7 +11,7 @@
 
     <form th:action="@{/reviews-search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
-        <input type="submit" value="Search" class="btn btn-outline-success"/>
+        <input type="submit" value="Search" class="btn btn-warning"/>
     </form>
 
     <h3>All reviews: </h3>
@@ -51,7 +51,7 @@
     </div>
     <div>
 
-        <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
+        <a th:href="@{/add-review-search}" class="btn btn-primary btn-sm">
             <span>Add review</span></a>
     </div>
 </div>
