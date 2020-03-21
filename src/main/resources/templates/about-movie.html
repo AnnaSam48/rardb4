@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+
+
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <h1 class="display-4"><span th:text="${movie.Title}"/>(<span th:text="${movie.Year}"/>)</h1>
+            <h1 class="display-4"><span th:text="${movie.Title}"/> ( <span th:text="${movie.Year}"/>)</h1>
             <h7><span th:text="${movie.Genre}"/> | Released <span th:text="${movie.Released}"/> | <span
                     th:text="${movie.Country}"/></h7>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row row-cols-2">
 
@@ -60,39 +61,6 @@
         </div>
 
     </div>
-</div>
-<br><br>
-
-<!--Review Form-->
-<div class="container">
-    <h1 class="display-4">Type in your review</h1>
-    <form action="#"
-          th:action="@{/add-review-search/add-review-movie/{id}(id=${movie.imdbID})}"
-          th:object="${review}" method="post">
-        <div class="row">
-
-            <div class="form-group col-md-8">
-                <label for="reviewTitle" class="col-form-label">Your review title</label>
-                <input type="text" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-                <br>
-            </div>
-            <div class="form-group col-md-8">
-                <label for="reviewText" class="col-form-label">Your review</label>
-                <textarea type="text" th:field="*{reviewText}" class="form-control" id="reviewText"></textarea>
-                <span th:if="${#fields.hasErrors('reviewText')}" th:errors="*{reviewText}" class="text-danger"/>
-            </div>
-
-            <div class="form-group col-md-8">
-                <label for="userRatingForMovie" class="col-form-label">Rate movie (1-10)</label>
-                <input type="text" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
-            </div>
-            <div class="form-group col-md-8">
-                <input type="submit" class="btn btn-dark" value="Ready to submit my review">
-                <a th:href="@{/add-review-search}" class="btn btn-outline-dark">
-                    <span>Back</span></a>
-            </div>
-        </div>
-    </form>
 </div>
 
 

@@ -27,7 +27,7 @@
                 <input type="hidden"  th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
 
                 <div class="form-group col-md-8">
-                    <label for="reviewRating" class="col-form-label">Review Rating</label>
+                    <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
                     <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
                 </div>
 
@@ -38,6 +38,8 @@
 
                 <div class="form-group col-md-8">
                     <input type="submit" class="btn btn-primary" value="Rate">
+                    <a th:href="@{/}" class="btn btn-dark">
+                        <span>Home</span></a>
                 </div>
             </div>
 
