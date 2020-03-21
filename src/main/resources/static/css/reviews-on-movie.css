@@ -2,13 +2,14 @@ body{
 
 	background-repeat: no-repeat;
 	background-attachment: scroll;
-	background-image: url(Ppan.jpg) ;
+	background-image: url(Ppan.jpg);
 	background-size: cover;
 }
 .container{
- color: rgb(240, 204, 60)
+ color: rgb(240, 204, 60);
 }
 
 .table{
-
+background: rgba(76, 175, 80, 0.2);
+color: rgb(255, 255, 255);
 }
