@@ -34,11 +34,12 @@ public class Review implements Serializable {
 
     private String comment;
 
+    private double userRatingForMovie;
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, String movieID, String userName, String comment) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, String movieID, String userName, String comment, double userRatingForMovie) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
@@ -46,10 +47,15 @@ public class Review implements Serializable {
         this.movieID = movieID;
         this.userName = userName;
         this.comment = comment;
+        this.userRatingForMovie = userRatingForMovie;
     }
 
     public Long getReviewID() {
         return reviewID;
+    }
+
+    public double getUserRatingForMovie() {
+        return userRatingForMovie;
     }
 
     public String getComment() {
