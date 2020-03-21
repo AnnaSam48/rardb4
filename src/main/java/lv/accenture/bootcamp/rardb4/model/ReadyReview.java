@@ -1,40 +1,17 @@
 package lv.accenture.bootcamp.rardb4.model;
 
-import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
-import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
-import lv.accenture.bootcamp.rardb4.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 
 
 public class ReadyReview implements Serializable {
 
-    @Autowired
-    MovieRepository movieRepository;
-
-    @Autowired
-    ReviewRepository reviewRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    Movie movie;
-
-    @Autowired
-    Review review;
-
-    @Autowired
-    User user;
-
     private String imdbID;
-    private double reviewRating;
+    private Double reviewRating;
     private String reviewTitle;
     private String Title;
     private String Poster;
     private String reviewText;
-    private double userRatingForMovie;
+    private Double userRatingForMovie;
     private String userName;
 
     public ReadyReview(String imdbID, double reviewRating, String reviewTitle, String title,
@@ -52,21 +29,23 @@ public class ReadyReview implements Serializable {
 
 
     public String getImdbID() {
-        return movie.getImdbID();
+        return imdbID;
     }
 
     public void setImdbID(String imdbID) {
         this.imdbID = imdbID;
     }
 
-    public double getReviewRating() { return review.getReviewRating(); }
+    public Double getReviewRating() {
+        return reviewRating;
+    }
 
-    public void setReviewRating(double reviewRating) {
+    public void setReviewRating(Double reviewRating) {
         this.reviewRating = reviewRating;
     }
 
     public String getReviewTitle() {
-        return review.getReviewTitle();
+        return reviewTitle;
     }
 
     public void setReviewTitle(String reviewTitle) {
@@ -74,7 +53,7 @@ public class ReadyReview implements Serializable {
     }
 
     public String getTitle() {
-        return reviewRepository.movieTitleFromId(imdbID);
+        return Title;
     }
 
     public void setTitle(String title) {
@@ -82,7 +61,7 @@ public class ReadyReview implements Serializable {
     }
 
     public String getPoster() {
-        return reviewRepository.posterURL(imdbID);
+        return Poster;
     }
 
     public void setPoster(String poster) {
@@ -90,19 +69,23 @@ public class ReadyReview implements Serializable {
     }
 
     public String getReviewText() {
-        return review.getReviewText();
+        return reviewText;
     }
 
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
     }
 
-    public void setUserRatingForMovie(double userRatingForMovie) {
+    public Double getUserRatingForMovie() {
+        return userRatingForMovie;
+    }
+
+    public void setUserRatingForMovie(Double userRatingForMovie) {
         this.userRatingForMovie = userRatingForMovie;
     }
 
     public String getUserName() {
-        return user.getUsername();
+        return userName;
     }
 
     public void setUserName(String userName) {

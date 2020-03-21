@@ -1,6 +1,7 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.model.Movie;
+import lv.accenture.bootcamp.rardb4.model.ReadyReview;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
@@ -15,8 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class ReviewController {
@@ -86,7 +86,38 @@ public class ReviewController {
     @GetMapping("/reviews-search")
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
-        model.addAttribute("reviews", matchedReviews);
+
+        // Ielādējām no DB atrastas filmas pēc to ID
+        Set<String> movieIDS = new HashSet<>();
+        for (Review matchedReview : matchedReviews) {
+            movieIDS.add(matchedReview.getMovieID());
+        }
+        Iterable<Movie> matchedMovies = movieRepository.findAllById(movieIDS);
+
+        // Taisam no tām Map<> kur atslēga ir imdbID un vērtība - pati filma,
+        // lai tālāk vārētu ātri tos dabūt
+        Map<String, Movie> movieMap = new HashMap<>();
+        for (Movie matchedMovie : matchedMovies) {
+            movieMap.put(matchedMovie.getImdbID(), matchedMovie);
+        }
+
+        // Create collection from ReadyReview, with values from Movie and from Review classes
+        List<ReadyReview> readyReviews = new ArrayList<>();
+        for (Review matchedReview : matchedReviews) {
+            Movie movie = movieMap.get(matchedReview.getMovieID());
+
+            ReadyReview readyReview = new ReadyReview(
+                    movie.getImdbID(), matchedReview.getReviewRating(),
+                    matchedReview.getReviewTitle(), movie.getTitle(),
+                    movie.getPoster(), matchedReview.getReviewText(),
+                    matchedReview.getUserRatingForMovie(), matchedReview.getUserName()
+            );
+
+            readyReviews.add(readyReview);
+        }
+
+
+        model.addAttribute("reviews", readyReviews);
         return "reviews-on-movie";
     }
 
