@@ -7,7 +7,6 @@ import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,10 +45,9 @@ public class ReviewController {
             return "rate-review";
         } else {
             Optional<Review> reviewOld = reviewRepository.findById(id);
+
             double newRatesSum = reviewOld.get().getRatesSum() + reviewRated.getReviewRating();
-
             int newRatesAmount = reviewOld.get().getRatesAmount() + 1;
-
             double rating = newRatesSum / newRatesAmount;
 
             reviewRated.setReviewRating(rating);
@@ -61,28 +59,6 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/reviews/top-rated-reviews")
-    public String highestRatedReviews(Model model) {
-        List<Review> highestRankedReviews = reviewRepository.findByOrderByReviewRatingDesc();
-        return "/";
-    }
-//
-//    @GetMapping("/reviews/edit/{id}")
-//    public String editReviewPage(@PathVariable Long id, Model model) {
-//        Optional<Review> reviewToEdit = reviewRepository.findById(id);
-//        model.addAttribute("review", reviewToEdit.get());
-//        return "edit-review";
-//    }
-//
-//    @PostMapping("/reviews/edit-review/{id}")
-//    public String editCat(@PathVariable Long id, @Valid Review editedReview, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "edit-review";
-//        }
-//        editedReview.setId(id);
-//        reviewRepository.save(editedReview);
-//        return "redirect:/cats";
-//    }
 
     @GetMapping("/reviews/delete-review/{id}")
     public String deleteReview(@PathVariable Long id) {
@@ -128,6 +104,19 @@ public class ReviewController {
         model.addAttribute("reviews", readyReviews);
         return "reviews-on-movie";
     }
+
+//    @GetMapping("/reviews/top-rated-reviews")
+//    public String highestRatedReviews(Model model) {
+//        Iterable<Review> highestRankedReviews = reviewRepository.findByOrderByReviewRatingDesc();
+//        List<Review> highestRankedList = new ArrayList<>();
+//
+//        for(Review highestRankedReview : highestRankedReviews){
+//         highestRankedList.add(highestRankedReview);
+//        }
+//
+//        model.addAttribute("reviews", highestRankedReviews);
+//        return "/";
+//    }
 
 
 }
