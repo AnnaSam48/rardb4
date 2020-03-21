@@ -11,34 +11,29 @@
 
     <form th:action="@{/reviews-search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
-        <input type="submit" value="Search" class="btn btn-outline-success"/>
+        <input type="submit" value="Search" class="btn btn-dark"/>
     </form>
 
-    <h3>All reviews: </h3>
+    <h3>Top reviews: </h3>
     <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table table-bordered table-dark">
+        <table class="table table-hover">
             <tr>
                 <th>Review rating</th>
                 <th>Review title</th>
-             <!--   <th>Movie title</th>
+              <!--  <th>Movie title</th>
                 <th>Photo</th>
                 -->
                 <th>Review</th>
-                <th>Your movie rating:</th>
-                <th>Rated by user:</th>
-
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
-                <td th:text="${review.reviewTitle}"/>
-             <!--   <td th:text="${review.movieTitle}"/>
+                <td th:text="${review.reviewTitle}">
+             <!--   <td th:text="${movie.title}">
                 <td>
-                    <img th:src="${review.moviePicture}" height="150"/>
+                    <img th:src="${movie.moviePoster}" height="120"/>
                 </td>
                 -->
-                <td type="button" class="btn btn-dark"th:text="${review.reviewText}"/>
-                <td th:text="${review.userRatingForMovie}"/>
-                <td th:text="${review.userName}"/>
+                <td th:text="${review.reviewText}">
             </tr>
         </table>
     </div>
@@ -51,7 +46,7 @@
     </div>
     <div>
 
-        <a th:href="@{/add-review-search}" class="btn btn-outline-primary btn-sm">
+        <a th:href="@{/add-review-search}" class="btn btn-dark">
             <span>Add review</span></a>
     </div>
 </div>
