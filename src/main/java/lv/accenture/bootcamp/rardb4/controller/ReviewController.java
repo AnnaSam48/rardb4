@@ -80,6 +80,7 @@ public class ReviewController {
     public String deleteReview(@PathVariable Long id) {
         reviewRepository.deleteById(id);
         return "redirect:/reviews";
+        
     }
 
 
