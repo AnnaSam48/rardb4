@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>RARDB4 index</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -12,12 +12,12 @@
 
     <form th:action="@{/reviews-search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
-        <input type="submit" value="Search" class="btn btn-outline-success"/>
+        <input type="submit" value="Search" class="btn btn-outline-dark"/>
     </form>
     <h3>Top reviews: </h3>
 
     <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table table-bordered table-dark">
+        <table class="table table-hover">
             <tr>
                 <th>Review rating</th>
                 <th>Review title</th>
@@ -26,7 +26,7 @@
                 <th>Review</th>
             </tr>
             <tr th:each="review: ${reviews}">
-                <td th:text="${review.setUserRatingForReview}"/>
+                <td th:text="${#numbers.formatDecimal(review.setUserRatingForReview,1,1,'POINT')}"/>
                 <td th:text="${review.reviewTitle}">
                 <td th:text="${review.movieTitle}">
                 <td>
@@ -43,10 +43,14 @@
             </div>
         </div>
     </div>
+
+
+
  <div>
 
         <a th:href="@{/add-review-search}" class="black-round-button"  >Add review</a>
     </div>
+
 </div>
 </body>
 </html>
