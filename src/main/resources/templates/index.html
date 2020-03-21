@@ -16,7 +16,7 @@
     </form>
     <h3>Top reviews: </h3>
 
-    <div th:if="${not #lists.isEmpty(reviews)}">
+    <!--<div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table table-hover">
             <tr>
                 <th>Review rating</th>
@@ -35,7 +35,7 @@
                 <td th:text="${review.reviewText}">
             </tr>
         </table>
-    </div>
+    </div>-->
     <div th:unless="${not #lists.isEmpty(reviews)}">
         <div class="card">
             <div class="card-body">
@@ -48,7 +48,7 @@
 
  <div>
 
-        <a th:href="@{/add-review-search}" class="black-round-button"  >Add review</a>
+        <a th:href="@{/add-review-search}" class="btn btn-outline-dark">Add review</a>
     </div>
 
 </div>

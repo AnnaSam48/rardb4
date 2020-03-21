@@ -97,10 +97,6 @@ public class ReadyReview implements Serializable {
         this.reviewText = reviewText;
     }
 
-    public double getUserRatingForMovie() {
-        return review.getUserRatingForMovie();
-    }
-
     public void setUserRatingForMovie(double userRatingForMovie) {
         this.userRatingForMovie = userRatingForMovie;
     }

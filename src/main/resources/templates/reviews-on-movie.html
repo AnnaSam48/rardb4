@@ -24,16 +24,19 @@
                 <th>Photo</th>
                 -->
                 <th>Review</th>
+                <th></th>
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
-                <td th:text="${review.reviewTitle}">
+                <td th:text="${review.reviewTitle}"/>
              <!--   <td th:text="${movie.title}">
                 <td>
                     <img th:src="${movie.moviePoster}" height="120"/>
                 </td>
                 -->
-                <td th:text="${review.reviewText}">
+                <td th:text="${review.reviewText}"/>
+                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}" class="btn btn-dark">
+                    <span>Rate review</span></a></td>
             </tr>
         </table>
     </div>
