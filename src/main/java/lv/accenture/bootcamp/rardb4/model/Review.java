@@ -18,23 +18,18 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-
    // @Size(min = 2, max = 256)
     private String reviewTitle;
-
    // @NotNull
     private String movieID;
-
     //@Size(min = 10, max = 256)
     private String reviewText;
+    private double userRatingForMovie;
 
     private String userName;
-
     private double reviewRating;
-
     private String comment;
 
-    private double userRatingForMovie;
 
     public Review() {
     }
