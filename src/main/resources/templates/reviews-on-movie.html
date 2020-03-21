@@ -27,22 +27,18 @@
                 <th>Review</th>
                 <th>Your movie rating:</th>
                 <th>Review by:</th>
+                <th></th>
             </tr>
             </thead>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
                 <td th:text="${readyReview.Title}"/>
-                <td>
-                    <img th:src="${readyReview.Poster}" height="150"/>
-                </td>
-                <td>
-                    <a th:href="@{/rate-review/{id}(id=${readyReview.reviewID})}" type="button"
-                       class="btn btn-info" style="color:#ffbb33" th:text="${readyReview.reviewText}">
-                    </a>
-                </td>
+                <td><img th:src="${readyReview.Poster}" height="150"/></td>
+                <td th:text="${readyReview.reviewText}"/>
                 <td th:text="${readyReview.userRatingForMovie}"/>
                 <td th:text="${readyReview.userName}"/>
+                <td></td>
 
             </tr>
         </table>
