@@ -1,16 +1,16 @@
 body{
 
 	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-image: url(Ppan.jpg);
-	background-size: contains;
+	background-attachment: scroll;
+	background-image: url(Blue-Backgrounds.jpg);
+	background-size: cover;
 }
 .container{
  color: rgb(240, 204, 60);
 }
 
 .table{
-color:#ffbb33;
+font-size:20px;
 text-align: center;
 justify-content: center;
 background: rgba(76, 175, 80, 0.2);
