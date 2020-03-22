@@ -14,17 +14,19 @@ public class Comment implements Serializable {
     private Long commentID;
     private Long reviewID;
     private String commentText;
-    private String userName;
+    private String commentUsername;
+    private String timestamp;
 
     public Comment() {
 
     }
 
-    public Comment(Long commentID, Long reviewID, String commentText, String userName) {
+    public Comment(Long commentID, Long reviewID, String commentText, String commentUsername, String timeStamp) {
         this.commentID = commentID;
         this.reviewID = reviewID;
         this.commentText = commentText;
-        this.userName = userName;
+        this.commentUsername = commentUsername;
+        this.timestamp = timeStamp;
     }
 
     public Long getCommentID() {
@@ -51,11 +53,31 @@ public class Comment implements Serializable {
         this.commentText = commentText;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getCommentUsername() {
+        return commentUsername;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setCommentUsername(String commentUsername) {
+        this.commentUsername = commentUsername;
+    }
+
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentID=" + commentID +
+                ", reviewID=" + reviewID +
+                ", commentText='" + commentText + '\'' +
+                ", commentUsername='" + commentUsername + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
 }

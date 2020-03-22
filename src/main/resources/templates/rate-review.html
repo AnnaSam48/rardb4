@@ -14,33 +14,61 @@
         <p>Review text: <span th:text="${review.reviewText}"/></p>
     </div>
     <form action="#"
-          id ="rate_comment"
+          id ="rate"
           th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
           th:object="${review}" method="post">
 
         <div class="row">
-
+<!--
             <input type="hidden" th:field="*{ratesAmount}" class="form-control" id="ratesAmount">
             <input type="hidden" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
             <input type="hidden" th:field="*{reviewText}" class="form-control" id="reviewText">
             <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
             <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
-
+-->
             <div class="form-group col-md-8">
                 <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
                 <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
             </div>
 
             <div class="form-group col-md-8">
-                <input type="submit" class="btn btn-outline-dark" value="Rate/Comment">
+                <input type="submit" class="btn btn-outline-dark" value="Rate">
             </div>
         </div>
     </form>
 
-    <textarea rows="3" cols="50" name="comment"  form="rate_comment"></textarea><br>
+    <div class="container">
+
+        <div class="row">
+
+            <table id="comments" class="table table-striped">
+                <thead>
+                <tr>
+                    <th width="5%">User</th>
+                    <th width="20%">Message</th>
+                    <th width="10%">Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="result" data-th-each="comment : ${comments}">
+                    <td>[[${comment.userName}]]</td>
+                    <td>[[${comment.commentText}]]</td>
+                    <td>[[${comment.timestamp}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script data-th-src="@{/js/main.js}"></script>
+
+    <!-- <textarea rows="3" cols="50" name="comment"  form="rate_comment"></textarea><br>
+    -->
     <a th:href="@{/}" class="btn btn-outline-dark">
         <span>Home</span></a>
 
 </div>
+<script data-th-src="@{/js/main.js}"></script>
 </body>
 </html>
