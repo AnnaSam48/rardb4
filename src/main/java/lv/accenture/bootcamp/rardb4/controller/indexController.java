@@ -33,7 +33,8 @@ public class indexController {
     public String toBestRatedReviews(Model model) {
 
         List<Review> bestReviews = reviewRepository.findTop5ByOrderByReviewRatingDesc();
-        //Load top5 reviews from DB and get their ID
+
+//        Load top5 reviews from DB and get their ID
 //        Set<Long> reviewIDS = new HashSet<>();
 //        for (Review bestReview : bestReviews) {
 //            reviewIDS.add(bestReview.getReviewID());
@@ -53,11 +54,13 @@ public class indexController {
 //            movieTitles.add(movieTitle);
 //        }
 //
-//        String movieTitle;
-//
+//        String movieTitle="";
 //        for (String m : movieTitles){
-//            movieTitle =m;
+//            movieTitle = m;
+//            Movie movie = new Movie();
+//            movie.setTitle(movieTitle);
 //        }
+
 
         model.addAttribute("reviews", bestReviews);
         return "index";

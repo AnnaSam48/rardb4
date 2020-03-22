@@ -30,8 +30,9 @@
                 <td th:text="${readyReview.reviewRating}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
                 <td th:text="${readyReview.reviewText}"/>
-                <!-- <td th:text="${readyReview.Title}"/>-->
                 <td></td>
+              <!--  <td th:text="${readyReview.movieTitle}"/>
+              -->
                 <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}"
                        class="btn btn-outline-dark">
                     <span>Rate/comment</span></a><br></td>
