@@ -23,14 +23,12 @@
                 <th scope="col">Review rating</th>
                 <th scope="col">Review title</th>
                 <th scope="col">Review</th>
-                <!--<th scope="col">Movie</th>-->
                 <th>ACTIONS</th>
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
                 <td th:text="${review.reviewTitle}"/>
                 <td th:text="${review.reviewText}"/>
-               <!-- <td th:text="${review.reviewRating}"/>-->
                 <td><a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}" class="btn btn-outline-dark">
                     <span>Rate/comment</span></a><br></td>
             </tr>

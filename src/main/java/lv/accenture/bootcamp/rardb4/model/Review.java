@@ -1,10 +1,7 @@
 
 package lv.accenture.bootcamp.rardb4.model;
 
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
-@Component
 @Entity
 public class Review implements Serializable {
 
@@ -36,40 +32,25 @@ public class Review implements Serializable {
     private String userName;
     private double ratesSum;
     private double reviewRating;
-    private String comment;
     private int ratesAmount;
 
 
     public Review() {
     }
 
-    public Review(double ratesSum, int ratesAmount, Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie, String movieID, String userName, String comment) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie,
+                  String movieID, String userName, double ratesSum, int ratesAmount) {
+
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
         this.movieID = movieID;
         this.userRatingForMovie = userRatingForMovie;
         this.userName = userName;
-        this.comment = comment;
         this.ratesAmount = ratesAmount;
         this.ratesSum = ratesSum;
     }
 
-    public double getRatesSum() {
-        return ratesSum;
-    }
-
-    public void setRatesSum(double ratesSum) {
-        this.ratesSum = ratesSum;
-    }
-
-    public int getRatesAmount() {
-        return ratesAmount;
-    }
-
-    public void setRatesAmount(int ratesAmount) {
-        this.ratesAmount = ratesAmount;
-    }
 
     public Long getReviewID() {
         return reviewID;
@@ -87,14 +68,6 @@ public class Review implements Serializable {
         return reviewText;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public double getUserRatingForMovie() {
         return userRatingForMovie;
     }
@@ -104,9 +77,30 @@ public class Review implements Serializable {
         return reviewRating;
     }
 
-    public String getUserName() { return userName; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public void setUserName(String userName) { this.userName = userName; }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+
+    public double getRatesSum() {
+        return ratesSum;
+    }
+
+    public void setRatesSum(double ratesSum) {
+        this.ratesSum = ratesSum;
+    }
+
+    public int getRatesAmount() {
+        return ratesAmount;
+    }
+
+    public void setRatesAmount(int ratesAmount) {
+        this.ratesAmount = ratesAmount;
+    }
 
     public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
@@ -120,10 +114,16 @@ public class Review implements Serializable {
         this.movieID = movieID;
     }
 
-    public void setReviewText(String reviewText) { this.reviewText = reviewText; }
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
 
-    public void setUserRatingForMovie(double userRatingForMovie) { this.userRatingForMovie = userRatingForMovie; }
+    public void setUserRatingForMovie(double userRatingForMovie) {
+        this.userRatingForMovie = userRatingForMovie;
+    }
 
-    public void setReviewRating(double reviewRating) { this.reviewRating = reviewRating; }
+    public void setReviewRating(double reviewRating) {
+        this.reviewRating = reviewRating;
+    }
 
 }

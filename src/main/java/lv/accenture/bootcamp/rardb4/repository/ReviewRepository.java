@@ -19,7 +19,6 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     List<Review> findTop5ByOrderByReviewRatingDesc();
 
-    //List<Review> findTop5ByOrderByIdAsc();
 
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);
@@ -34,8 +33,6 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     List<Review> allReviewsByUser(@Param(value = "userName") String userName);
 */
 
-  /*@Query()
-    List<Review>findByOrderByRatingReviewDesc();*/
 
 
 

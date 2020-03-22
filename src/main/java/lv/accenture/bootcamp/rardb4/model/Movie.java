@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 import javax.persistence.Id;
 
-@Component
 @Entity
 public class Movie implements Serializable {
 

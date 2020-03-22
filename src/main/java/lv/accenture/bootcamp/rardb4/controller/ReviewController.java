@@ -32,7 +32,7 @@ public class ReviewController {
 
 
     @GetMapping("/reviews-search/rate-review/{id}")
-    public String editCatPage(@PathVariable Long id, Model model) { //this id is the same id in URL
+    public String editReviewPage(@PathVariable Long id, Model model) { //this id is the same id in URL
         Optional<Review> reviewEdit = reviewRepository.findById(id);
         model.addAttribute("review", reviewEdit.get()); //with what data we are working with
         return "rate-review";
@@ -69,23 +69,6 @@ public class ReviewController {
         return "about-movie";
     }
 
-//
-//    @GetMapping("/reviews/edit/{id}")
-//    public String editReviewPage(@PathVariable Long id, Model model) {
-//        Optional<Review> reviewToEdit = reviewRepository.findById(id);
-//        model.addAttribute("review", reviewToEdit.get());
-//        return "edit-review";
-//    }
-//
-//    @PostMapping("/reviews/edit-review/{id}")
-//    public String editCat(@PathVariable Long id, @Valid Review editedReview, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "edit-review";
-//        }
-//        editedReview.setId(id);
-//        reviewRepository.save(editedReview);
-//        return "redirect:/cats";
-//    }
 
     @GetMapping("/reviews/delete-review/{id}")
     public String deleteReview(@PathVariable Long id) {
@@ -98,15 +81,15 @@ public class ReviewController {
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
 
-        // Ielādējām no DB atrastas filmas pēc to ID
+       //Load movies by ID from DB
         Set<String> movieIDS = new HashSet<>();
         for (Review matchedReview : matchedReviews) {
             movieIDS.add(matchedReview.getMovieID());
         }
         Iterable<Movie> matchedMovies = movieRepository.findAllById(movieIDS);
 
-        // Taisam no tām Map<> kur atslēga ir imdbID un vērtība - pati filma,
-        // lai tālāk vārētu ātri tos dabūt
+        // Make Map<> of them, where Key is imdbId and value the movie
+        // so we can get them quickly later
         Map<String, Movie> movieMap = new HashMap<>();
         for (Movie matchedMovie : matchedMovies) {
             movieMap.put(matchedMovie.getImdbID(), matchedMovie);
@@ -131,15 +114,5 @@ public class ReviewController {
         model.addAttribute("reviews", readyReviews);
         return "reviews-on-movie";
     }
-
-/*    @GetMapping("/reviews/highest-rated")
-    public String highestRatedReviews(Model model) {
-        List<Review> highestRatedReviews = reviewRepository.findByOrderByRatingReviewDesc();
-        model.addAttribute("reviews", highestRatedReviews);
-        return "/";
-    }*/
-
-
-
 
 }
