@@ -16,20 +16,24 @@
     </form>
 
 
-   <h3>Top 5 reviews: </h3>
+    <h3>Top 5 reviews </h3>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
             <tr>
                 <th scope="col">Review rating</th>
                 <th scope="col">Review title</th>
                 <th scope="col">Review</th>
+                <th scope="col">Movie</th>
                 <th>ACTIONS</th>
             </tr>
-            <tr th:each="review: ${reviews}">
-                <td th:text="${review.reviewRating}"/>
-                <td th:text="${review.reviewTitle}"/>
-                <td th:text="${review.reviewText}"/>
-                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}" class="btn btn-outline-dark">
+            <tr th:each="readyReview: ${reviews}">
+                <td th:text="${readyReview.reviewRating}"/>
+                <td th:text="${readyReview.reviewTitle}"/>
+                <td th:text="${readyReview.reviewText}"/>
+                <!-- <td th:text="${readyReview.Title}"/>-->
+                <td></td>
+                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}"
+                       class="btn btn-outline-dark">
                     <span>Rate/comment</span></a><br></td>
             </tr>
         </table>
@@ -45,7 +49,7 @@
     </div>
 
 
- <div>
+    <div>
         <a th:href="@{/add-review-search}" class="btn btn-outline-dark">Add review</a>
     </div>
 

@@ -97,6 +97,7 @@ public class ReviewController {
 
         // Create collection from ReadyReview, with values from Movie and from Review classes
         List<ReadyReview> readyReviews = new ArrayList<>();
+
         for (Review matchedReview : matchedReviews) {
             Movie movie = movieMap.get(matchedReview.getMovieID());
 
