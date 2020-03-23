@@ -8,9 +8,12 @@ import lv.accenture.bootcamp.rardb4.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -27,6 +30,24 @@ public class CommentController {
 
     @Autowired
     CommentRepository commentRepository;
+
+    //Getting user's comment input from user to put in DB
+    @GetMapping("/reviews-search/rate-review/{id}/comments/add")
+    public String addCommentInput(Model model) {
+        model.addAttribute("comment", new Comment());
+        return "rate-review";
+    }
+
+    //Showing comment to the user
+    @PostMapping("/reviews-search/rate-review/{id}/comments/add-comment")
+    public String addComment(@Valid Comment commentToAdd, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+
+            return "add-comment";
+        }
+        commentRepository.save(commentToAdd);
+        return "rate-review";
+    }
 
     @GetMapping("/reviews-search/rate-review/{id}/comments")
     public String allCommentsByReviewId(@RequestParam Long reviewID, Model model) {

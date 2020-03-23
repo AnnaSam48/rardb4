@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>RARDB4 index</title>
+    <title>Rate and comment</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
@@ -9,23 +9,21 @@
 <div class="container">
     <div>
         <h1>Rate the following review:</h1><br><br>
-
         <h6>Title: <span th:text="${review.reviewTitle}"/></h6>
         <p>Review text: <span th:text="${review.reviewText}"/></p>
     </div>
     <form action="#"
-          id ="rate"
           th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
           th:object="${review}" method="post">
 
         <div class="row">
-<!--
+
             <input type="hidden" th:field="*{ratesAmount}" class="form-control" id="ratesAmount">
             <input type="hidden" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
             <input type="hidden" th:field="*{reviewText}" class="form-control" id="reviewText">
             <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
             <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
--->
+
             <div class="form-group col-md-8">
                 <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
                 <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
@@ -40,35 +38,42 @@
     <div class="container">
 
         <div class="row">
+            <form action="#"
+                  id="comment"
+                  th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})/comments/add-comment}"
+                  th:object="${comment}" method="post">
 
-            <table id="comments" class="table table-striped">
-                <thead>
-                <tr>
-                    <th width="5%">User</th>
-                    <th width="20%">Message</th>
-                    <th width="10%">Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="result" data-th-each="comment : ${comments}">
-                    <td>[[${comment.userName}]]</td>
-                    <td>[[${comment.commentText}]]</td>
-                    <td>[[${comment.timestamp}]]</td>
-                </tr>
-                </tbody>
-            </table>
+                <table id="comments" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th width="5%">User</th>
+                        <th width="20%">Message</th>
+                        <th width="10%">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="result" data-th-each="comment : ${comments}">
+                        <td>[[${comment.userName}]]</td>
+                        <td>[[${comment.commentText}]]</td>
+                        <td>[[${comment.timestamp}]]</td>
+                    </tr>
+                    <tr>
+                        <div class="form-group col-md-8">
+                        <label>Comment on review:</label><br>
+                        <textarea rows="3" cols="50" name="comment" form="comment"></textarea><br>
+                        <input type="submit" class="btn btn-outline-dark" value="Post">
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
-
     </div>
 
-    <script data-th-src="@{/js/main.js}"></script>
 
-    <!-- <textarea rows="3" cols="50" name="comment"  form="rate_comment"></textarea><br>
-    -->
+
     <a th:href="@{/}" class="btn btn-outline-dark">
         <span>Home</span></a>
-
 </div>
-<script data-th-src="@{/js/main.js}"></script>
 </body>
 </html>
