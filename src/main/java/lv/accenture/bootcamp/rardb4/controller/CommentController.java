@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,24 +33,24 @@ public class CommentController {
     CommentRepository commentRepository;
 
     //Getting user's comment input from user to put in DB
-    @GetMapping("/reviews-search/rate-review/{id}/comments/add")
+/*    @GetMapping("/reviews-search/rate-review/{id}/comments/add")
     public String addCommentInput(Model model) {
         model.addAttribute("comment", new Comment());
         return "rate-review";
-    }
+    }*/
 
-    //Showing comment to the user
-    @PostMapping("/reviews-search/rate-review/{id}/comments/add-comment")
-    public String addComment(@Valid Comment commentToAdd, BindingResult bindingResult) {
+
+    @PostMapping("/reviews-search/rate-review/comment/{id}")
+    public String addComment(@PathVariable Long id, @Valid Comment commentToAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-
-            return "add-comment";
+            return "rate-review";
         }
+        commentToAdd.setReviewID(id);
         commentRepository.save(commentToAdd);
-        return "rate-review";
+        return "redirect:/";
     }
 
-    @GetMapping("/reviews-search/rate-review/{id}/comments")
+  /*  @GetMapping("/reviews-search/rate-review/{id}/comments")
     public String allCommentsByReviewId(@RequestParam Long reviewID, Model model) {
         List<Comment> matchedComments = commentRepository.findByReviewId(reviewID);
 
@@ -85,7 +86,7 @@ public class CommentController {
 
         model.addAttribute("comments", fullComments);
         return "rate-review";
-    }
+    }*/
 }
 
 

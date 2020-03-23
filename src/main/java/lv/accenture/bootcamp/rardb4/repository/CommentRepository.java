@@ -11,11 +11,13 @@ import java.util.List;
 
 
 @Repository
-public interface CommentRepository extends CrudRepository<Comment, Flux> {
+public interface CommentRepository extends CrudRepository<Comment, Long> {
 
     String searchAllByReviewId = "SELECT c FROM Comment c JOIN Review r on c.reviewID = r.movieID";
 
-    Iterable<Comment> findAll();
+    /*Iterable<Comment> findAll();
     @Query(searchAllByReviewId)
-    List<Comment> findByReviewId(@Param(value = "reviewID") Long reviewID);
+    List<Comment> findByReviewId(@Param(value = "reviewID") Long reviewID);*/
+
+    List<Comment> findAllByReviewID(Long reviewID);
 }
