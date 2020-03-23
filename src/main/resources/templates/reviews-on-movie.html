@@ -17,9 +17,9 @@
 
     <h3>All reviews: </h3>
     <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table">
+        <table class="table" style="color:#ffaa00">
             <thead class="thead-info">
-            <tr>
+            <tr style="font-size:20px">
                 <th>Review rating</th>
                 <th>Review title</th>
                 <th>Movie title</th>
@@ -38,9 +38,9 @@
                 <td th:text="${readyReview.reviewText}"/>
                 <td th:text="${readyReview.userRatingForMovie}"/>
                 <td th:text="${readyReview.userName}"/>
-                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}" class="btn btn-outline-dark">
+                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}" class="btn btn-dark">
                     <span>Rate/comment</span></a><br>
-                    <a th:href="@{/about-movie/{id}(id=${readyReview.imdbID})}" class="btn btn-outline-dark">
+                    <a th:href="@{/about-movie/{id}(id=${readyReview.imdbID})}" class="btn btn-warning">
                         <span>About movie</span></a></td>
 
             </tr>
@@ -55,7 +55,7 @@
     </div>
     <div>
 
-        <a th:href="@{/add-review-search}" class="btn btn-outline-dark">
+        <a th:href="@{/add-review-search}" class="btn btn-warning">
             <span>Add review</span></a>
     </div>
 </div>

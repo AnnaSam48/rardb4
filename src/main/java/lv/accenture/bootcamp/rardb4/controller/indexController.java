@@ -1,7 +1,6 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.model.Movie;
-import lv.accenture.bootcamp.rardb4.model.ReadyReview;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.repository.CommentRepository;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
@@ -33,39 +32,40 @@ public class indexController {
     @GetMapping("/")
     public String toBestRatedReviews(Model model) {
 
-        List<Review> matchedReviews = reviewRepository.findTop5ByOrderByReviewRatingDesc();
-       /* //Load movies by ID from DB
-        Set<String> movieIDS = new HashSet<>();
-        for (Review matchedReview : matchedReviews) {
-            movieIDS.add(matchedReview.getMovieID());
-        }
-        Iterable<Movie> matchedMovies = movieRepository.findAllById(movieIDS);
+        List<Review> bestReviews = reviewRepository.findTop5ByOrderByReviewRatingDesc();
 
-        // Make Map<> of them, where Key is imdbId and value the movie
-        // so we can get them quickly later
-        Map<String, Movie> movieMap = new HashMap<>();
-        for (Movie matchedMovie : matchedMovies) {
-            movieMap.put(matchedMovie.getImdbID(), matchedMovie);
-        }
+//        Load top5 reviews from DB and get their ID
+//        Set<Long> reviewIDS = new HashSet<>();
+//        for (Review bestReview : bestReviews) {
+//            reviewIDS.add(bestReview.getReviewID());
+//        }
+//
+//        Iterable<Review> matchedReviews = reviewRepository.findAllById(reviewIDS);
+//
+//        List<String> matchedMovieID = new ArrayList<>();
+//        for (Review matchedReview : matchedReviews) {
+//            String movieID = matchedReview.getMovieID();
+//            matchedMovieID.add(movieID);
+//        }
+//
+//        List<String> movieTitles = new ArrayList<>();
+//        for (String movieID : matchedMovieID) {
+//            String movieTitle = reviewRepository.movieTitleFromId(movieID);
+//            movieTitles.add(movieTitle);
+//        }
+//
+//        String movieTitle="";
+//        for (String m : movieTitles){
+//            movieTitle = m;
+//            Movie movie = new Movie();
+//            movie.setTitle(movieTitle);
+//        }
 
-        // Create collection from ReadyReview, with values from Movie and from Review classes
-        List<ReadyReview> readyReviews = new ArrayList<>();
 
-        for (Review matchedReview : matchedReviews) {
-            Movie movie = movieMap.get(matchedReview.getMovieID());
-
-            ReadyReview readyReview = new ReadyReview(
-                    movie.getImdbID(), matchedReview.getReviewID(), matchedReview.getReviewRating(),
-                    matchedReview.getReviewTitle(), movie.getTitle(),
-                    movie.getPoster(), matchedReview.getReviewText(),
-                    matchedReview.getUserRatingForMovie(), matchedReview.getUserName()
-            );
-
-            readyReviews.add(readyReview);
-        }
-*/
-        model.addAttribute("reviews", matchedReviews);
+        model.addAttribute("reviews", bestReviews);
         return "index";
     }
-
 }
+
+
+

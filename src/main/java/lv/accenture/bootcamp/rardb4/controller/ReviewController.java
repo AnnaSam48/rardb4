@@ -61,15 +61,6 @@ public class ReviewController {
     }
 
 
-
-    @GetMapping("/about-movie/{id}")
-    public String aboutMovie(@PathVariable String id, Model model) { //this id is the same id in URL
-        Optional<Movie> movieToShow = movieRepository.findById(id);
-        model.addAttribute("movie", movieToShow.get()); //with what data we are working with
-        return "about-movie";
-    }
-
-
     @GetMapping("/reviews/delete-review/{id}")
     public String deleteReview(@PathVariable Long id) {
         reviewRepository.deleteById(id);
@@ -86,6 +77,7 @@ public class ReviewController {
         for (Review matchedReview : matchedReviews) {
             movieIDS.add(matchedReview.getMovieID());
         }
+
         Iterable<Movie> matchedMovies = movieRepository.findAllById(movieIDS);
 
         // Make Map<> of them, where Key is imdbId and value the movie

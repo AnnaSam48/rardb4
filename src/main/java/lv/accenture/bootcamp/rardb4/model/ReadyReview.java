@@ -16,8 +16,9 @@ public class ReadyReview implements Serializable {
     private String userName;
 
 
-    public ReadyReview(String imdbID, Long reviewID, Double reviewRating, String reviewTitle, String title,
-                       String poster, String reviewText, double userRatingForMovie, String userName) {
+    public ReadyReview(String imdbID, Long reviewID, Double reviewRating, String reviewTitle,
+                       String title, String poster, String reviewText, double userRatingForMovie,
+                       String userName) {
 
         this.imdbID = imdbID;
         this.reviewID = reviewID;

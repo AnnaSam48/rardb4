@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -75,6 +76,13 @@ public class MovieController {
     @GetMapping("/add-review-movie/reviewSubmitted")
     public String resultSubmitted() {
         return "reviewSubmitted";
+    }
+
+    @GetMapping("/about-movie/{id}")
+    public String aboutMovie(@PathVariable String id, Model model) { //this id is the same id in URL
+        Optional<Movie> movieToShow = moviesRepository.findById(id);
+        model.addAttribute("movie", movieToShow.get()); //with what data we are working with
+        return "about-movie";
     }
 
 }
