@@ -7,17 +7,17 @@ public class ReadyReview implements Serializable {
 
     private String imdbID;
     private Long reviewID;
-    private Double reviewRating;
+    private int reviewRating;
     private String reviewTitle;
     private String Title;
     private String Poster;
     private String reviewText;
-    private Double userRatingForMovie;
+    private int userRatingForMovie;
     private String userName;
 
 
-    public ReadyReview(String imdbID, Long reviewID, Double reviewRating, String reviewTitle,
-                       String title, String poster, String reviewText, double userRatingForMovie,
+    public ReadyReview(String imdbID, Long reviewID, int reviewRating, String reviewTitle,
+                       String title, String poster, String reviewText, int userRatingForMovie,
                        String userName) {
 
         this.imdbID = imdbID;
@@ -48,11 +48,11 @@ public class ReadyReview implements Serializable {
         this.reviewID = reviewID;
     }
 
-    public Double getReviewRating() {
+    public int getReviewRating() {
         return reviewRating;
     }
 
-    public void setReviewRating(Double reviewRating) {
+    public void setReviewRating(int reviewRating) {
         this.reviewRating = reviewRating;
     }
 
@@ -88,11 +88,11 @@ public class ReadyReview implements Serializable {
         this.reviewText = reviewText;
     }
 
-    public Double getUserRatingForMovie() {
+    public int getUserRatingForMovie() {
         return userRatingForMovie;
     }
 
-    public void setUserRatingForMovie(Double userRatingForMovie) {
+    public void setUserRatingForMovie(int userRatingForMovie) {
         this.userRatingForMovie = userRatingForMovie;
     }
 

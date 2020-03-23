@@ -29,11 +29,4 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     @Query(moviePosterURL)
     String posterURL(@Param(value = "imdbID") String imdbID);
 
-  /*  @Query(joinAllReviewsToUser)
-    List<Review> allReviewsByUser(@Param(value = "userName") String userName);
-*/
-
-
-
-
 }

@@ -28,18 +28,18 @@ public class Review implements Serializable {
 
     // @NotNull
     // @PositiveOrZero
-    private double userRatingForMovie;
+    private int userRatingForMovie;
     private String userName;
-    private double ratesSum;
-    private double reviewRating;
+    private int ratesSum;
+    private int reviewRating;
     private int ratesAmount;
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, double userRatingForMovie,
-                  String movieID, String userName, double ratesSum, int ratesAmount) {
+    public Review(Long reviewID, String reviewTitle, String reviewText, int userRatingForMovie,
+                  String movieID, String userName, int ratesSum, int ratesAmount) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
@@ -68,12 +68,12 @@ public class Review implements Serializable {
         return reviewText;
     }
 
-    public double getUserRatingForMovie() {
+    public int getUserRatingForMovie() {
         return userRatingForMovie;
     }
 
 
-    public double getReviewRating() {
+    public int getReviewRating() {
         return reviewRating;
     }
 
@@ -86,11 +86,11 @@ public class Review implements Serializable {
     }
 
 
-    public double getRatesSum() {
+    public int getRatesSum() {
         return ratesSum;
     }
 
-    public void setRatesSum(double ratesSum) {
+    public void setRatesSum(int ratesSum) {
         this.ratesSum = ratesSum;
     }
 
@@ -118,11 +118,11 @@ public class Review implements Serializable {
         this.reviewText = reviewText;
     }
 
-    public void setUserRatingForMovie(double userRatingForMovie) {
+    public void setUserRatingForMovie(int userRatingForMovie) {
         this.userRatingForMovie = userRatingForMovie;
     }
 
-    public void setReviewRating(double reviewRating) {
+    public void setReviewRating(int reviewRating) {
         this.reviewRating = reviewRating;
     }
 

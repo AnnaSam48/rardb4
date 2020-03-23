@@ -54,10 +54,10 @@ public class ReviewController {
             return "rate-review";
         } else {
             Optional<Review> reviewOld = reviewRepository.findById(id);
-            double newRatesSum = reviewOld.get().getRatesSum() + reviewRated.getReviewRating();
+            int newRatesSum = (reviewOld.get().getRatesSum() + reviewRated.getReviewRating());
 
             int newRatesAmount = reviewOld.get().getRatesAmount() + 1;
-            double rating = newRatesSum / newRatesAmount;
+            int rating = newRatesSum / newRatesAmount;
 
             reviewRated.setReviewRating(rating);
             reviewRated.setRatesAmount(newRatesAmount);
