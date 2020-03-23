@@ -14,7 +14,7 @@
         <p>Review text: <span th:text="${review.reviewText}"/></p>
     </div>
     <form action="#"
-          id ="rate_comment"
+          id="rate_comment"
           th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
           th:object="${review}" method="post">
 
@@ -37,7 +37,7 @@
         </div>
     </form>
 
-    <textarea rows="3" cols="50" name="comment"  form="rate_comment"></textarea><br>
+    <textarea rows="3" cols="50" name="comment" form="rate_comment"></textarea><br>
     <a th:href="@{/}" class="btn btn-outline-dark">
         <span>Home</span></a>
 
