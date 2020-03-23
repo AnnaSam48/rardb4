@@ -1,8 +1,10 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.model.Comment;
 import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.ReadyReview;
 import lv.accenture.bootcamp.rardb4.model.Review;
+import lv.accenture.bootcamp.rardb4.repository.CommentRepository;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.repository.UserRepository;
@@ -30,11 +32,18 @@ public class ReviewController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    CommentRepository commentRepository;
+
 
     @GetMapping("/reviews-search/rate-review/{id}")
-    public String editReviewPage(@PathVariable Long id, Model model) { //this id is the same id in URL
+    public String editReviewPage(@PathVariable Long id, Model model) {
         Optional<Review> reviewEdit = reviewRepository.findById(id);
-        model.addAttribute("review", reviewEdit.get()); //with what data we are working with
+        List<Comment> allComments = commentRepository.findAllByReviewID(id);
+
+        model.addAttribute("comments", allComments);
+        model.addAttribute("review", reviewEdit.get());
+        model.addAttribute("commentOb", new Comment());
         return "rate-review";
     }
 
@@ -48,7 +57,6 @@ public class ReviewController {
             double newRatesSum = reviewOld.get().getRatesSum() + reviewRated.getReviewRating();
 
             int newRatesAmount = reviewOld.get().getRatesAmount() + 1;
-
             double rating = newRatesSum / newRatesAmount;
 
             reviewRated.setReviewRating(rating);
@@ -56,6 +64,7 @@ public class ReviewController {
             reviewRated.setRatesSum(newRatesSum);
             reviewRated.setReviewID(id);
             reviewRepository.save(reviewRated);
+
             return "redirect:/";
         }
     }
@@ -72,7 +81,7 @@ public class ReviewController {
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
 
-       //Load movies by ID from DB
+        //Load movies by ID from DB
         Set<String> movieIDS = new HashSet<>();
         for (Review matchedReview : matchedReviews) {
             movieIDS.add(matchedReview.getMovieID());
