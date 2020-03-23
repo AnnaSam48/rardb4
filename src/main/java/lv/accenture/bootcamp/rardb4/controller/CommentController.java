@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,9 +50,9 @@ public class CommentController {
         return "rate-review";
     }
 
-    @GetMapping("/reviews-search/rate-review/{id}/comments")
-    public String allCommentsByReviewId(@RequestParam Long reviewID, Model model) {
-        List<Comment> matchedComments = commentRepository.findByReviewId(reviewID);
+    @GetMapping("/reviews-search/rate-review/{reviewID}/comments")
+    public String allCommentsByReviewId(@PathVariable Long reviewID, Model model) {
+        List<Comment> matchedComments = commentRepository.findByReviewID(reviewID);
 
         //Load reviews by ID from DB
         Set<Long> reviewIDS = new HashSet<>();
@@ -83,7 +84,7 @@ public class CommentController {
             fullComments.add(fullCommentInfo);
         }
 
-        model.addAttribute("comments", fullComments);
+        model.addAttribute("comment", fullComments);
         return "rate-review";
     }
 }

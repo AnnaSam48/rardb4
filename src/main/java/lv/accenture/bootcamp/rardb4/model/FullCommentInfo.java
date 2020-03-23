@@ -11,7 +11,7 @@ public class FullCommentInfo implements Serializable {
 //    private String Poster;
     private String reviewText;
     private Double userRatingForMovie;
-    private String userName;
+    private String userName ="xxx";
     private Long commentID;
     private String commentText;
     private String commentUsername;

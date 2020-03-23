@@ -1,79 +1,107 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Rate and comment</title>
+    <title>Review list on movie</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
-<body>
+<body id="app-body">
 <div class="container">
-    <div>
-        <h1>Rate the following review:</h1><br><br>
-        <h6>Title: <span th:text="${review.reviewTitle}"/></h6>
-        <p>Review text: <span th:text="${review.reviewText}"/></p>
-    </div>
-    <form action="#"
-          th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
-          th:object="${review}" method="post">
 
-        <div class="row">
-
-            <input type="hidden" th:field="*{ratesAmount}" class="form-control" id="ratesAmount">
-            <input type="hidden" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-            <input type="hidden" th:field="*{reviewText}" class="form-control" id="reviewText">
-            <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
-            <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
-
-            <div class="form-group col-md-8">
-                <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
-                <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
-            </div>
-
-            <div class="form-group col-md-8">
-                <input type="submit" class="btn btn-outline-dark" value="Rate">
-            </div>
-        </div>
+    <form th:action="@{/reviews-search}" method="get">
+        <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
+        <input type="submit" value="Search" class="btn btn-dark"/>
     </form>
 
+    <table class="table">
+        <thead class="thead-info">
+     <!--   <th th:text="${fullCommentInfo.reviewTitle}"/>
+        <span th:text="this review has a rating :${fullCommentInfo.reviewRating}">
+        </span>
+        <span th:text="User has rated this movie:${fullCommentInfo.userRatingForMovie}">
+        </span> -->
+        </thead>
+        <tbody>
+       <!-- <tr>
+            <td th:text="${fullCommentInfo.reviewText}"/>
+        </tr>
+        -->
+        </tbody>
+    </table>
+    <br>
+    <br>
+
+    <h2>Comments: </h2>
     <div class="container">
-
         <div class="row">
-            <form action="#"
-                  id="comment"
-                  th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})/comments/add-comment}"
-                  th:object="${comment}" method="post">
-
-                <table id="comments" class="table table-striped">
-                    <thead>
+            <div th:if="${not #lists.isEmpty(comments)}">
+                <table class="table table-striped" id="commentTable">
                     <tr>
-                        <th width="5%">User</th>
-                        <th width="20%">Message</th>
-                        <th width="10%">Date</th>
+                        <th width="10%">User</th>
+                        <th width="25%">Comment</th>
+                        <th width="15%">Date</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="result" data-th-each="comment : ${comments}">
-                        <td>[[${comment.userName}]]</td>
-                        <td>[[${comment.commentText}]]</td>
-                        <td>[[${comment.timestamp}]]</td>
+                    <tr th:each="fullInfoComment: ${comments}">
+                        <td th:text="${fullCommentInfo.commentUsername}"/>
+                        <td th:text="${fullCommentInfo.commentText}"/>
+                        <td th:text="${fullCommentInfo.timestamp}"/>
                     </tr>
-                    <tr>
-                        <div class="form-group col-md-8">
-                        <label>Comment on review:</label><br>
-                        <textarea rows="3" cols="50" name="comment" form="comment"></textarea><br>
-                        <input type="submit" class="btn btn-outline-dark" value="Post">
-                        </div>
-                    </tr>
-                    </tbody>
                 </table>
-            </form>
+            </div>
+            <div th:unless="${not #lists.isEmpty(comments)}">
+                <div class="card">
+                    <div class="card-body">
+                        No comments available!
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+
+      <!--  <form action="#"
+              th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+              th:object="${review}" method="post">
+
+            <div class="row">
+
+                <div class="form-group col-md-8">
+                    <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
+                    <input type="text" th:field="*{reviewRating}" class="form-control" id="reviewRating">
+                </div>
+
+                <div class="form-group col-md-8">
+                    <input type="submit" class="btn btn-outline-dark" value="Rate">
+                </div>
+            </div>
+        </form>
+        -->
+
+
+
+
+        <form action="#"
+              id="comment"
+              th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})/comments/add-comment}"
+              th:object="${comment}" method="post">
+
+            <tr>
+                <div class="form-group col-md-8">
+                    <input type="submit"  class="btn-dark" id="commentText" value="Post">
+                </div>
+            </tr>
+        </form>
+        <div class="form-group col-md-8">
+            <label>Comment on review:</label><br>
+            <textarea rows="3" cols="50" name="commentText" form="comment"></textarea><br>
+        </div>
+        <div>
+
+            <a th:href="@{/add-review-search}" class="btn btn-dark">
+                <span>Add review</span></a>
         </div>
     </div>
-
-
-
-    <a th:href="@{/}" class="btn btn-outline-dark">
-        <span>Home</span></a>
 </div>
 </body>
 </html>
+
