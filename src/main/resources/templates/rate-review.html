@@ -11,9 +11,33 @@
 
     <div>
         <div>
-            <h1>Rate the following review:</h1><br><br>
-            <h6>Title: <span th:text="${review.reviewTitle}"/></h6>
+            <h1>Rate the following review:</h1>
+            <a style="float:right" th:href="@{/}" class="btn btn-outline-dark">
+                <span>Home</span></a>
+            <br><br>
+            <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
             <p>Review text: <span th:text="${review.reviewText}"/></p>
+        </div>
+<br><br>
+        <div>
+            <h3>Comments:</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th width="5%">User</th>
+                    <th width="20%">Comment</th>
+                    <th width="10%">Date</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="comment: ${comments}">
+                    <td th:text="${comment.commentUsername}"/>
+                    <td th:text="${comment.commentText}"/>
+                    <td th:text="${comment.timestamp}"/>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <form action="#"
@@ -37,26 +61,9 @@
                 </div>
             </div>
         </form>
-    </div>
 
-    <div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th width="5%">User</th>
-                <th width="20%">Comment</th>
-                <th width="10%">Date</th>
-            </tr>
-            </thead>
 
-            <tbody>
-            <tr th:each="comment: ${comments}">
-                <td th:text="${comment.commentUsername}"/>
-                <td th:text="${comment.commentText}"/>
-                <td th:text="${comment.timestamp}"/>
-            </tr>
-            </tbody>
-        </table>
+
     </div>
 
 
@@ -79,9 +86,6 @@
         <!--<span th:if="${#fields.hasErrors('commentText')}" th:errors="*{commentText}" class="text-danger"/>-->
     </div>
 
-
-    <a th:href="@{/}" class="btn btn-outline-dark">
-        <span>Home</span></a>
 
 </div>
 </body>
