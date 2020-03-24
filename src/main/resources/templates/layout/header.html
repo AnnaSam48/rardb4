@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:background-color="http://www.w3.org/1999/xhtml">
     <head>
         <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -63,9 +64,9 @@
 
 
                     <!--log-in logs -->
-                    <div id="id01" class="modal">
-                        <div class="container">
-                                <div class="modal-content animate">
+                    <div id="id01" class="modal " >
+                        <div class="container" >
+                                <div style="background-color: #F5F5F5; padding: 20px;" class="modal-content animate mx-auto">
                                     <form th:action="@{/login}" method="POST" class="form-signin">
                                         <div class="container">
                                             <i class="fab fa-youtube" style="font-size:48px;"></i>
@@ -90,11 +91,11 @@
                                         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login"
                                                 type="Submit"
                                                 th:text="Login"></button>
-                                        <a>
+                                        <div>
                                             <input type="checkbox" checked="checked" name="remember"
                                                    access="isRememberMe()">
                                             Remember me
-                                        </a>
+                                        </div>
                                         <div class="psw" align="center">Forgot
                                             <a href="/password/error">password?</a>
                                         </div>
