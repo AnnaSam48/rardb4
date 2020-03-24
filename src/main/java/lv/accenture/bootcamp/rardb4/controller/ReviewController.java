@@ -4,10 +4,7 @@ import lv.accenture.bootcamp.rardb4.model.Comment;
 import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.ReadyReview;
 import lv.accenture.bootcamp.rardb4.model.Review;
-import lv.accenture.bootcamp.rardb4.repository.CommentRepository;
-import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
-import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
-import lv.accenture.bootcamp.rardb4.repository.UserRepositoryOld;
+import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +26,10 @@ public class ReviewController {
     @Autowired
     ReviewRepository reviewRepository;
 
+  //  @Autowired
+ //   UserRepositoryOld userRepository;
     @Autowired
-    UserRepositoryOld userRepository;
+    UserRepository userRepository;
 
     @Autowired
     CommentRepository commentRepository;

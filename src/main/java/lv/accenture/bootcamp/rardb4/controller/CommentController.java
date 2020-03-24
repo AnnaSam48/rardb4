@@ -1,10 +1,7 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.model.*;
-import lv.accenture.bootcamp.rardb4.repository.CommentRepository;
-import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
-import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
-import lv.accenture.bootcamp.rardb4.repository.UserRepositoryOld;
+import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,8 +21,10 @@ public class CommentController {
     @Autowired
     ReviewRepository reviewRepository;
 
+   // @Autowired
+  //  UserRepositoryOld userRepository;
     @Autowired
-    UserRepositoryOld userRepository;
+    UserRepository userRepository;
 
     @Autowired
     CommentRepository commentRepository;
