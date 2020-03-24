@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:background-image="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>RARDB4 index</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
@@ -55,7 +56,7 @@
 
 
     <div>
-        <a th:href="@{/add-review-search}" class="btn btn-outline-dark">Add review</a>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
     </div>
 
 </div>

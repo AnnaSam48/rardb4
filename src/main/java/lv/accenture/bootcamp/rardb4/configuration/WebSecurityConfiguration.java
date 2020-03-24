@@ -28,7 +28,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService)
-                //  .passwordEncoder(bCryptPasswordEncoder);
                 .passwordEncoder(delegatingPasswordEncoder);
     }
 
@@ -43,12 +42,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("userAth/registration").permitAll()
-                .antMatchers("/cats").permitAll()
-                .antMatchers("/cats/**").permitAll()
+                .antMatchers("/reviews-search/**").permitAll()
+                .antMatchers("/reviews-search/rate-review/**").permitAll()
+                .antMatchers("/reviews-on-movie/**").permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/password/error").permitAll()
-                .antMatchers("/admin/home").permitAll()
-                .antMatchers("/user/home").permitAll()
+                .antMatchers("/reviews/delete-review/").authenticated()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")
 
@@ -71,7 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/img/**");
     }
 
 }
