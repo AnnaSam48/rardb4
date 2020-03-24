@@ -10,15 +10,15 @@
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header th:insert="layout/header.html :: header"> </header>
+<header th:insert="layout/header.html :: header"></header>
 <div class="container">
     <h1>Home page</h1>
 
 
-<!--    <form th:action="@{/reviews-search}" method="get">
-        <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
-        <input type="submit" value="Search" class="btn btn-outline-dark"/>
-    </form> -->
+    <!--    <form th:action="@{/reviews-search}" method="get">
+            <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
+            <input type="submit" value="Search" class="btn btn-outline-dark"/>
+        </form> -->
 
 
     <h3>Top 5 reviews </h3>
@@ -36,11 +36,14 @@
                 <td th:text="${readyReview.reviewTitle}"/>
                 <td th:text="${readyReview.reviewText}"/>
                 <td></td>
-              <!--  <td th:text="${readyReview.movieTitle}"/>
-              -->
-                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}"
-                       class="btn btn-outline-dark">
-                    <span>Rate/comment</span></a><br></td>
+                <!--  <td th:text="${readyReview.movieTitle}"/>
+                -->
+                <td>
+                    <div>
+                    <a class="btn btn-info" sec:authorize="isAuthenticated()"
+                       th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}">
+                        Rate/comment</a>
+                </div>
             </tr>
         </table>
     </div>
@@ -60,6 +63,6 @@
     </div>
 
 </div>
-<footer th:insert="layout/footer.html :: footer"> </footer>
+<footer th:insert="layout/footer.html :: footer"></footer>
 </body>
 </html>
