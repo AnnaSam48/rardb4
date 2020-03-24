@@ -4,6 +4,7 @@ import lv.accenture.bootcamp.rardb4.model.Review;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,8 +18,11 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
   //  String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
 
 
-    List<Review> findTop5ByOrderByReviewRatingDesc();
 
+    Streamable<Review> findByMovieTitleContaining(String movieTitle);
+    Streamable<Review> findByUser(String userId);
+
+    List<Review> findTop5ByOrderByReviewRatingDesc();
 
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);

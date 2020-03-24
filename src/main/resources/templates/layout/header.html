@@ -37,7 +37,7 @@
 
                 <!--user profile link -->
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/user/home">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/user/home/profile">
                         <i class="fas fa-user"></i>
                         <span class="sr-only">(current)</span>
                     </a>
@@ -66,7 +66,7 @@
                     <!--log-in logs -->
                     <div id="id01" class="modal " >
                         <div class="container" >
-                                <div style="background-color: #F5F5F5; padding: 20px;" class="modal-content animate mx-auto">
+                                <div style="background-color: #F5F5F5; padding: 15px;" class="modal-content animate mx-auto">
                                     <form th:action="@{/login}" method="POST" class="form-signin">
                                         <div class="container">
                                             <i class="fab fa-youtube" style="font-size:48px;"></i>

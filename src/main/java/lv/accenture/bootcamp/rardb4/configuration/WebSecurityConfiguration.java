@@ -50,7 +50,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/reviews/delete-review/").authenticated()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")
-
+                .antMatchers("/user/home/**").hasAuthority("USER")
+              .antMatchers("user/home/profile").hasAuthority("USER")
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()

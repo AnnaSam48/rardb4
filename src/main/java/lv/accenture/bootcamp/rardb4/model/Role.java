@@ -1,5 +1,4 @@
 package lv.accenture.bootcamp.rardb4.model;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

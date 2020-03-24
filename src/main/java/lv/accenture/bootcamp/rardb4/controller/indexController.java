@@ -18,8 +18,6 @@ public class indexController {
     @Autowired
     ReviewRepository reviewRepository;
 
-    @Autowired
-    UserRepositoryOld userRepositoryOld;
 
     @Autowired
     UserRepository userRepository;
