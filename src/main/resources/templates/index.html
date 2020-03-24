@@ -28,21 +28,16 @@
                 <th scope="col">Review rating</th>
                 <th scope="col">Review title</th>
                 <th scope="col">Review</th>
-                <th scope="col">Movie</th>
-                <th>ACTIONS</th>
             </tr>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
                 <td th:text="${readyReview.reviewText}"/>
-                <td></td>
-                <!--  <td th:text="${readyReview.movieTitle}"/>
-                -->
                 <td>
                     <div>
                     <a class="btn btn-info" sec:authorize="isAuthenticated()"
                        th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}">
-                        Rate/comment</a>
+                        Rate</a>
                 </div>
             </tr>
         </table>
