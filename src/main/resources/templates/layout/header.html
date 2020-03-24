@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
-      xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -21,7 +20,7 @@
             <ul class="navbar-nav mx-auto">
                 <form class="form-inline my-2 my-lg-0" th:action="@{/reviews-search}" method="get">
                     <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"
-                           class="form-control mr-sm-2"  placeholder="Movie Title">
+                           class="form-control mr-sm-2" placeholder="Movie Title">
                     <button class="btn btn-light" type="submit">Search</button>
                 </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -65,52 +64,45 @@
 
                     <!--log-in logs -->
                     <div id="id01" class="modal">
-                        <form class="modal-content animate" action="/login" method="post">
-                            <div class="container">
+                        <div class="container">
+                                <div class="modal-content animate">
+                                    <form th:action="@{/login}" method="POST" class="form-signin">
+                                        <div class="container">
+                                            <i class="fab fa-youtube" style="font-size:48px;"></i>
+                                            <a style="font-size:28px;">Log-in page</a>
+                                            <span onclick="document.getElementById('id01').style.display='none'"
+                                                  class="close"
+                                                  title="Close Modal">&times;
+                                            </span>
+                                        </div>
+                                        <input type="text" id="user_name" name="user_name" placeholder="User Name"
+                                               class="form-control"/>
+                                        <br/>
+                                        <input type="password" placeholder="Password"
+                                               id="password" name="password" class="form-control"/>
+                                        <br/>
+                                        <div align="center" th:if="${param.error}">
+                                            <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid,
+                                                please
+                                                verify
+                                            </p>
+                                        </div>
+                                        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login"
+                                                type="Submit"
+                                                th:text="Login"></button>
+                                        <a>
+                                            <input type="checkbox" checked="checked" name="remember"
+                                                   access="isRememberMe()">
+                                            Remember me
+                                        </a>
+                                        <div class="psw" align="center">Forgot
+                                            <a href="/password/error">password?</a>
+                                        </div>
 
-                                <form th:action="@{/login}" method="POST" class="form-signin">
-                                    <div class="container">
-
-                                        <i class="fab fa-youtube" style="font-size:48px;"></i>
-                                        <a style="font-size:28px;">Log-in page</a>
-
-                                        <span onclick="document.getElementById('id01').style.display='none'"
-                                              class="close"
-                                              title="Close Modal">&times;
-                                        </span>
-                                        <br>
-                                        <br>
-
-                                    </div>
-                                    <input type="text" id="user_name" name="user_name" placeholder="User Name"
-                                           class="form-control"/>
-                                    <br/>
-                                    <input type="password" placeholder="Password"
-                                           id="password" name="password" class="form-control"/>
-                                    <br/>
-
-                                    <div align="center" th:if="${param.error}">
-                                        <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please
-                                            verify
-                                        </p>
-                                    </div>
-                                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login"
-                                            type="Submit"
-                                            th:text="Login"></button>
-                                    <a>
-                                        <input type="checkbox" checked="checked" name="remember"
-                                               access="isRememberMe()">
-                                        Remember me
-                                    </a>
-                                    <span class="psw">Forgot
-                                        <a href="/password/error">password?</a>
-                                    </span>
-
-                                </form>
-                            </div>
-                        </form>
+                                    </form>
+                                </div>
+                          </div>
                     </div>
-
                     <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -121,6 +113,8 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
 
                     </script>
                 </li>
