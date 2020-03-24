@@ -17,19 +17,19 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
 
-    // @Size(min = 2, max = 256)
+    @Size(min = 2, max = 256, message="Please enter title:")
     private String reviewTitle;
 
-    // @NotNull
+     @NotNull
     private String movieID;
 
-    //@Size(min = 10, max = 256)
+    @Size(min = 10, max = 256, message ="Please write review (at least 10 characters)")
     private String reviewText;
 
-    // @NotNull
-    // @PositiveOrZero
+     @NotNull
+     @PositiveOrZero(message = "Please enter valid rating (from)")
     private int userRatingForMovie;
-    private String userName;
+    private String username;
     private int ratesSum;
     private int reviewRating;
     private int ratesAmount;
@@ -46,7 +46,7 @@ public class Review implements Serializable {
         this.reviewText = reviewText;
         this.movieID = movieID;
         this.userRatingForMovie = userRatingForMovie;
-        this.userName = userName;
+        this.username = userName;
         this.ratesAmount = ratesAmount;
         this.ratesSum = ratesSum;
     }
@@ -78,11 +78,11 @@ public class Review implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
 
