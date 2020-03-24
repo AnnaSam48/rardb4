@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cats</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<header th:insert="layout/header.html :: header"> </header>
+
+<div class="container" align="center">
+        <h1>To change password:</h1>
+    <br>
+        <p>
+            Please contact the administrator:<br>
+            <span class="fas fa-envelope"></span>
+            <a href="mailto:oursupere@email.com">OurSuperE@mail.com</a>
+        </p>
+</div>
+<footer th:insert="layout/footer.html :: footer"> </footer>
+</body>
+</html>

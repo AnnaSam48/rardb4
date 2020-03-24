@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    </head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info" th:fragment="header">
+        <a class="navbar-brand" href="#">
+            <i class="fab fa-youtube" style="font-size:48px;"></i>
+            <a style="font-size:28px;">Film Reviews</a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-light" type="submit">Search</button>
+                </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i>Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Link</a>
+                </li>
+
+                <!--user profile link -->
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/user/home">
+                        <i class="fas fa-user"></i>
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <!--new user -->
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/registration">
+                        <i class="fas fa-id-card"></i>New User
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <!--login part -->
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li sec:authorize=="isAnonymous()">
+                    <a onclick="document.getElementById('id01').style.display='block'"
+                       aria-hidden="true">
+                        <i class="fas fa-sign-in-alt"></i>Log-in
+                    </a>
+
+
+                    <!--log-in logs -->
+                    <div id="id01" class="modal">
+                        <form class="modal-content animate" action="/login" method="post">
+                            <div class="container">
+
+                                <form th:action="@{/login}" method="POST" class="form-signin">
+                                    <div class="container">
+
+                                        <i class="fab fa-youtube" style="font-size:48px;"></i>
+                                        <a style="font-size:28px;">Log-in page</a>
+
+                                        <span onclick="document.getElementById('id01').style.display='none'"
+                                              class="close"
+                                              title="Close Modal">&times;
+                                        </span>
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                    <input type="text" id="user_name" name="user_name" placeholder="User Name"
+                                           class="form-control"/>
+                                    <br/>
+                                    <input type="password" placeholder="Password"
+                                           id="password" name="password" class="form-control"/>
+                                    <br/>
+
+                                    <div align="center" th:if="${param.error}">
+                                        <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please
+                                            verify
+                                        </p>
+                                    </div>
+                                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login"
+                                            type="Submit"
+                                            th:text="Login"></button>
+                                    <a>
+                                        <input type="checkbox" checked="checked" name="remember"
+                                               access="isRememberMe()">
+                                        Remember me
+                                    </a>
+                                    <span class="psw">Forgot
+                                        <a href="/password/error">password?</a>
+                                    </span>
+
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+
+                    <script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+                    </script>
+                </li>
+                <!--logout part -->
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/logout}" onclick="$('#form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>&nbsp;Log-out
+                    </a>
+                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </body>
+</html>
