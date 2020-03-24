@@ -5,8 +5,12 @@
     <title>Movie List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/review-on-movie.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<header th:insert="layout/header.html :: header"> </header>
 
 <div class="container">
     <h3 class="display-4">Search for movie you want to add review to</h3>
@@ -54,5 +58,6 @@
         </div>
     </div>
 </div>
+<footer th:insert="layout/footer.html :: footer"> </footer>
 </body>
 </html>

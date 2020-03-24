@@ -1,11 +1,7 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
-import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.Review;
-import lv.accenture.bootcamp.rardb4.repository.CommentRepository;
-import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
-import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
-import lv.accenture.bootcamp.rardb4.repository.UserRepository;
+import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +19,10 @@ public class indexController {
     ReviewRepository reviewRepository;
 
     @Autowired
-    UserRepository userRepository;
+    UserRepositoryOld userRepositoryOld;
 
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     CommentRepository commentRepository;
 
@@ -64,6 +62,15 @@ public class indexController {
 
         model.addAttribute("reviews", bestReviews);
         return "index";
+    }
+    @GetMapping("/header")
+    public String getHeader() {
+        return "header.html";
+    }
+
+    @GetMapping("/footer")
+    public String getFooter() {
+        return "footer.html";
     }
 }
 

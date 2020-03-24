@@ -4,20 +4,16 @@ import lv.accenture.bootcamp.rardb4.model.*;
 import lv.accenture.bootcamp.rardb4.repository.CommentRepository;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
-import lv.accenture.bootcamp.rardb4.repository.UserRepository;
+import lv.accenture.bootcamp.rardb4.repository.UserRepositoryOld;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.*;
 
 @Controller
 public class CommentController {
@@ -29,7 +25,7 @@ public class CommentController {
     ReviewRepository reviewRepository;
 
     @Autowired
-    UserRepository userRepository;
+    UserRepositoryOld userRepository;
 
     @Autowired
     CommentRepository commentRepository;
