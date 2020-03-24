@@ -68,16 +68,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping(value="/user/home")
-    public ModelAndView userHome(){
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("userMessage","Content Available Only for Users");
-        modelAndView.setViewName("user/home");
-        return modelAndView;
-    }
+
 
     @GetMapping(value={"/password/error"})
     public ModelAndView passwordError(){
