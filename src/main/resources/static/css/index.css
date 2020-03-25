@@ -26,7 +26,7 @@ h3 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 40p
 p { color: #111; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 28px; margin: 0 0 48px; }
 
 body {
- background-image: url("Blue-Backgrounds.jpg");
+ background-image: url("bg_gray.jpg");
  background-attachment: fixed;
  background-position: center;
 }
