@@ -1,10 +1,7 @@
 package lv.accenture.bootcamp.rardb4.model;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -15,25 +12,37 @@ public class Review implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="reviewid")
     private Long reviewID;
 
-    // @Size(min = 2, max = 256, message="Please enter title:")
+//    @Size(min = 2, max = 256, message="Please enter title:")
+//    @Column(name = "review_title")
     private String reviewTitle;
 
-    //   @NotNull
+//    @NotNull
+//    @Column(name = "movieid")
     private String movieID;
 
-    // @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
+//    @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
+//    @Column(name = "review_text")
     private String reviewText;
 
-    //     @NotNull
+//     @NotNull
 //     @PositiveOrZero
 //     @Max(value=10,message = "Please enter valid rating (from 0-10):")
+//    @Column(name = "user_rating_for_movie")
     private int userRatingForMovie;
 
+ //   @Column(name = "user_name")
     private String username;
-    private int ratesSum;
+
+//    @Column (name = "review_rating")
     private int reviewRating;
+
+    //   @Column (name = "rates_sum")
+    private int ratesSum;
+
+//    @Column (name = "rates_amount")
     private int ratesAmount;
 
 

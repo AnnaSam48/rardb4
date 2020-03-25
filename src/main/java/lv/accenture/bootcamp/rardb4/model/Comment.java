@@ -1,9 +1,6 @@
 package lv.accenture.bootcamp.rardb4.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -11,10 +8,15 @@ public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "commentid")
     private Long commentID;
+//    @Column(name = "reviewid")
     private Long reviewID;
+//    @Column(name = "comment_text")
     private String commentText;
+//    @Column(name = "comment_username")
     private String commentUsername;
+//    @Column(name = "timestamp")
     private String timestamp;
 
     public Comment() {
