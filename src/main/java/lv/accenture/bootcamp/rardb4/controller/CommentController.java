@@ -47,7 +47,6 @@ public class CommentController {
         //   commentToAdd.setUserId();
         commentToAdd.setTimestamp(timeStamp);
         commentRepository.save(commentToAdd);
-        return "rate-review";
+        return "redirect:/";
     }
-/*for bug fix pulls*/
 }

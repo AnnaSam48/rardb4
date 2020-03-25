@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <title>User Page</title>
+
+</head>
+
+<body>
+<header th:insert="layout/header.html :: header"></header>
+<div class="container">
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="text-center">
+                <div>
+                    <img th:src="@{/img/user-male.png}" class="img-responsive center-block" width="400" height="400"
+                         alt="user"/>
+                </div>
+
+                <!--  <p>Change user profile icon...</p>
+                  <input type="file" class="form-control"> -->
+            </div>
+            <h4 th:utext="${userName}"></h4><h6>User Profile:</h6>
+        </div>
+
+        <!-- form to edit -->
+        <div class="col-md-9">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Name:</label>
+                    <div class="col-lg-8">
+                        <div class="form-control" type="text" th:utext="${nameUser}"></div>
+                    </div>
+                </div>
+            <!--    <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="Bishop">
+                    </div>
+                </div>  -->
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <div class="form-control" type="text" th:utext="${last}"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <div class="form-control" type="text" th:utext="${email}"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                        <div class="form-control" type="text" th:utext="${userName}"></div>
+                    </div>
+                </div>
+                <!--    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input type="button" class="btn btn-primary" value="Save Changes">
+                            <span></span>
+                            <input type="reset" class="btn btn-default" value="Cancel">
+                            </div>
+                        </div> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="layout/footer.html :: footer"></footer>
+</body>
+</html>
