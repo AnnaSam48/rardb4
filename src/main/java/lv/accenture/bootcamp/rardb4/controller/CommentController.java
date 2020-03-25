@@ -49,5 +49,5 @@ public class CommentController {
         commentRepository.save(commentToAdd);
         return "rate-review";
     }
-
+/*for bug fix pulls*/
 }
