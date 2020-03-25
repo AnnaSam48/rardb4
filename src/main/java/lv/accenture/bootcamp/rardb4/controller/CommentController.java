@@ -26,11 +26,13 @@ public class CommentController {
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    private UserService userService;
 
     @Autowired
     CommentRepository commentRepository;
+
+    @Autowired
+    UserService userService;
+
 
 
     @PostMapping("/reviews-search/rate-review/comment/{id}")
@@ -43,10 +45,9 @@ public class CommentController {
         User user = userService.findUserByUserName(loggedInUser.getName());
 
         commentToAdd.setReviewID(id);
-        commentToAdd.setUserId(user.getId());
+       // commentToAdd.setUserId(user.getId());
         commentToAdd.setTimestamp(timeStamp);
         commentRepository.save(commentToAdd);
         return "redirect:/";
     }
-
 }

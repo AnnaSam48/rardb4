@@ -38,7 +38,7 @@ public class UserService {
     public User findUserByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
-public User findUserByID(Long id){return userRepository.findByUserId(id);}
+public User findUserByID(Long id){return userRepository.findById(id);}
 
     public User saveUser(User user) {
         user.setPassword(delegatingPasswordEncoder.encode(user.getPassword()));
