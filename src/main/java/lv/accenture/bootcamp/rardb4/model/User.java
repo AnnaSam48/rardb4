@@ -49,6 +49,7 @@ public class User {
     private Set<Role> roles;
 
 
+
     public User(Integer id, @Length(min = 5, message = "*Your user name must have at least 5 characters") @NotEmpty(message = "*Please provide a user name")
             String userName, @Email(message = "*Please provide a valid Email")@NotEmpty(message = "*Please provide an email")
             String email, @Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password")

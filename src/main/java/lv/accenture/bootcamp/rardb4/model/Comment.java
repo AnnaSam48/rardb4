@@ -3,21 +3,28 @@ package lv.accenture.bootcamp.rardb4.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Embeddable
 public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "commentid")
     private Long commentID;
-//    @Column(name = "reviewid")
+
+    @Column(name = "reviewid")
     private Long reviewID;
-//    @Column(name = "comment_text")
+
+    @Column(name = "comment_text")
     private String commentText;
-//    @Column(name = "comment_username")
+
+    @Column(name = "comment_username")
     private String commentUsername;
-//    @Column(name = "timestamp")
+
+    @Column(name = "timestamp")
     private String timestamp;
+
+    @JoinColumn(name = "reviewid")
+    private Review commentReview;
 
     public Comment() {
 
@@ -76,7 +83,7 @@ public class Comment implements Serializable {
     public String toString() {
         return "Comment{" +
                 "commentID=" + commentID +
-                ", reviewID=" + reviewID +
+//                ", reviewID=" + reviewID +
                 ", commentText='" + commentText + '\'' +
                 ", commentUsername='" + commentUsername + '\'' +
                 ", timestamp='" + timestamp + '\'' +

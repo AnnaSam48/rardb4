@@ -2,7 +2,10 @@ package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.model.*;
 import lv.accenture.bootcamp.rardb4.repository.*;
+import lv.accenture.bootcamp.rardb4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +30,8 @@ public class CommentController {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/reviews-search/rate-review/comment/{id}")
     public String addComment(@PathVariable Long id, @Valid Comment commentToAdd, BindingResult bindingResult) {
@@ -34,11 +39,14 @@ public class CommentController {
             return "rate-review";
         }
         String timeStamp = new SimpleDateFormat("HH:mm/dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-
+      //  Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+    //    User user = userService.findUserById(loggedInUser.ge);
         commentToAdd.setReviewID(id);
+        commentToAdd.getCommentID();
+     //   commentToAdd.setUserId();
         commentToAdd.setTimestamp(timeStamp);
         commentRepository.save(commentToAdd);
-        return "redirect:/";
+        return "rate-review";
     }
 
 }
