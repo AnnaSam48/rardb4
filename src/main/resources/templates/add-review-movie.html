@@ -85,12 +85,23 @@
 
                 <div class="form-group col-md-8">
                     <label for="userRatingForMovie" class="col-form-label">Rate movie (1-10)</label>
-                    <input type="text" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
-                </div>
-                <div class="form-group col-md-8">
-                    <input type="submit" class="btn btn-dark" value="Ready to submit my review">
-                    <a th:href="@{/add-review-search}" class="btn btn-outline-dark">
-                        <span>Back</span></a>
+                     <select name="userRatingForMovie">
+                        <option value="10">10</option>
+                        <option value="9">9</option>
+                        <option value="8">8</option>
+                        <option value="7">7</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                    <div class="form-group col-md-8">
+                        <input type="submit" th:field="*{userRatingForMovie}" class="btn btn-info" id="userRatingForMovie" value="Ready to submit my review">
+                        <a th:href="@{/add-review-search}" class="btn btn-outline-dark">
+                            <span>Back</span></a>
+                    </div>
                 </div>
             </div>
         </form>

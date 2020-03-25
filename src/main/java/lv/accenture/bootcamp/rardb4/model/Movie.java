@@ -56,7 +56,7 @@ public class Movie implements Serializable {
         this.DVD = DVD;
         BoxOffice = boxOffice;
         Production = production;
-        /*upsies*/
+
     }
 
     public String getImdbID() {
