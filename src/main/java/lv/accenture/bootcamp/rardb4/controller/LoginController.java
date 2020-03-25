@@ -1,7 +1,9 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.model.Role;
 import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.service.UserService;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -50,7 +55,9 @@ public class LoginController {
         } else {
             userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
+            modelAndView.addObject("user", new User(user.getId(), user.getUserName(), user.getEmail(),
+                    user.getPassword(), user.getName(), user.getLastName(), user.getActive(), user.getProfileIconURL(),
+                    user.getRoles()));
             modelAndView.setViewName("userAth/registration");
 
         }

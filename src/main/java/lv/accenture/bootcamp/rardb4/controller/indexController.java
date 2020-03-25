@@ -30,34 +30,6 @@ public class indexController {
 
         List<Review> bestReviews = reviewRepository.findTop5ByOrderByReviewRatingDesc();
 
-//        Load top5 reviews from DB and get their ID
-//        Set<Long> reviewIDS = new HashSet<>();
-//        for (Review bestReview : bestReviews) {
-//            reviewIDS.add(bestReview.getReviewID());
-//        }
-//
-//        Iterable<Review> matchedReviews = reviewRepository.findAllById(reviewIDS);
-//
-//        List<String> matchedMovieID = new ArrayList<>();
-//        for (Review matchedReview : matchedReviews) {
-//            String movieID = matchedReview.getMovieID();
-//            matchedMovieID.add(movieID);
-//        }
-//
-//        List<String> movieTitles = new ArrayList<>();
-//        for (String movieID : matchedMovieID) {
-//            String movieTitle = reviewRepository.movieTitleFromId(movieID);
-//            movieTitles.add(movieTitle);
-//        }
-//
-//        String movieTitle="";
-//        for (String m : movieTitles){
-//            movieTitle = m;
-//            Movie movie = new Movie();
-//            movie.setTitle(movieTitle);
-//        }
-
-
         model.addAttribute("reviews", bestReviews);
         return "index";
     }
@@ -71,6 +43,5 @@ public class indexController {
         return "footer.html";
     }
 }
-
 
 

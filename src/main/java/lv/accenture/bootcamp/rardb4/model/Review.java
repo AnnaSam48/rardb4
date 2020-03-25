@@ -1,4 +1,3 @@
-
 package lv.accenture.bootcamp.rardb4.model;
 
 import java.io.Serializable;
@@ -18,16 +17,16 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
 
-   // @Size(min = 2, max = 256, message="Please enter title:")
+    // @Size(min = 2, max = 256, message="Please enter title:")
     private String reviewTitle;
 
-  //   @NotNull
+    //   @NotNull
     private String movieID;
 
-   // @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
+    // @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
     private String reviewText;
 
-//     @NotNull
+    //     @NotNull
 //     @PositiveOrZero
 //     @Max(value=10,message = "Please enter valid rating (from 0-10):")
     private int userRatingForMovie;

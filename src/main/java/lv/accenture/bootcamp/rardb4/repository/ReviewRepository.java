@@ -15,12 +15,12 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
     String searchMovieTitleFromMovieId = "SELECT m.Title FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
     String moviePosterURL = "SELECT m.Poster FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
-  //  String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
+    //  String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
 
 
 
-    Streamable<Review> findByMovieTitleContaining(String movieTitle);
-    Streamable<Review> findByUser(String userId);
+   // Streamable<Review> findByMovieTitleContaining(String movieTitle);
+  //  Streamable<Review> findByUsername(String username);
 
     List<Review> findTop5ByOrderByReviewRatingDesc();
 

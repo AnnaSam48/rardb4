@@ -21,20 +21,11 @@ public class CommentController {
     @Autowired
     ReviewRepository reviewRepository;
 
-   // @Autowired
-  //  UserRepositoryOld userRepository;
     @Autowired
     UserRepository userRepository;
 
     @Autowired
     CommentRepository commentRepository;
-
-    //Getting user's comment input from user to put in DB
-/*    @GetMapping("/reviews-search/rate-review/{id}/comments/add")
-    public String addCommentInput(Model model) {
-        model.addAttribute("comment", new Comment());
-        return "rate-review";
-    }*/
 
 
     @PostMapping("/reviews-search/rate-review/comment/{id}")
