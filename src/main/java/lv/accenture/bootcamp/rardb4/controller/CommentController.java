@@ -26,12 +26,12 @@ public class CommentController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     CommentRepository commentRepository;
 
-    @Autowired
-    private UserService userService;
 
     @PostMapping("/reviews-search/rate-review/comment/{id}")
     public String addComment(@PathVariable Long id, @Valid Comment commentToAdd, BindingResult bindingResult) {
@@ -39,14 +39,14 @@ public class CommentController {
             return "rate-review";
         }
         String timeStamp = new SimpleDateFormat("HH:mm/dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-      //  Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-    //    User user = userService.findUserById(loggedInUser.ge);
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(loggedInUser.getName());
+
         commentToAdd.setReviewID(id);
-        commentToAdd.getCommentID();
-     //   commentToAdd.setUserId();
+        commentToAdd.setUserId(user.getId());
         commentToAdd.setTimestamp(timeStamp);
         commentRepository.save(commentToAdd);
-        return "rate-review";
+        return "redirect:/";
     }
 
 }

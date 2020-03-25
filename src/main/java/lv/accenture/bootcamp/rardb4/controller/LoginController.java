@@ -76,17 +76,4 @@ public class LoginController {
     }
 
 
-
-    @GetMapping(value={"/password/error"})
-    public ModelAndView passwordError(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("userAth/error");
-        return modelAndView;
-    }
-    @PostMapping("/password/error")
-    public String giveErrorReply(){
-        return "userAth/error";
-    }
-
-
 }

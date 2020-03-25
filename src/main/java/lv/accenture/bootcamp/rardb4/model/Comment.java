@@ -22,6 +22,12 @@ public class Comment implements Serializable {
 
     @Column(name = "timestamp")
     private String timestamp;
+    private Long userId;
+    private String movieTitle;
+    private String movieID;
+
+
+
 
     @JoinColumn(name = "reviewid")
     private Review commentReview;
@@ -30,12 +36,39 @@ public class Comment implements Serializable {
 
     }
 
-    public Comment(Long commentID, Long reviewID, String commentText, String commentUsername, String timeStamp) {
+    public Comment(Long commentID, Long reviewID, String commentText, String commentUsername, String timestamp, Long userId, String movieTitle, String movieID) {
         this.commentID = commentID;
         this.reviewID = reviewID;
         this.commentText = commentText;
         this.commentUsername = commentUsername;
-        this.timestamp = timeStamp;
+        this.timestamp = timestamp;
+        this.userId = userId;
+        this.movieTitle = movieTitle;
+        this.movieID=movieID;
+    }
+
+    public String getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(String movieID) {
+        this.movieID = movieID;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public Long getCommentID() {
