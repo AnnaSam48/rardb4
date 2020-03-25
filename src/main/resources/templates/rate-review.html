@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Rate and comment</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
@@ -54,8 +54,8 @@
                 <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
                 <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
 
-                <div class="form-group col-md-8">
-                    <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
+                <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
+                    <label for="reviewRating" class="col-form-label" >Review Rating (1-10)</label>
                     <select name="reviewRating">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -78,7 +78,7 @@
 
     <!--Add comment Form-->
     <div>
-        <form action="#"
+        <form action="#" sec:authorize="isAuthenticated()"
               th:action="@{/reviews-search/rate-review/comment/{id}(id=${review.reviewID})}"
               th:object="${commentOb}" method="post">
             <div class="row">
