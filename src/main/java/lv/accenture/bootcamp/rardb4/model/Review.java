@@ -13,25 +13,25 @@ public class Review implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="reviewid")
+//    @Column(name="reviewid")
     private Long reviewID;
-
-    @Size(min = 2, max = 256, message="Please enter title:")
-    @Column(name = "review_title")
+//
+//    @Size(min = 2, max = 256, message="Please enter title:")
+//    @Column(name = "review_title")
     private String reviewTitle;
 
-    @NotNull
-    @Column(name = "movieid")
+//    @NotNull
+//    @Column(name = "movieid")
     private String movieID;
 
-    @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
-    @Column(name = "review_text")
+//    @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
+//    @Column(name = "review_text")
     private String reviewText;
 
-    @NotNull
-    @PositiveOrZero
-    @Max(value=10,message = "Please enter valid rating (from 0-10):")
-    @Column(name = "user_rating_for_movie")
+//    @NotNull
+//    @PositiveOrZero
+//    @Max(value=10,message = "Please enter valid rating (from 0-10):")
+//    @Column(name = "user_rating_for_movie")
     private int userRatingForMovie;
 
     @Column(name = "user_name")
@@ -46,8 +46,8 @@ public class Review implements Serializable {
     @Column (name = "rates_amount")
     private int ratesAmount;
 
-    @ElementCollection
-    @CollectionTable(name = "comment", joinColumns = @JoinColumn(name="reviewid", nullable = false))
+   @ElementCollection
+   @CollectionTable(name = "comment", joinColumns = @JoinColumn(name="reviewid", nullable = false))
     private List<Comment> comments;
 
 
