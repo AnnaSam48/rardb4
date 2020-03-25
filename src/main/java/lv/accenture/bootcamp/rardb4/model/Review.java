@@ -1,7 +1,6 @@
 package lv.accenture.bootcamp.rardb4.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -46,16 +45,12 @@ public class Review implements Serializable {
     @Column (name = "rates_amount")
     private int ratesAmount;
 
-   @ElementCollection
-   @CollectionTable(name = "comment", joinColumns = @JoinColumn(name="reviewid", nullable = false))
-    private List<Comment> comments;
-
 
     public Review() {
     }
 
     public Review(Long reviewID, String reviewTitle, String reviewText, int userRatingForMovie,
-                  String movieID, String userName, int ratesSum, int ratesAmount, List<Comment>comments) {
+                  String movieID, String userName, int ratesSum, int ratesAmount/*, List<Comment>comments*/) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
@@ -65,7 +60,6 @@ public class Review implements Serializable {
         this.username = userName;
         this.ratesAmount = ratesAmount;
         this.ratesSum = ratesSum;
-        this.comments = comments;
     }
 
 
@@ -142,11 +136,4 @@ public class Review implements Serializable {
         this.username = username;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

@@ -1,3 +1,4 @@
+
 package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.model.*;
@@ -31,9 +32,7 @@ public class CommentController {
     CommentRepository commentRepository;
 
     @Autowired
-    UserService userService;
-
-
+    private UserService userService;
 
     @PostMapping("/reviews-search/rate-review/comment/{id}")
     public String addComment(@PathVariable Long id, @Valid Comment commentToAdd, BindingResult bindingResult) {
@@ -41,13 +40,14 @@ public class CommentController {
             return "rate-review";
         }
         String timeStamp = new SimpleDateFormat("HH:mm/dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(loggedInUser.getName());
-
+        //  Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        //    User user = userService.findUserById(loggedInUser.ge);
         commentToAdd.setReviewID(id);
-       // commentToAdd.setUserId(user.getId());
+        commentToAdd.getCommentID();
+        //   commentToAdd.setUserId();
         commentToAdd.setTimestamp(timeStamp);
         commentRepository.save(commentToAdd);
-        return "redirect:/";
+        return "rate-review";
     }
+
 }

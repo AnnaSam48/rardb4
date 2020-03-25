@@ -8,7 +8,7 @@ public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "commentid")
+
     private Long commentID;
     //    @Column(name = "reviewid")
     private Long reviewID;

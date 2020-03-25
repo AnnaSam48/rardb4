@@ -7,7 +7,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 
 public class ReadyReview {
@@ -16,8 +15,8 @@ public class ReadyReview {
     private Long reviewID;
     private int reviewRating;
     private String reviewTitle;
-    private String movieTitle;
-    private String poster;
+    private String Title;
+    private String Poster;
     private String reviewText;
     private int userRatingForMovie;
     private String userName;
@@ -32,8 +31,8 @@ public class ReadyReview {
         this.reviewID = reviewID;
         this.reviewRating = reviewRating;
         this.reviewTitle = reviewTitle;
-        this.movieTitle = movieTitle;
-        this.poster = poster;
+        this.Title = movieTitle;
+        this.Poster = poster;
         this.reviewText = reviewText;
         this.userRatingForMovie = userRatingForMovie;
         this.userName = userName;
@@ -72,20 +71,20 @@ public class ReadyReview {
         this.reviewTitle = reviewTitle;
     }
 
-    public String getMovieTitle() {
-        return movieTitle;
+    public String getTitle() {
+        return Title;
     }
 
     public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
+        this.Title = movieTitle;
     }
 
     public String getPoster() {
-        return poster;
+        return Poster;
     }
 
     public void setPoster(String poster) {
-        this.poster = poster;
+        this.Poster = poster;
     }
 
     public String getReviewText() {
