@@ -16,23 +16,24 @@ public class ReadyReview {
     private Long reviewID;
     private int reviewRating;
     private String reviewTitle;
-    private String Title;
-    private String Poster;
+    private String movieTitle;
+    private String poster;
     private String reviewText;
     private int userRatingForMovie;
     private String userName;
 
 
+
     public ReadyReview(String imdbID, Long reviewID, int reviewRating, String reviewTitle,
-                       String title, String poster, String reviewText, int userRatingForMovie,
+                       String movieTitle, String poster, String reviewText, int userRatingForMovie,
                        String userName) {
 
         this.imdbID = imdbID;
         this.reviewID = reviewID;
         this.reviewRating = reviewRating;
         this.reviewTitle = reviewTitle;
-        Title = title;
-        Poster = poster;
+        this.movieTitle = movieTitle;
+        this.poster = poster;
         this.reviewText = reviewText;
         this.userRatingForMovie = userRatingForMovie;
         this.userName = userName;
@@ -71,20 +72,20 @@ public class ReadyReview {
         this.reviewTitle = reviewTitle;
     }
 
-    public String getTitle() {
-        return Title;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public String getPoster() {
-        return Poster;
+        return poster;
     }
 
     public void setPoster(String poster) {
-        Poster = poster;
+        this.poster = poster;
     }
 
     public String getReviewText() {
