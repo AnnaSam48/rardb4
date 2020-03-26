@@ -12,13 +12,6 @@
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
     <h1>Reviews</h1>
-
-    <form th:action="@{/reviews-search}" method="get">
-        <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
-        <input type="submit" value="Search" class="btn btn-dark"/>
-    </form>
-
-
     <h3>All reviews: </h3>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
@@ -58,9 +51,35 @@
         </div>
     </div>
     <div>
+        <a onclick="document.getElementById('id01').style.display='block'"
+           aria-hidden="true">
+            <button type="button" class="btn btn-secondary">Add review</button>
+        </a>
 
-        <a th:href="@{/add-review-search}" class="btn btn-info">
-            <span>Add review</span></a>
+        <div id="id01" class="modal ">
+            <div class="container">
+                <div style="background-color: #F5F5F5; padding: 15px;" class="modal-content animate mx-auto">
+                    <form th:action="@{/add-review-search/search}" method="get">
+                        <input type="text" name="keyword" id="keywwword" th:value="${keywwword}"/>
+                        <input type="submit" value="Search" class="btn btn-dark"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+        </script>
+
+
     </div>
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
