@@ -57,8 +57,8 @@
         </a>
 
         <div id="id01" class="modal ">
-            <div class="container">
-                <div style="background-color: #F5F5F5; padding: 15px;" class="modal-content animate mx-auto">
+            <div class="container" style="max-width:345px">
+                <div style="background-color: #009999; padding: 15px;" class="modal-content animate" >
                     <form th:action="@{/add-review-search/search}" method="get">
                         <input type="text" name="keyword" id="keywwword" th:value="${keywwword}"/>
                         <input type="submit" value="Search" class="btn btn-dark"/>
