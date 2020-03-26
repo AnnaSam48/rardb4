@@ -75,7 +75,7 @@ public class ReviewController {
     @GetMapping("/reviews/delete-review/{id}")
     public String deleteReview(@PathVariable Long id) {
         reviewRepository.deleteById(id);
-        return "redirect:/reviews";
+        return "redirect:/user/home/reviews";
     }
 
 
@@ -113,7 +113,6 @@ public class ReviewController {
 
             readyReviews.add(readyReview);
         }
-
 
         model.addAttribute("reviews", readyReviews);
         return "reviews-on-movie";

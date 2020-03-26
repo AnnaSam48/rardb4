@@ -65,7 +65,7 @@ public class MovieController {
     @PostMapping("/add-review-search/add-review-movie/{id}")
     public String addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
-            return "add-review-search";
+            return "add-review-movie";
         }else {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();

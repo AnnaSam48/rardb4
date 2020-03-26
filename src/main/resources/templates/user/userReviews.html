@@ -66,8 +66,11 @@ article {
                     <td th:text="${review.reviewRating}"/>
                     <td th:text="${review.reviewTitle}"/>
                     <td th:text="${review.reviewText}"/>
-                    <td><a sec:authorize="isAuthenticated()"
-                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a></td>
+                    <td><a class="btn btn-outline-primary" sec:authorize="isAuthenticated()"
+                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a>
+                        <a class="btn btn-outline-primary" sec:authorize="isAuthenticated()"
+                           th:href="@{/reviews/delete-review/{id}(id=${review.reviewID})}">Delete</a>
+                    </td>
                 </tr>
             </table>
         </div>

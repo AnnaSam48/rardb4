@@ -20,16 +20,10 @@ import java.text.SimpleDateFormat;
 public class CommentController {
 
     @Autowired
-    MovieRepository movieRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    ReviewRepository reviewRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
     private UserService userService;
