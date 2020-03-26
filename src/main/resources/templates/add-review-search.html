@@ -20,8 +20,6 @@
         <form th:action="@{/add-review-search/search}" method="get">
             <input type="text" name="keyword" id="keyword" th:value="${keyword}"/>
             <input type="submit" value="Search" class="btn btn-dark"/>
-            <a th:href="@{/}" class="btn btn-outline-dark">
-                <span>Home</span></a>
         </form>
     </div>
 
@@ -56,6 +54,7 @@
                 There are no movies with this keyword.
             </div>
         </div>
+        <br>
     </div>
 </div>
 <footer th:insert="layout/footer.html :: footer"> </footer>
