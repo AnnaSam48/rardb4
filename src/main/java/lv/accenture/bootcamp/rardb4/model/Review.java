@@ -15,14 +15,13 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-    @Length(min = 2, max = 256, message="Please enter title:")
-    @NotNull(message = "Please enter your review title (it should be at least 2 characters long):")
+//    @Length(min = 2, max = 256, message="Please enter title:")
+//    @NotNull(message = "Please enter your review title (it should be at least 2 characters long):")
     private String reviewTitle;
     private String movieID;
-    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
-    @NotNull(message = "Please enter your review!")
+//    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
+//    @NotNull(message = "Please enter your review!")
     private String reviewText;
-    @NotNull(message = "Please enter your rating for movie:")
     private int userRatingForMovie;
     private String username;
     private int reviewRating;
