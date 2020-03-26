@@ -65,7 +65,7 @@ public class ReviewController {
             reviewRepository.save(reviewRated);
 
             String path = "redirect:/reviews-search/rate-review/" + id.toString();
-            
+
             return path;
         }
     }
