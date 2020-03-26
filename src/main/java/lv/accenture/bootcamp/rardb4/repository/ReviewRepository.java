@@ -24,6 +24,9 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     List<Review> findTop5ByOrderByReviewRatingDesc();
 
+    List<Review> findAllByUsername(String username);
+
+
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);
 

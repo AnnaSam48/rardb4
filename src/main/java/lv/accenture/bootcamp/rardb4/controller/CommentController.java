@@ -40,13 +40,18 @@ public class CommentController {
             return "rate-review";
         }
         String timeStamp = new SimpleDateFormat("HH:mm/dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-        //  Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        //    User user = userService.findUserById(loggedInUser.ge);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        String username =  user.getUserName();
+
         commentToAdd.setReviewID(id);
-        commentToAdd.getCommentID();
-        //   commentToAdd.setUserId();
+        commentToAdd.setCommentUsername(username);
         commentToAdd.setTimestamp(timeStamp);
+
         commentRepository.save(commentToAdd);
-        return "redirect:/";
+
+        String path = "redirect:/reviews-search/rate-review/" + id.toString();
+
+        return path;
     }
 }

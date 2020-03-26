@@ -53,13 +53,29 @@ public class UserController {
         User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("profilePic", user.getProfileIconURL());
         modelAndView.addObject("userName", user.getUserName());
-        modelAndView.addObject("nameUser",user.getName());
-        modelAndView.addObject("last",user.getLastName());
-        modelAndView.addObject("email",  user.getEmail());
+        modelAndView.addObject("nameUser", user.getName());
+        modelAndView.addObject("last", user.getLastName());
+        modelAndView.addObject("email", user.getEmail());
         modelAndView.addObject("userMessage", "Content Available Only for Users");
         modelAndView.setViewName("user/userProfile");
         return modelAndView;
     }
+
+    @GetMapping("/user/home/reviews")
+    public String userReviews(Model model) {
+        //ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+
+        String username = user.getUserName();
+
+        List<Review> allReviews = reviewRepository.findAllByUsername(username);
+
+        model.addAttribute("reviews", allReviews);
+
+        return "user/userReviews";
+    }
+
   /*KRISTA  @GetMapping("/user/reviews-search")
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
