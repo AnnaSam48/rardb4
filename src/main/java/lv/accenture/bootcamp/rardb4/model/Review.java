@@ -21,6 +21,7 @@ public class Review implements Serializable {
     private String movieID;
 //    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
 //    @NotNull(message = "Please enter your review!")
+    @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
     private String username;
