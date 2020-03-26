@@ -4,7 +4,10 @@ import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Review implements Serializable {
@@ -12,13 +15,13 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-    //@Length(min = 2, max = 256, message="Please enter title:")
-    //@NotNull(message = "Please enter your review title (it should be at least 2 characters long):")
-    // @Size(min = 2, max = 20, message = "Cat name should be longer than 2 letters")
+//    @Length(min = 2, max = 256, message="Please enter title:")
+//    @NotNull(message = "Please enter your review title (it should be at least 2 characters long):")
     private String reviewTitle;
-
     private String movieID;
-    //@Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
+//    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
+//    @NotNull(message = "Please enter your review!")
+    @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
     private String username;
@@ -31,7 +34,8 @@ public class Review implements Serializable {
     }
 
     public Review(Long reviewID, String reviewTitle, String reviewText, int userRatingForMovie,
-                  String movieID, String userName, int ratesSum, int ratesAmount) {
+                  String movieID, String userName, int ratesSum, int ratesAmount/*, List<Comment>comments*/) {
+
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.reviewText = reviewText;
