@@ -3,9 +3,13 @@ package lv.accenture.bootcamp.rardb4.controller;
 import lv.accenture.bootcamp.rardb4.MovieAPI.MovieAPIService;
 import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.Review;
+import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
+import lv.accenture.bootcamp.rardb4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +34,9 @@ public class MovieController {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private UserService userService;
 
 
 
@@ -60,6 +67,12 @@ public class MovieController {
         if (bindingResult.hasErrors()){
             return "add-review-movie";
         }else {
+
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            String username =  user.getUserName();
+
+            reviewToAdd.setUsername(username);
             reviewToAdd.setMovieID(id);
             reviewToAdd.setRatesAmount(0);
             reviewToAdd.setRatesSum(0);

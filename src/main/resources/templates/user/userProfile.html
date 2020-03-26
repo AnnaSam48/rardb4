@@ -72,6 +72,11 @@
             </form>
         </div>
     </div>
+
+    <!--<a th:href="@{/user/home/reviews}" class="btn btn-dark">
+        <span>My reviews</span></a>-->
+    <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
+
 </div>
 
 <footer th:insert="layout/footer.html :: footer"></footer>
