@@ -1,37 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    </head>
-    <body>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+</head>
+<body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-info " th:fragment="footer">
-            <ul class="mx-auto">
-                <li class="navbar-nav">
-                    <!--email-->
-                    <span class="fas fa-envelope"></span>&nbsp;&nbsp;
-                    <a href="mailto:oursupere@email.com">OurSuperE@mail.com</a>
-                </li>
-                <li class="navbar-nav">
-                    <!--current year @C-->
+<nav class="navbar navbar-expand-lg navbar-light bg-info " th:fragment="footer">
+    <ul class="mx-auto">
+        <li class="navbar-nav">
+            <!--email-->
+            <span class="fas fa-envelope"></span>&nbsp;&nbsp;
+            <a href="mailto:oursupere@email.com">OurSuperE@mail.com</a>
+        </li>
+        <li class="navbar-nav">
+            <!--current year @C-->
 
-                    &copy;<a id="year"></a>
-                    <!--current year script-->
-                    <script>
+            &copy;<a id="year"></a>
+            <!--current year script-->
+            <script>
                     var d = new Date();
                 document.getElementById("year").innerHTML = d.getFullYear();
 
                     </script>&nbsp;&nbsp;&nbsp;
-                    <i>Our Awesome page.com</i>
-                    </a>
+            <i>Our Awesome page.com</i>
+            </a>
 
-                </li>
-            </ul>
-            </div>
-        </nav>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
-    </body>
+        </li>
+    </ul>
+    </div>
+</nav>
+</body>
 </html>
-

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
-     >
+>
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
     <title>User Page</title>
 
 </head>
 
 <body>
-    <header th:insert="layout/header.html :: header"> </header>
-    <div class="container">
+<header th:insert="layout/header.html :: header"> </header>
+<div class="container">
     <div class="panel-group" style="margin-top:40px">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -25,8 +28,5 @@
 
 </div>
 <footer th:insert="layout/footer.html :: footer"> </footer>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </body>
 </html>
