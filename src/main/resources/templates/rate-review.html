@@ -15,8 +15,6 @@
     <div>
         <div>
             <h1>Rate the following review:</h1>
-            <a style="float:right" th:href="@{/}" class="btn btn-outline-dark">
-                <span>Home</span></a>
             <br><br>
             <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
             <p>Review text: <span th:text="${review.reviewText}"/></p>
@@ -42,6 +40,9 @@
                 </tbody>
             </table>
         </div>
+        <div>
+            <a href="#" class="btn btn-outline-danger btn-lg disabled" sec:authorize="isAnonymous()" tabindex="-1" role="button" aria-disabled="true">To rate or add review, You must be logged in user</a>
+            <div><br></div>
 
         <form action="#"
               th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
@@ -57,16 +58,17 @@
                 <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
                     <label for="reviewRating" class="col-form-label" >Review Rating (1-10)</label>
                     <select name="reviewRating">
-                        <option value="10">10</option>
-                        <option value="9">9</option>
-                        <option value="8">8</option>
-                        <option value="7">7</option>
-                        <option value="6">6</option>
-                        <option value="5">5</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </select>
                     <input type="submit" th:field="*{reviewRating}" class="btn btn-info" id="reviewRating" value="Rate">
                 </div>
