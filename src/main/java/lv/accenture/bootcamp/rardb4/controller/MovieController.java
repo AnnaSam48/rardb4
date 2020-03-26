@@ -58,7 +58,7 @@ public class MovieController {
     @PostMapping("/add-review-search/add-review-movie/{id}")
     public String addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
-            return "add-review-movie";
+            return "add-review-search";
         }else {
             reviewToAdd.setMovieID(id);
             reviewToAdd.setRatesAmount(0);

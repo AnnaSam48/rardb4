@@ -3,14 +3,16 @@
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>RARDB4 index</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
 </head>
-<body>
 <header th:insert="layout/header.html :: header"></header>
+<style>
+body {
+  background-image: url(https://wallpapercave.com/wp/Dguk2ww.jpg);
+}
+</style>
+<body>
 <div class="container">
     <h1>Home page</h1>
 
@@ -22,6 +24,7 @@
                 <th scope="col">Review rating</th>
                 <th scope="col">Review title</th>
                 <th scope="col">Review</th>
+                <th></th>
             </tr>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
@@ -46,12 +49,13 @@
         </div>
     </div>
 
-
     <div>
         <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
     </div>
-
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </body>
 </html>

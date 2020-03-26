@@ -1,7 +1,20 @@
+.navbar{
+bg-transparent;
+background-image: url(https://wallpaperaccess.com/full/1441207.jpg)
+}
+.nav.navbar-nav.navbar-right li {
+    color:orange;
+}
 .container {
     padding-top: 70px;
     padding-bottom: 70px;
   }
+
+body {
+ background-image: url("Blue.jfif");
+ background-attachment: fixed;
+ background-position: center;
+}
 
   /* mouse over link */
 a:hover {
@@ -25,16 +38,7 @@ h3 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 40p
 
 p { color: #111; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 28px; margin: 0 0 48px; }
 
-body {
- background-image: url("bg_gray.jpg");
- background-attachment: fixed;
- background-position: center;
-}
-
-
 .black-round-button { -moz-border-radius: 50%; -moz-transition: all 0.2s ease-in-out; -webkit-border-radius: 50%; -webkit-transition: all 0.2s ease-in-out; background: #111; border-radius: 50%; border: 1px solid #fdfdfd; color: #fff; display: block; font-family: 'Open Sans', sans-serif; font-size: 13px; height: 120px; line-height: 120px; margin: -60px 0 0 -60px; left: 50%; position: relative; top: 80px; text-align: center; text-transform: uppercase; width: 120px; white-space: normal}
 
 
 .black-round-button:hover { color:white; background: dimgrey;  text-decoration: none; transform: scale(1.2);}
-
-
