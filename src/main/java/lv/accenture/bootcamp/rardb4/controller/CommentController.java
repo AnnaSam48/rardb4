@@ -45,7 +45,7 @@ public class CommentController {
         String username =  user.getUserName();
 
         commentToAdd.setReviewID(id);
-        commentToAdd.setCommentUsername(username);
+        commentToAdd.setUsername(username);
         commentToAdd.setTimestamp(timeStamp);
 
         commentRepository.save(commentToAdd);
