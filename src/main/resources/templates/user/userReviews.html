@@ -33,7 +33,11 @@ article {
     -webkit-flex-direction: column;
     flex-direction: column;
   }
-}  </style>
+}
+
+
+
+    </style>
 
 </head>
 <body>
@@ -48,18 +52,22 @@ article {
     </nav>
     <article class="container mx-auto">
         <br>
+
         <h3>My reviews</h3>
         <div th:if="${not #lists.isEmpty(reviews)}">
-            <table class="table table-borderless">
+            <table class="table table-hover">
                 <tr>
-                    <th scope="col">Rating</th>
-                    <th scope="col">Title</th>
+                    <th width="5%"  scope="col">Rating</th>
+                    <th width="20%" scope="col">Title</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
                 <tr th:each="review: ${reviews}">
                     <td th:text="${review.reviewRating}"/>
                     <td th:text="${review.reviewTitle}"/>
                     <td th:text="${review.reviewText}"/>
+                    <td><a sec:authorize="isAuthenticated()"
+                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a></td>
                 </tr>
             </table>
         </div>
@@ -74,6 +82,8 @@ article {
     </article>
 </section>
 </div>
+
+
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>
 </html>
