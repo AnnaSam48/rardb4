@@ -14,8 +14,9 @@ public class Comment implements Serializable {
     private String commentUsername;
     private String timestamp;
 
-    public Comment() {
 
+
+    public Comment() {
     }
 
     public Comment(Long commentID, Long reviewID, String commentText, String commentUsername, String timeStamp) {
