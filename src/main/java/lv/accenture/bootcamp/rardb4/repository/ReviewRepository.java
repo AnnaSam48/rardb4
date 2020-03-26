@@ -13,7 +13,11 @@ import java.util.List;
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
+
+    // TODO: why do we need join with Review here?
     String searchMovieTitleFromMovieId = "SELECT m.Title FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
+
+    // TODO: why do we need join with Review here?
     String moviePosterURL = "SELECT m.Poster FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
     //  String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
 

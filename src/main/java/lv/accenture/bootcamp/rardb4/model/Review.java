@@ -21,9 +21,14 @@ public class Review implements Serializable {
     private String movieID;
 //    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
 //    @NotNull(message = "Please enter your review!")
+
+    //TODO: Simple paragraph of text makes MysqlDataTruncation: Data truncation: Data too long for column 'review_text' at row 1 Exception
+    @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
     private String username;
+
+    //TODO SERIOUS : Such approach let user do as much rates as he wants (and even on it's own review). Need rework here
     private int reviewRating;
     private int ratesSum;
     private int ratesAmount;

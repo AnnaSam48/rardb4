@@ -24,9 +24,10 @@
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
             <tr>
-                <th scope="col">Review rating</th>
-                <th scope="col">Review title</th>
-                <th scope="col">Review</th>
+                <th id="revrat" scope="col">Review rating</th>
+                <th id="revtitl"scope="col">Review title</th>
+                <th id="revtxt"scope="col">Review</th>
+                <th></th>
             </tr>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>

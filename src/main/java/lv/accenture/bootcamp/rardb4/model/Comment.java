@@ -6,12 +6,18 @@ import java.io.Serializable;
 @Entity
 public class Comment implements Serializable {
 
+    //TODO : Class is already called Comment, therefore no need to put it in name of inner fields
+    // (e.g commentID, commentText etc...)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentID;
     private Long reviewID;
+
+    //TODO: Simple paragraph of text makes MysqlDataTruncation: Data truncation: Data too long for column 'review_text' at row 1 Exception
     private String commentText;
     private String commentUsername;
+
+    //TODO: it's not best practise to keep date/time in String (Think about timezones & user-preferred formats)
     private String timestamp;
 
 
