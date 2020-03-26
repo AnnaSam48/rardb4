@@ -1,5 +1,7 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -12,37 +14,19 @@ public class Review implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name="reviewid")
     private Long reviewID;
-//
-//    @Size(min = 2, max = 256, message="Please enter title:")
-//    @Column(name = "review_title")
+    @Length(min = 2, max = 256, message="Please enter title:")
+    @NotNull(message = "Please enter your review title (it should be at least 2 characters long):")
     private String reviewTitle;
-
-//    @NotNull
-//    @Column(name = "movieid")
     private String movieID;
-
-//    @Size(min = 10, max = 256, message ="Please write review (at least 10 characters):")
-//    @Column(name = "review_text")
+    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
+    @NotNull(message = "Please enter your review!")
     private String reviewText;
-
-//    @NotNull
-//    @PositiveOrZero
-//    @Max(value=10,message = "Please enter valid rating (from 0-10):")
-//    @Column(name = "user_rating_for_movie")
+    @NotNull(message = "Please enter your rating for movie:")
     private int userRatingForMovie;
-
-    @Column(name = "user_name")
     private String username;
-
-    @Column (name = "review_rating")
     private int reviewRating;
-
-    @Column (name = "rates_sum")
     private int ratesSum;
-
-    @Column (name = "rates_amount")
     private int ratesAmount;
 
 

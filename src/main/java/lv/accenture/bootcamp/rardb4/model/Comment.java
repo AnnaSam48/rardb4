@@ -8,15 +8,10 @@ public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private Long commentID;
-    //    @Column(name = "reviewid")
     private Long reviewID;
-    //    @Column(name = "comment_text")
     private String commentText;
-    //    @Column(name = "comment_username")
     private String commentUsername;
-    //    @Column(name = "timestamp")
     private String timestamp;
 
     public Comment() {
