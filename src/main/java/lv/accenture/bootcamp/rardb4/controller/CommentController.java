@@ -39,6 +39,7 @@ public class CommentController {
         if (bindingResult.hasErrors()) {
             return "rate-review";
         }
+        //TODO new SimpleDateFormat("HH:mm/dd-MM-yyyy") can be used as constant
         String timeStamp = new SimpleDateFormat("HH:mm/dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
