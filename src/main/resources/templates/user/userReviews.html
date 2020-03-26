@@ -17,24 +17,15 @@ section {
 
 /* Style the navigation menu */
 nav {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   background: #ccc;
-  padding: 30px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
   padding: 30px;
 }
 
 /* Style the content */
 article {
-  -webkit-flex: 3;
-  -ms-flex: 3;
-  flex: 3;
+  -webkit-flex: 8;
+  -ms-flex: 8;
+  flex: 8;
 }
 /* Responsive layout
 @media (max-width: 600px) {
@@ -42,23 +33,21 @@ article {
     -webkit-flex-direction: column;
     flex-direction: column;
   }
-}
-
-
-    </style>
+}  </style>
 
 </head>
 <body>
 <header th:insert="layout/header.html :: header"></header>
 <section>
     <nav>
-        <ul><br>
-            <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/profile"> <span>My profile</span></a>
-            <div><br></div>
-            <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
-        </ul>
+        <br>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/profile"> <span>My profile</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
+
     </nav>
     <article class="container mx-auto">
+        <br>
         <h3>My reviews</h3>
         <div th:if="${not #lists.isEmpty(reviews)}">
             <table class="table table-borderless">
