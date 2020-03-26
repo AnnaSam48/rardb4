@@ -61,6 +61,7 @@ public class ReviewController {
             reviewRated.setReviewRating(rating);
             reviewRated.setRatesAmount(newRatesAmount);
             reviewRated.setRatesSum(newRatesSum);
+
             reviewRated.setReviewID(id);
             reviewRepository.save(reviewRated);
 
