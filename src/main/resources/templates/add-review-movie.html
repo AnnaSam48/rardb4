@@ -12,6 +12,7 @@
 <body>
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
+    <h2><span class="text-success" th:utext="${successReview}"></span></h2>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -102,6 +103,7 @@
                     <div class="form-group col-md-8">
                         <input type="submit" th:field="*{userRatingForMovie}" class="btn btn-info" id="userRatingForMovie" value="Ready to submit my review">
                     </div>
+
                 </div>
             </div>
         </form>

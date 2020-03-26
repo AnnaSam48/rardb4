@@ -2,6 +2,7 @@ package lv.accenture.bootcamp.rardb4.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 public class Movie implements Serializable {
 
     @Id
+    @Column(length = 12)
     private String imdbID;
     private String Title;
     private String Year;

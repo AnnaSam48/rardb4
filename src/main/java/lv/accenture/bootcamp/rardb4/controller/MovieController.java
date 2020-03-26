@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -37,7 +38,6 @@ public class MovieController {
 
     @Autowired
     private UserService userService;
-
 
 
     @GetMapping("/add-review-search")
@@ -62,15 +62,23 @@ public class MovieController {
         return "add-review-movie";
     }
 
-    @PostMapping("/add-review-search/add-review-movie/{id}")
-    public String addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return "add-review-search";
-        }else {
+    @PostMapping(value = "/add-review-search/add-review-movie/{id}")
+    //Model and view for notification that submitted pups up at same page
+    public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            bindingResult
+                    .rejectValue("noMovie", "error.movie",
+                            "No results, try another name? :) ");
+            // return "add-review-search";
+        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("add-review-movie");
+        } else {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findUserByUserName(auth.getName());
-            String username =  user.getUserName();
+            String username = user.getUserName();
 
             reviewToAdd.setUsername(username);
             reviewToAdd.setMovieID(id);
@@ -78,12 +86,20 @@ public class MovieController {
             reviewToAdd.setRatesSum(0);
             reviewRepository.save(reviewToAdd);
 
-            if(!moviesRepository.existsById(id)){
+            if (!moviesRepository.existsById(id)) {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
-                moviesRepository.save(movieToAdd);}
+                moviesRepository.save(movieToAdd);
+            }
 
-            return "reviewSubmitted";
+            //  return "reviewSubmitted";
+            Movie movieToShow = movieAPIService.getMovieByID(id);
+            modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
+            modelAndView.addObject("movie", movieToShow);
+            modelAndView.addObject("review", new Review());
+            modelAndView.setViewName("add-review-movie");
+
         }
+        return modelAndView;
     }
 
     @GetMapping("/add-review-movie/reviewSubmitted")
