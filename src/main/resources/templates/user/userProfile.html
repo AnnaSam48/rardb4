@@ -42,9 +42,13 @@ article {
 <section>
     <nav>
         <br>
-            <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/profile"> <span>My profile</span></a>
-            <div><br></div>
-            <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
+        <!--buttons -->
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/profile"> <span>My profile</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+
 
     </nav>
     <article>

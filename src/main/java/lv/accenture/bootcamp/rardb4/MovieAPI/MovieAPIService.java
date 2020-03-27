@@ -23,7 +23,7 @@ public class MovieAPIService {
 
     private String prepareKeyword(String keyword){
         keyword = keyword.trim();
-        String modifiedKeyword = keyword.replaceAll("%20", "_");
+        String modifiedKeyword = keyword.replaceAll(" ", "_");
         return modifiedKeyword;
     }
 

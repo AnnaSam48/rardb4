@@ -12,7 +12,7 @@
 <body>
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
-    <h1>Welcome to our review site!</h1>
+
 
 
     <div>
@@ -24,10 +24,9 @@
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
             <tr>
-                <th id="revrat" scope="col">Review rating</th>
-                <th id="revtitl"scope="col">Review title</th>
-                <th id="revtxt"scope="col">Review</th>
-                <th></th>
+                <th scope="col">Review rating</th>
+                <th scope="col">Review title</th>
+                <th scope="col">Review</th>
             </tr>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>

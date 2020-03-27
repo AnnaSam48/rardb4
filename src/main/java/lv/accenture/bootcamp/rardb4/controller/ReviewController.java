@@ -53,19 +53,21 @@ public class ReviewController {
             return "rate-review";
         } else {
             Optional<Review> reviewOld = reviewRepository.findById(id);
-            int newRatesSum = (reviewOld.get().getReviewRating() * reviewOld.get().getRatesAmount() + reviewRated.getReviewRating());
+            int newRatesSum = (reviewOld.get().getRatesSum() + reviewRated.getReviewRating());
 
             int newRatesAmount = reviewOld.get().getRatesAmount() + 1;
             int rating = newRatesSum / newRatesAmount;
 
             reviewRated.setReviewRating(rating);
             reviewRated.setRatesAmount(newRatesAmount);
-            //reviewRated.setRatesSum(newRatesSum);
+            reviewRated.setRatesSum(newRatesSum);
 
             reviewRated.setReviewID(id);
             reviewRepository.save(reviewRated);
 
-            return "redirect:/";
+            String path = "redirect:/reviews-search/rate-review/" + id.toString();
+
+            return path;
         }
     }
 
@@ -73,7 +75,7 @@ public class ReviewController {
     @GetMapping("/reviews/delete-review/{id}")
     public String deleteReview(@PathVariable Long id) {
         reviewRepository.deleteById(id);
-        return "redirect:/user/home/reviews";
+        return "redirect:/reviews";
     }
 
 
@@ -111,6 +113,7 @@ public class ReviewController {
 
             readyReviews.add(readyReview);
         }
+
 
         model.addAttribute("reviews", readyReviews);
         return "reviews-on-movie";

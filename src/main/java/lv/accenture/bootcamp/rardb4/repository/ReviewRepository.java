@@ -8,6 +8,7 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
@@ -20,6 +21,8 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     List<Review> findTop5ByOrderByReviewRatingDesc();
 
     List<Review> findAllByUsername(String username);
+    Optional<Review> findByReviewID(Long reviewID);
+
 
 
     @Query(searchByMovie)

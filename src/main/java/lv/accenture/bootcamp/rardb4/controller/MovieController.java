@@ -67,13 +67,7 @@ public class MovieController {
     public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            bindingResult
-                    .rejectValue("noMovie", "error.movie",
-                            "No results, try another name? :) ");
-            // return "add-review-search";
-        }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("add-review-movie");
+            modelAndView.setViewName("add-review-search");
         } else {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -12,7 +12,19 @@
 <body>
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
+    <!--success message -->
     <h2><span class="text-success" th:utext="${successReview}"></span></h2>
+
+    <!--search button -->
+    <div class="form-group col-md-8">
+        <form th:action="@{/add-review-search/search}" method="get">
+            <input type="text" name="keyword" id="keyword" th:value="${keyword}"/>
+            <input type="submit" value="Search" class="btn btn-dark"/>
+
+        </form>
+    </div>
+
+    <!--actual part of page -->
     <div class="container">
         <div class="row">
             <div class="col">
