@@ -68,23 +68,11 @@ public class Comment implements Serializable {
         this.username = username;
     }
 
-
     public String getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commentID=" + id +
-                ", reviewID=" + reviewID +
-                ", commentText='" + text + '\'' +
-                ", commentUsername='" + username + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                '}';
     }
 }
