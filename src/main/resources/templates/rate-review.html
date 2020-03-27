@@ -39,7 +39,10 @@
                 </tbody>
             </table>
         </div>
+    </div>
 
+
+    <div>
         <form action="#"
               th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
               th:object="${review}" method="post">
@@ -81,8 +84,8 @@
               th:object="${commentOb}" method="post">
             <div class="row">
                 <div class="form-group col-md-8">
-                    <label for="text" class="col-form-label">Title</label>
-                    <textarea type="text" th:field="*{text}" class="form-control" id="text" placeholder="commentText"></textarea>
+                    <label for="text" class="col-form-label">Your review</label>
+                    <textarea type="text" th:field="*{text}" class="form-control" id="text"></textarea>
                 </div>
 
                 <div class="form-group col-md-8">
