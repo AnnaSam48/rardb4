@@ -4,6 +4,7 @@ import lv.accenture.bootcamp.rardb4.model.*;
 import lv.accenture.bootcamp.rardb4.repository.*;
 import lv.accenture.bootcamp.rardb4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,17 +19,14 @@ import java.text.SimpleDateFormat;
 @Controller
 public class CommentController {
 
-    @Autowired
-    MovieRepository movieRepository;
+    @Value("${simple.date.format}")
+    private String dateformat;
 
     @Autowired
-    ReviewRepository reviewRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
     private UserService userService;
@@ -38,8 +36,7 @@ public class CommentController {
         if (bindingResult.hasErrors()) {
             return "rate-review";
         }
-        //TODO new SimpleDateFormat("HH:mm/dd-MM-yyyy") can be used as constant
-        String timeStamp = new SimpleDateFormat("HH:mm/dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
+        String timeStamp = new SimpleDateFormat(dateformat).format(new Timestamp(System.currentTimeMillis()));
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         String username =  user.getUserName();

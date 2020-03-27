@@ -33,6 +33,7 @@ public class indexController {
         model.addAttribute("reviews", bestReviews);
         return "index";
     }
+
     @GetMapping("/header")
     public String getHeader() {
         return "header.html";

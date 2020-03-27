@@ -76,13 +76,12 @@
                 <div class="form-group col-md-8">
                     <label for="reviewTitle" class="col-form-label">Your review title</label>
                     <input type="text" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-                    <span th:if="${#fields.hasErrors('reviewTitle')}" th:errors="*{reviewTitle}" class="text-danger"/>
+                    <!--<span th:if="${#fields.hasErrors('reviewTitle')}" th:errors="*{reviewTitle}" class="text-danger"/>-->
                     <br>
                 </div>
                 <div class="form-group col-md-8">
                     <label for="reviewText" class="col-form-label">Your review</label>
                     <textarea type="text" th:field="*{reviewText}" class="form-control" id="reviewText"></textarea>
-                    <span th:if="${#fields.hasErrors('reviewText')}" th:errors="*{reviewText}" class="text-danger"/>
                 </div>
 
                 <div class="form-group col-md-8">
