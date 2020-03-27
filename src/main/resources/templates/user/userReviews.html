@@ -71,9 +71,9 @@ article {
                            th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a>
 
                         <a class="btn btn-outline-primary"
-                           th:href="@{/reviews-search/edit-review/{id}(id=${review.reviewID})}">Edit</a>
+                           th:href="@{reviews-search/edit-review/{id}(id=${review.reviewID})}">Edit</a>
                         <a class="btn btn-outline-primary"
-                           th:href="@{/reviews/delete-review/{id}(id=${review.reviewID})}">Delete</a>
+                           th:href="@{/user/delete-review/{id}(id=${review.reviewID})}">Delete</a>
                     </td>
                 </tr>
             </table>
