@@ -13,11 +13,6 @@ import java.util.List;
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
-    String searchMovieTitleFromMovieId = "SELECT m.Title FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
-    String moviePosterURL = "SELECT m.Poster FROM Movie m JOIN Review r ON m.imdbID = r.movieID";
-    //  String joinAllReviewsToUser = "SELECT r Review r JOIN User u ON r.userName = u.username";
-
-
 
    // Streamable<Review> findByMovieTitleContaining(String movieTitle);
   //  Streamable<Review> findByUsername(String username);
@@ -30,10 +25,5 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);
 
-    @Query(searchMovieTitleFromMovieId)
-    String movieTitleFromId(@Param(value="imdbID") String imdbID);
-
-    @Query(moviePosterURL)
-    String posterURL(@Param(value = "imdbID") String imdbID);
 
 }

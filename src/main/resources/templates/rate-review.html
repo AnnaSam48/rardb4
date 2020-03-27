@@ -32,8 +32,8 @@
 
                 <tbody>
                 <tr th:each="comment: ${comments}">
-                    <td th:text="${comment.commentUsername}"/>
-                    <td th:text="${comment.commentText}"/>
+                    <td th:text="${comment.username}"/>
+                    <td th:text="${comment.text}"/>
                     <td th:text="${comment.timestamp}"/>
                 </tr>
                 </tbody>
@@ -81,8 +81,8 @@
               th:object="${commentOb}" method="post">
             <div class="row">
                 <div class="form-group col-md-8">
-                    <label for="commentText" class="col-form-label">Title</label>
-                    <textarea type="text" th:field="*{commentText}" class="form-control" id="commentText" placeholder="commentText"></textarea>
+                    <label for="text" class="col-form-label">Title</label>
+                    <textarea type="text" th:field="*{text}" class="form-control" id="text" placeholder="commentText"></textarea>
                 </div>
 
                 <div class="form-group col-md-8">

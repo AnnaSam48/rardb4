@@ -6,12 +6,19 @@ import java.io.Serializable;
 @Entity
 public class Comment implements Serializable {
 
+    //TODO : Class is already called Comment, therefore no need to put it in name of inner fields
+    // (e.g commentID, commentText etc...) - DONE
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long commentID;
+    private Long id;
     private Long reviewID;
-    private String commentText;
-    private String commentUsername;
+
+    //TODO: Simple paragraph of text makes MysqlDataTruncation: Data truncation: Data too long for column 'review_text' at row 1 Exception
+    @Column(columnDefinition = "text")// is this fixing TODO??
+    private String text;
+    private String username;
+
+    //TODO: it's not best practise to keep date/time in String (Think about timezones & user-preferred formats)
     private String timestamp;
 
 
@@ -19,20 +26,20 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Long commentID, Long reviewID, String commentText, String commentUsername, String timeStamp) {
-        this.commentID = commentID;
+    public Comment(Long id, Long reviewID, String text, String username, String timeStamp) {
+        this.id = id;
         this.reviewID = reviewID;
-        this.commentText = commentText;
-        this.commentUsername = commentUsername;
+        this.text = text;
+        this.username = username;
         this.timestamp = timeStamp;
     }
 
-    public Long getCommentID() {
-        return commentID;
+    public Long getId() {
+        return id;
     }
 
-    public void setCommentID(Long commentID) {
-        this.commentID = commentID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getReviewID() {
@@ -43,20 +50,20 @@ public class Comment implements Serializable {
         this.reviewID = reviewID;
     }
 
-    public String getCommentText() {
-        return commentText;
+    public String getText() {
+        return text;
     }
 
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getCommentUsername() {
-        return commentUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setCommentUsername(String commentUsername) {
-        this.commentUsername = commentUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 
@@ -71,10 +78,10 @@ public class Comment implements Serializable {
     @Override
     public String toString() {
         return "Comment{" +
-                "commentID=" + commentID +
+                "commentID=" + id +
                 ", reviewID=" + reviewID +
-                ", commentText='" + commentText + '\'' +
-                ", commentUsername='" + commentUsername + '\'' +
+                ", commentText='" + text + '\'' +
+                ", commentUsername='" + username + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }

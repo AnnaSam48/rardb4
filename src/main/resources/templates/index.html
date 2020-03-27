@@ -12,7 +12,12 @@
 <body>
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
-    <h1>Home page</h1>
+    <h1>Welcome to our review site!</h1>
+
+
+    <div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+    </div>
 
 
     <h3>Top 5 reviews </h3>
@@ -48,9 +53,6 @@
     </div>
 
 
-    <div>
-        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
-    </div>
 
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>

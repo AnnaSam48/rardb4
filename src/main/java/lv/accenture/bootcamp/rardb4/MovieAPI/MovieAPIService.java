@@ -22,12 +22,13 @@ public class MovieAPIService {
 
     private String prepareKeyword(String keyword){
         keyword = keyword.trim();
+        //TODO: For wellfordmed URL it's necessary replace whitespaces with "%20"
         String modifiedKeyword = keyword.replaceAll(" ", "_");
         return modifiedKeyword;
     }
 
 
-
+    //TODO : huge copy-paste with getMovie() . Consider moving common code part in separate method
     public Movie getMovieByID(String idMovie) {
 
         try {
