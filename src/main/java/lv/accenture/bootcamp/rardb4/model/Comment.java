@@ -10,12 +10,14 @@ public class Comment implements Serializable {
     // (e.g commentID, commentText etc...) - DONE
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="commentid")
     private Long id;
     private Long reviewID;
 
     //TODO: Simple paragraph of text makes MysqlDataTruncation: Data truncation: Data too long for column 'review_text' at row 1 Exception
-    @Column(columnDefinition = "text")// is this fixing TODO??
+    @Column(name = "comment_text", columnDefinition = "text")// is this fixing TODO??
     private String text;
+    @Column(name ="comment_username")
     private String username;
 
     //TODO: it's not best practise to keep date/time in String (Think about timezones & user-preferred formats)
