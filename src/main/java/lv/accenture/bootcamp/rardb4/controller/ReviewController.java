@@ -53,21 +53,19 @@ public class ReviewController {
             return "rate-review";
         } else {
             Optional<Review> reviewOld = reviewRepository.findById(id);
-            int newRatesSum = (reviewOld.get().getRatesSum() + reviewRated.getReviewRating());
+            int newRatesSum = (reviewOld.get().getReviewRating() * reviewOld.get().getRatesAmount() + reviewRated.getReviewRating());
 
             int newRatesAmount = reviewOld.get().getRatesAmount() + 1;
             int rating = newRatesSum / newRatesAmount;
 
             reviewRated.setReviewRating(rating);
             reviewRated.setRatesAmount(newRatesAmount);
-            reviewRated.setRatesSum(newRatesSum);
+            //reviewRated.setRatesSum(newRatesSum);
 
             reviewRated.setReviewID(id);
             reviewRepository.save(reviewRated);
 
-            String path = "redirect:/reviews-search/rate-review/" + id.toString();
-
-            return path;
+            return "redirect:/";
         }
     }
 
