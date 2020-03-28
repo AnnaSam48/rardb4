@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Cat</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  background: #ccc;
+  padding: 30px;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 8;
+  -ms-flex: 8;
+  flex: 8;
+}
+/* Responsive layout
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+</style>
+<header th:insert="layout/header.html :: header"></header>
+<body>
+<section>
+    <nav>
+        <!--buttons -->
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/profile"> <span>My profile</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+    </nav>
+<div class="container">
+    <h1>Edit Review</h1>
+  <form
+
+          th:object="${review}" method="post">
+        <div class="row">
+            <div class="form-group col-md-8">
+                <label for="userRatingForMovie" class="col-form-label">Review Rating:</label>
+                <input type="number" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
+                <label for="reviewTitle" class="col-form-label">Review Title:</label>
+                <input type="text" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
+                <label for="reviewText" class="col-form-label">Review Text:</label>
+                <input type="text" th:field="*{reviewText}" class="form-control" id="reviewText">
+
+            </div>
+            <div class="form-group col-md-8">
+                <input type="submit" value="Edit Review" class="btn btn-outline-primary">
+                <a th:href="@{/user/home/reviews}" class="btn btn-outline-primary">Return</a>
+            </div>
+        </div>
+    </form>
+</div>
+</section>
+<footer th:insert="layout/footer.html :: footer"></footer>
+</body>
+</html>

@@ -58,22 +58,28 @@ article {
         <div th:if="${not #lists.isEmpty(reviews)}">
             <table class="table table-hover">
                 <tr>
-                    <th width="5%"  scope="col">Rating</th>
-                    <th width="20%" scope="col">Title</th>
+                <!--    <th scope="col"></th>
+                    <th scope="col">Movie Title</th> -->
+                    <th scope="col">Movie Rating</th>
+                    <th scope="col">Title</th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">your Rating</th>
                 </tr>
                 <tr th:each="review: ${reviews}">
-                    <td th:text="${review.reviewRating}"/>
+               <!--     <td><img th:src="${review.poster}" height="120"/></td>
+                    <td th:text="${review.movieTitle}"/> -->
+                    <td th:text="${review.userRatingForMovie}"/>
                     <td th:text="${review.reviewTitle}"/>
                     <td th:text="${review.reviewText}"/>
+                    <td th:text="${review.reviewRating}"/>
+
                     <td><a class="btn btn-outline-primary"
                            th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a>
 
                         <a class="btn btn-outline-primary"
-                           th:href="@{/reviews-search/edit-review/{id}(id=${review.reviewID})}">Edit</a>
+                           th:href="@{reviews-search/edit-review/{id}(id=${review.reviewID})}">Edit</a>
                         <a class="btn btn-outline-primary"
-                           th:href="@{/reviews/delete-review/{id}(id=${review.reviewID})}">Delete</a>
+                           th:href="@{/user/delete-review/{id}(id=${review.reviewID})}">Delete</a>
                     </td>
                 </tr>
             </table>

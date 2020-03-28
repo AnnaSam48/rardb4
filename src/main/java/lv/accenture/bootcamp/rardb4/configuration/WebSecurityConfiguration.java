@@ -47,7 +47,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/reviews-search/**").permitAll()
                 .antMatchers("/about-movie/**").permitAll()
                 .antMatchers(loginPage).permitAll()
-                .antMatchers("/password/error").permitAll()
+                .antMatchers("/error").permitAll()
                 .antMatchers("/reviews/delete-review/").authenticated()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")
@@ -59,6 +59,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage(loginPage)
                 .loginPage("/")
+
                 .failureUrl("/")
                 .defaultSuccessUrl("/")
                 .usernameParameter("user_name")

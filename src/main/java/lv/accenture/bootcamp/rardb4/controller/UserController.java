@@ -58,35 +58,4 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/user/home/reviews")
-    public String userReviews(Model model) {
-        //ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-
-        String username = user.getUserName();
-
-        List<Review> allReviews = reviewRepository.findAllByUsername(username);
-
-        model.addAttribute("reviews", allReviews);
-
-        return "user/userReviews";
-    }
-
-    @GetMapping("/user/userReviews/{id}")
-    public String editUserReviews(@PathVariable Long id, Model model) {
-        Optional<Review> reviewToEdit=reviewRepository.findByReviewID(id);
-        model.addAttribute("review", reviewToEdit.get());
-        return "edit-review";
-    }
-
-    @PostMapping("/user/userReviews/{id}")
-    public String editReview(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
-        editedReview.setReviewID(id);
-        if (bindResult.hasErrors()) {
-            return "edit-review";
-        }
-        reviewRepository.save(editedReview);
-        return "redirect:/user/userReviews";
-    }
 }
