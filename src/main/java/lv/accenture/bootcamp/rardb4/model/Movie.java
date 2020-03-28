@@ -23,8 +23,9 @@ public class Movie implements Serializable {
     private String Runtime;
     private String Genre;
     private String Director;
-    private String Writer;
+    //private String Writer;
     private String Actors;
+    @Column(columnDefinition = "text", nullable=false)
     private String Plot;
     private String Language;
     private String Country;
@@ -37,7 +38,7 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-    public Movie(String imdbID, String title, String year, String type, String poster, String rated, String released, String runtime, String genre, String director, String writer, String actors, String plot, String language, String country, String awards, String imdbRating, String DVD, String boxOffice, String production) {
+    public Movie(String imdbID, String title, String year, String type, String poster, String rated, String released, String runtime, String genre, String director, String actors, String plot, String language, String country, String awards, String imdbRating, String DVD, String boxOffice, String production) {
         this.imdbID = imdbID;
         Title = title;
         Year = year;
@@ -48,7 +49,7 @@ public class Movie implements Serializable {
         Runtime = runtime;
         Genre = genre;
         Director = director;
-        Writer = writer;
+        //Writer = writer;
         Actors = actors;
         Plot = plot;
         Language = language;
@@ -135,14 +136,6 @@ public class Movie implements Serializable {
 
     public void setDirector(String director) {
         Director = director;
-    }
-
-    public String getWriter() {
-        return Writer;
-    }
-
-    public void setWriter(String writer) {
-        Writer = writer;
     }
 
     public String getActors() {
