@@ -24,7 +24,7 @@
         </form>
     </div>
 
-    <!--actual part of page -->
+    <!--Info about movie -->
     <div class="container">
         <div class="row">
             <div class="col">
@@ -73,11 +73,10 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 
-    <!--Review Form-->
+    <!--add Review Form-->
     <div class="container">
         <h1 class="display-4">Type in your review</h1>
         <form action="#"
@@ -114,11 +113,14 @@
                     <div class="form-group col-md-8">
                         <input type="submit" th:field="*{userRatingForMovie}" class="btn btn-info" id="userRatingForMovie" value="Ready to submit my review">
                     </div>
-
                 </div>
             </div>
         </form>
     </div>
+
+
+
+
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>

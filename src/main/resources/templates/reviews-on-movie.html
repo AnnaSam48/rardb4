@@ -11,6 +11,8 @@
 <body id="app-body">
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
+
+    <!--found Reviews-->
     <h1>Reviews</h1>
     <h3>All reviews: </h3>
     <div th:if="${not #lists.isEmpty(reviews)}">
@@ -39,7 +41,6 @@
                     <span>Rate</span></a><br>
                     <a th:href="@{/about-movie/{id}(id=${readyReview.imdbID})}" class="btn btn-warning">
                         <span>About movie</span></a></td>
-
             </tr>
         </table>
     </div>
@@ -50,12 +51,17 @@
             </div>
         </div>
     </div>
+
+
+    <!--Button-->
     <div>
         <a onclick="document.getElementById('id01').style.display='block'"
            aria-hidden="true">
             <button type="button" class="btn btn-secondary">Add review</button>
         </a>
 
+
+        <!--Search form-->
         <div id="id01" class="modal ">
             <div class="container" style="max-width:345px">
                 <div style="background-color: #009999; padding: 15px;" class="modal-content animate" >
@@ -66,6 +72,8 @@
                 </div>
             </div>
         </div>
+
+
         <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -76,11 +84,12 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
         </script>
 
 
+
     </div>
+
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>

@@ -13,15 +13,14 @@
 <header th:insert="layout/header.html :: header"></header>
 <div class="container">
 
-
-
+    <!--Button-->
     <div>
         <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
     </div>
 
 
-    <h3>Top 5 reviews </h3>
-    <br>
+    <!--Top 5 reviews-->
+    <h3>Top 5 reviews </h3><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
             <tr>
@@ -54,6 +53,7 @@
 
 
 
+    
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>

@@ -9,16 +9,20 @@
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header th:insert="layout/header.html :: header"> </header>
+<header th:insert="layout/header.html :: header"></header>
 
 <div class="container">
+
+
+    <!--Review info-->
     <div>
         <div>
-
             <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
             <h6>Review text: <span th:text="${review.reviewText}"/></h6>
         </div>
         <br><br>
+
+        <!--All Comments to the review-->
         <div>
             <h3>Comments:</h3>
             <table class="table table-striped">
@@ -42,6 +46,7 @@
     </div>
 
 
+    <!--Add Review form-->
     <div>
         <form action="#"
               th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
@@ -56,7 +61,7 @@
                 <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
 
                 <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
-                    <label for="reviewRating" class="col-form-label" >Review Rating (1-10)</label>
+                    <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
                     <select name="reviewRating">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -97,6 +102,6 @@
 
 
 </div>
-<footer th:insert="layout/footer.html :: footer"> </footer>
+<footer th:insert="layout/footer.html :: footer"></footer>
 </body>
 </html>
