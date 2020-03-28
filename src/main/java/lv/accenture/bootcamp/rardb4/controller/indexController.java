@@ -29,9 +29,19 @@ public class indexController {
     public String toBestRatedReviews(Model model) {
 
         List<Review> bestReviews = reviewRepository.findTop5ByOrderByReviewRatingDesc();
-
         model.addAttribute("reviews", bestReviews);
         return "index";
+    }
+
+
+    @GetMapping("/moreReviews")
+    public String getMoreReviews(Model model) {
+
+        List<Review> bestReviews = reviewRepository.findAllByOrderByReviewRatingDesc();
+        model.addAttribute("reviews", bestReviews);
+
+        return "index";
+
     }
 
     @GetMapping("/header")
