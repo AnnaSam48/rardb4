@@ -104,6 +104,9 @@ public class MovieController {
     @GetMapping("/about-movie/{id}")
     public String aboutMovie(@PathVariable String id, Model model) { //this id is the same id in URL
         Optional<Movie> movieToShow = moviesRepository.findById(id);
+
+        List<Review> reviewsByMovie = reviewRepository.findAllByMovieID(id);
+        model.addAttribute("reviews", reviewsByMovie);
         model.addAttribute("movie", movieToShow.get()); //with what data we are working with
         return "about-movie";
     }

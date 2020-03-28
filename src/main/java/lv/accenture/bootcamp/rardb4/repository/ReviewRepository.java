@@ -21,6 +21,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     List<Review> findTop5ByOrderByReviewRatingDesc();
 
     List<Review> findAllByUsername(String username);
+    List<Review> findAllByMovieID(String movieID);
     Optional<Review> findByReviewID(Long reviewID);
 
 
