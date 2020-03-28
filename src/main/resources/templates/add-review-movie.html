@@ -97,7 +97,7 @@
 
                 <div class="form-group col-md-8">
                     <label for="userRatingForMovie" class="col-form-label">Rate movie (1-10)</label>
-                    <select name="userRatingForMovie">
+                    <select th:field="*{userRatingForMovie}" id="userRatingForMovie">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -111,7 +111,7 @@
                         <option value="10">10</option>
                     </select>
                     <div class="form-group col-md-8">
-                        <input type="submit" th:field="*{userRatingForMovie}" class="btn btn-info" id="userRatingForMovie" value="Ready to submit my review">
+                        <input type="submit" class="btn btn-info" value="Submit review">
                     </div>
                 </div>
             </div>

@@ -24,12 +24,14 @@
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
             <tr>
-                <th>Review rating</th>
+                <th width="10%">Review rating</th>
+                <th>User</th>
                 <th>Review title</th>
                 <th>Review</th>
             </tr>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
+                <td th:text="${readyReview.username}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
                 <td th:text="${readyReview.reviewText}"/>
                 <td>
