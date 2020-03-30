@@ -22,8 +22,7 @@ public class Review implements Serializable {
 //    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
 //    @NotNull(message = "Please enter your review!")
 
-    //TODO: Simple paragraph of text makes MysqlDataTruncation: Data truncation: Data too long for column 'review_text' at row 1 Exception
-    @Column(columnDefinition = "text", nullable=false) //is this fixing our TODO?
+    @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
     private String username;

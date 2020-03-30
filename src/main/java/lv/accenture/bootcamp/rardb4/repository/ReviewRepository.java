@@ -19,6 +19,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
   //  Streamable<Review> findByUsername(String username);
 
     List<Review> findTop5ByOrderByReviewRatingDesc();
+    List<Review> findAllByOrderByReviewRatingDesc();
 
     List<Review> findAllByUsername(String username);
     List<Review> findAllByMovieID(String movieID);

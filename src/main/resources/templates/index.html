@@ -20,16 +20,18 @@
 
 
     <!--Top 5 reviews-->
-    <h3>Top 5 reviews </h3><br>
+    <h3>Top movie reviews </h3><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table">
             <tr>
-                <th scope="col">Review rating</th>
-                <th scope="col">Review title</th>
-                <th scope="col">Review</th>
+                <th width="10%">Review rating</th>
+                <th>User</th>
+                <th>Review title</th>
+                <th>Review</th>
             </tr>
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
+                <td th:text="${readyReview.username}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
                 <td th:text="${readyReview.reviewText}"/>
                 <td>
@@ -52,8 +54,12 @@
     </div>
 
 
+    <div>
+        <a class="btn btn-outline-primary"
+           th:href="@{/moreReviews}">More</a>
+    </div>
 
-    
+
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>
