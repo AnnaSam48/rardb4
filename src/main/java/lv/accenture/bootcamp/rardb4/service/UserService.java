@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    public Principal findUserByID;
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private DelegatingPasswordEncoder delegatingPasswordEncoder;

@@ -48,6 +48,7 @@ article {
         <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
         <div><br></div>
         <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/user/home/profile/edit}">Edit profile</a>
 
 
     </nav>
@@ -77,12 +78,6 @@ article {
                                 <div class="form-control" type="text" th:utext="${nameUser}"></div>
                             </div>
                         </div>
-                        <!--    <div class="form-group">
-                                <label class="col-lg-3 control-label">Last name:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="Bishop">
-                                </div>
-                            </div>  -->
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Last name:</label>
                             <div class="col-lg-8">

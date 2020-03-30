@@ -5,6 +5,7 @@ import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
+import lv.accenture.bootcamp.rardb4.repository.UserRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
 import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -29,15 +31,17 @@ public class UserController {
     @Autowired
     ReviewRepository reviewRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     @Autowired
     private UserService userService;
 
     @GetMapping(value = "/user/home")
-    public ModelAndView userHome() {
+    public ModelAndView userHome(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
+        User user = userService.findUserByUserName(principal.getName());
         modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("userMessage", "Content Available Only for Users");
         modelAndView.setViewName("user/home");
@@ -45,10 +49,9 @@ public class UserController {
     }
 
     @GetMapping("/user/home/profile")
-    public ModelAndView userHomeProfile() {
+    public ModelAndView userHomeProfile(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
+        User user = userService.findUserByUserName(principal.getName());
         modelAndView.addObject("profilePic", user.getProfileIconURL());
         modelAndView.addObject("userName", user.getUserName());
         modelAndView.addObject("nameUser", user.getName());
@@ -58,38 +61,38 @@ public class UserController {
         modelAndView.setViewName("user/userProfile");
         return modelAndView;
     }
-    @GetMapping("user/home/profile/edit/{id}")
-    public String editUserPage(@PathVariable Long id, Model model) {
+
+    @GetMapping("user/home/profile/edit")
+    public String editUserPage(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        modelAndView.addObject("profilePic", user.getProfileIconURL());
-        modelAndView.addObject("userName", user.getUserName());
-        modelAndView.addObject("nameUser", user.getName());
-        modelAndView.addObject("last", user.getLastName());
-        modelAndView.addObject("email", user.getEmail());
-        modelAndView.addObject("userMessage", "Content Available Only for Users");
-        modelAndView.setViewName("user/userProfile");
-
-
-
-        Optional<Review> reviewToEdit = reviewRepository.findByReviewID(id);
-        model.addAttribute("review", reviewToEdit.get());
-        return "user/edit-review";
+        UserWithId userToEdit = (UserWithId) auth.getPrincipal();
+        model.addAttribute("review", userToEdit);
+        return "user/edit-user";
     }
 
-    @PostMapping("user/home/profile/edit/{id}")
-    public String editUser(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        String username = user.getUserName();
-        editedReview.setUsername(username);
-        editedReview.setReviewID(id);
-        if (bindResult.hasErrors()) {
-            return "user/edit-review";
+    @PostMapping("user/home/profile/edit")
+    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.findUserByUserName(principal.getName());
+        Long userId = user.getId();
+
+        User userExists = userService.findUserByUserName(user.getUserName());
+        if (userExists != null) {
+            bindResult
+                    .rejectValue("userName", "error.user",
+                            "There is already a user registered with the user name provided");
         }
-        reviewRepository.save(editedReview);
-        return "redirect:/user/home/reviews";
+        editedUser.setUserName(user.getUserName());
+        editedUser.setName(user.getName());
+        editedUser.setEmail(user.getEmail());
+        editedUser.setProfileIconURL(user.getProfileIconURL());
+        editedUser.setPassword(user.getPassword());
+        editedUser.setId(userId);
+        if (bindResult.hasErrors()) {
+            return "user/userProfile";
+        }
+        userService.saveUser(user);
+        return "redirect:/user/home/profile";
     }
-
 }
