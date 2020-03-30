@@ -1,10 +1,12 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
+import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,11 +38,8 @@ public class UserReviewsController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
-
         String username = user.getUserName();
-
         List<Review> allReviews = reviewRepository.findAllByUsername(username);
-
         model.addAttribute("reviews", allReviews);
 
         return "user/userReviews";

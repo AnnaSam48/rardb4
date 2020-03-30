@@ -6,6 +6,7 @@ import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
+import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,6 +57,39 @@ public class UserController {
         modelAndView.addObject("userMessage", "Content Available Only for Users");
         modelAndView.setViewName("user/userProfile");
         return modelAndView;
+    }
+    @GetMapping("user/home/profile/edit/{id}")
+    public String editUserPage(@PathVariable Long id, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("profilePic", user.getProfileIconURL());
+        modelAndView.addObject("userName", user.getUserName());
+        modelAndView.addObject("nameUser", user.getName());
+        modelAndView.addObject("last", user.getLastName());
+        modelAndView.addObject("email", user.getEmail());
+        modelAndView.addObject("userMessage", "Content Available Only for Users");
+        modelAndView.setViewName("user/userProfile");
+
+
+
+        Optional<Review> reviewToEdit = reviewRepository.findByReviewID(id);
+        model.addAttribute("review", reviewToEdit.get());
+        return "user/edit-review";
+    }
+
+    @PostMapping("user/home/profile/edit/{id}")
+    public String editUser(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        String username = user.getUserName();
+        editedReview.setUsername(username);
+        editedReview.setReviewID(id);
+        if (bindResult.hasErrors()) {
+            return "user/edit-review";
+        }
+        reviewRepository.save(editedReview);
+        return "redirect:/user/home/reviews";
     }
 
 }

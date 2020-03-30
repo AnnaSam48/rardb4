@@ -26,6 +26,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 
 
 
+
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);
 
