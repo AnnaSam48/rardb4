@@ -58,16 +58,16 @@ article {
         <div th:if="${not #lists.isEmpty(reviews)}">
             <table class="table table-hover">
                 <tr>
-                <!--    <th scope="col"></th>
+                 <!--   <th scope="col"></th>
                     <th scope="col">Movie Title</th> -->
                     <th scope="col">Movie Rating</th>
                     <th scope="col">Title</th>
                     <th scope="col"></th>
                     <th scope="col">your Rating</th>
                 </tr>
-                <tr th:each="review: ${reviews}">
-               <!--     <td><img th:src="${review.poster}" height="120"/></td>
-                    <td th:text="${review.movieTitle}"/> -->
+                     <tr th:each="review: ${reviews}">
+              <!--   <td><img th:src="${movie.Poster}" height="120"/></td>
+                    <td th:text="${movie.Title}"/> -->
                     <td th:text="${review.userRatingForMovie}"/>
                     <td th:text="${review.reviewTitle}"/>
                     <td th:text="${review.reviewText}"/>

@@ -21,7 +21,6 @@ public class Review implements Serializable {
     private String movieID;
 //    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
 //    @NotNull(message = "Please enter your review!")
-
     @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
@@ -29,15 +28,15 @@ public class Review implements Serializable {
 
     //TODO SERIOUS : Such approach let user do as much rates as he wants (and even on it's own review). Need rework here
     private int reviewRating;
-    private int ratesSum;
-    private int ratesAmount;
+    private int ratingValue;
+
 
 
     public Review() {
     }
 
     public Review(Long reviewID, String reviewTitle, String reviewText, int userRatingForMovie,
-                  String movieID, String userName, int ratesSum, int ratesAmount/*, List<Comment>comments*/) {
+                  String movieID, String userName, int reviewRating) {
 
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
@@ -45,8 +44,7 @@ public class Review implements Serializable {
         this.movieID = movieID;
         this.userRatingForMovie = userRatingForMovie;
         this.username = userName;
-        this.ratesAmount = ratesAmount;
-        this.ratesSum = ratesSum;
+        this.reviewRating = reviewRating;
     }
 
 
@@ -73,22 +71,6 @@ public class Review implements Serializable {
 
     public int getReviewRating() {
         return reviewRating;
-    }
-
-    public int getRatesSum() {
-        return ratesSum;
-    }
-
-    public void setRatesSum(int ratesSum) {
-        this.ratesSum = ratesSum;
-    }
-
-    public int getRatesAmount() {
-        return ratesAmount;
-    }
-
-    public void setRatesAmount(int ratesAmount) {
-        this.ratesAmount = ratesAmount;
     }
 
     public void setReviewID(Long reviewID) {
@@ -123,4 +105,11 @@ public class Review implements Serializable {
         this.username = username;
     }
 
+    public int getRatingValue() {
+        return ratingValue;
+    }
+
+    public void setRatingValue(int ratingValue) {
+        this.ratingValue = ratingValue;
+    }
 }

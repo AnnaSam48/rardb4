@@ -54,15 +54,14 @@
 
             <div class="row">
                 <input type="hidden" th:field="*{username}" class="form-control" id="username">
-                <input type="hidden" th:field="*{ratesAmount}" class="form-control" id="ratesAmount">
                 <input type="hidden" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
                 <input type="hidden" th:field="*{reviewText}" class="form-control" id="reviewText">
                 <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
                 <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
 
                 <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
-                    <label for="reviewRating" class="col-form-label">Review Rating (1-10)</label>
-                    <select name="reviewRating">
+                    <label for="ratingValue" class="col-form-label">Review Rating (1-10)</label>
+                    <select name="ratingValue">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -75,7 +74,7 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                    <input type="submit" th:field="*{reviewRating}" class="btn btn-info" id="reviewRating" value="Rate">
+                    <input type="submit" th:field="*{ratingValue}" class="btn btn-info" id="ratingValue" value="Rate">
                 </div>
             </div>
         </form>

@@ -14,7 +14,6 @@ import java.util.Optional;
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
-
    // Streamable<Review> findByMovieTitleContaining(String movieTitle);
   //  Streamable<Review> findByUsername(String username);
 

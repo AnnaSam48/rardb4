@@ -44,7 +44,6 @@ public class CommentController {
         commentToAdd.setReviewID(id);
         commentToAdd.setUsername(username);
         commentToAdd.setTimestamp(timeStamp);
-
         commentRepository.save(commentToAdd);
 
         String path = "redirect:/reviews-search/rate-review/" + id.toString();

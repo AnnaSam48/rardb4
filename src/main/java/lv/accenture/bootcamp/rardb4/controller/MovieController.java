@@ -2,9 +2,11 @@ package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.MovieAPI.MovieAPIService;
 import lv.accenture.bootcamp.rardb4.model.Movie;
+import lv.accenture.bootcamp.rardb4.model.Rating;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
+import lv.accenture.bootcamp.rardb4.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+//import lv.accenture.bootcamp.rardb4.model.Rating;
+//import lv.accenture.bootcamp.rardb4.repository.RatingRepository;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -35,6 +39,9 @@ public class MovieController {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+   @Autowired
+   private RatingRepository ratingRepository;
 
     @Autowired
     private UserService userService;
@@ -63,7 +70,7 @@ public class MovieController {
     }
 
     @PostMapping(value = "/add-review-search/add-review-movie/{id}")
-    //Model and view for notification that submitted pups up at same page
+    //Model and view for notification that submitted pops up at same page
     public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
@@ -76,8 +83,7 @@ public class MovieController {
 
             reviewToAdd.setUsername(username);
             reviewToAdd.setMovieID(id);
-            reviewToAdd.setRatesAmount(0);
-            reviewToAdd.setRatesSum(0);
+
             reviewRepository.save(reviewToAdd);
 
             if (!moviesRepository.existsById(id)) {
@@ -85,7 +91,6 @@ public class MovieController {
                 moviesRepository.save(movieToAdd);
             }
 
-            //  return "reviewSubmitted";
             Movie movieToShow = movieAPIService.getMovieByID(id);
             modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
             modelAndView.addObject("movie", movieToShow);

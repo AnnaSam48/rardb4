@@ -18,6 +18,8 @@ public class indexController {
     @Autowired
     ReviewRepository reviewRepository;
 
+    @Autowired
+    RatingRepository ratingRepository;
 
     @Autowired
     UserRepository userRepository;
