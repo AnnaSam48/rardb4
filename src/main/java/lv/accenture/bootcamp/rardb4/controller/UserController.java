@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @PostMapping("user/home/profile/edit")
-    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal, UserWithId userWithId) {
+    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
@@ -86,7 +86,6 @@ public class UserController {
             return "user/home/profile/edit";
         }
         userService.saveUser(editedUser);
-        userWithId.setUserId(userId);
         return "redirect:/user/home/profile";
     }
 }
