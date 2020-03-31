@@ -17,8 +17,8 @@
     <!--Review info-->
     <div>
         <div>
-      <!--      <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
-            <h6>Review text: <span th:text="${review.reviewText}"/></h6> -->
+        <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
+            <h6>Review text: <span th:text="${review.reviewText}"/></h6>
         </div>
         <br><br>
 
@@ -49,38 +49,35 @@
     <!--Add Review form-->
     <div>
         <form action="#"
-              th:action="@{/reviews-search/rate-review/{reviewId}(id=${reviewId})}"
+              th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
               th:object="${rating}" method="post">
 
-            <div class="row">
-
-
-                <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
-                    <label for="value" class="col-form-label">Review Rating (1-10)</label>
-                    <select name="value">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <input type="submit" th:field="*{value}" class="btn btn-info" id="value" value="Rate">
-                </div>
+            <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
+                <label for="value" class="col-form-label">Review Rating (1-10)</label>
+                <select th:field="*{value}" id="value">
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                    <option th:value="3">3</option>
+                    <option th:value="4">4</option>
+                    <option th:value="5">5</option>
+                    <option th:value="6">6</option>
+                    <option th:value="7">7</option>
+                    <option th:value="8">8</option>
+                    <option th:value="9">9</option>
+                    <option th:value="10">10</option>
+                </select>
+                <input type="submit" class="btn btn-info" value="Rate">
             </div>
         </form>
     </div>
 
 
+
     <!--Add comment Form-->
     <div>
         <form action="#" sec:authorize="isAuthenticated()"
-              th:action="@{/reviews-search/rate-review/comment/{reviewId}(id=${rating.reviewID})}"
+              th:action="@{/reviews-search/rate-review/comment/{id}(id=${review.reviewID})}"
               th:object="${commentOb}" method="post">
             <div class="row">
                 <div class="form-group col-md-8">

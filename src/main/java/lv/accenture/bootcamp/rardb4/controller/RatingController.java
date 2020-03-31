@@ -41,15 +41,17 @@ public class RatingController {
     @Autowired
     private RatingRepository ratingRepository;
 
-    @GetMapping("/reviews-search/rate-review/{reviewId}")
-    public String editRatingPage(@PathVariable Long reviewId, Model model) {
+    @GetMapping("/reviews-search/rate-review/{id}")
+    public String editRatingPage(@PathVariable Long id, Model model) {
         //Getting data from rating page
-       // Optional<Review> reviewToBeRated = reviewRepository.findById(id);
-        List<Comment> allComments = commentRepository.findAllByReviewID(reviewId);
+        Optional<Review> reviewToBeRated = reviewRepository.findById(id);
+        List<Comment> allComments = commentRepository.findAllByReviewID(id);
 
         model.addAttribute("comments", allComments);
-       // model.addAttribute("review", reviewToBeRated.get());
+        model.addAttribute("review", reviewToBeRated.get());
         model.addAttribute("commentOb", new Comment());
+        model.addAttribute("rating", new Rating());
+
         return "rate-review";
     }
 
@@ -78,7 +80,7 @@ public class RatingController {
 
         //checking if voter is also the author of review
         try {
-            if (reviewRepository.findByReviewID(reviewId).get().getUserId()==(userRatingReview)) {
+            if (reviewRepository.findByReviewID(reviewId).get().getUserId() == (userRatingReview)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -89,7 +91,7 @@ public class RatingController {
         //checking if voter has already rated review before
         try {
             for (Long foundUserID : foundUserIDS) {
-                if (foundUserID==(userRatingReview)) {
+                if (foundUserID == (userRatingReview)) {
                     throw new IllegalArgumentException();
                 }
             }
