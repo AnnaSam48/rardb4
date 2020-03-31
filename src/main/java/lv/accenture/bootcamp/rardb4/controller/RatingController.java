@@ -46,7 +46,7 @@ public class RatingController {
         //Getting data from rating page
         Optional<Review> reviewToBeRated = reviewRepository.findById(id);
         List<Comment> allComments = commentRepository.findAllByReviewID(id);
-//for git update
+
         model.addAttribute("comments", allComments);
         model.addAttribute("review", reviewToBeRated.get());
         model.addAttribute("commentOb", new Comment());
