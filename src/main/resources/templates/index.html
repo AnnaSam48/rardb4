@@ -28,10 +28,15 @@
                 <th>User</th>
                 <th>Review title</th>
                 <th>Review</th>
+                <th></th>
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
-                <td th:text="${review.username}"/>
+                <td>
+                    <a th:href="@{user/profile-reviews/{username}(username=${review.username})}">
+                        <span th:text="${review.username}"></span>
+                    </a>
+                </td>
                 <td th:text="${review.reviewTitle}"/>
                 <td th:text="${review.reviewText}"/>
                 <td>
@@ -55,7 +60,7 @@
 
 
     <div>
-        <a class="btn btn-outline-primary"
+        <a class="btn btn-warning"
            th:href="@{/moreReviews}">More</a>
     </div>
 

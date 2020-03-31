@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <title>User Reviews</title>
+    <style>
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  background: #ccc;
+  padding: 30px;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 8;
+  -ms-flex: 8;
+  flex: 8;
+}
+/* Responsive layout
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+    </style>
+</head>
+<body>
+<header th:insert="layout/header.html :: header"></header>
+<section>
+
+    <article class="container mx-auto">
+        <br>
+
+        <h3>Reviews by </h3> <h1 th:utext="${username}"></h1>
+        <div th:if="${not #lists.isEmpty(reviews)}">
+            <table class="table table-hover">
+                <tr>
+                    <th scope="col">Movie Rating</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Review</th>
+                    <th scope="col">Your Review Rating</th>
+
+                </tr>
+                <tr th:each="review: ${reviews}">
+                    <td th:text="${review.userRatingForMovie}"/>
+                    <td th:text="${review.reviewTitle}"/>
+                    <td th:text="${review.reviewText}"/>
+                    <td th:text="${review.reviewRating}"/>
+                </tr>
+            </table>
+        </div>
+
+        <div th:unless="${not #lists.isEmpty(reviews)}">
+            <div class="card">
+                <div class="card-body">
+                    You don't have any reviews.
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</div>
+
+
+
+<footer th:insert="layout/footer.html :: footer"></footer>
+</body>
+</html>

@@ -36,7 +36,11 @@
                 <td><img th:src="${readyReview.Poster}" height="120"/></td>
                 <td th:text="${readyReview.reviewText}"/>
                 <td th:text="${readyReview.userRatingForMovie}"/>
-                <td th:text="${readyReview.userName}"/>
+                <td>
+                    <a th:href="@{user/profile-reviews/{username}(username=${readyReview.userName})}">
+                        <span th:text="${readyReview.userName}"></span>
+                    </a>
+                </td>
                 <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}" class="btn btn-info">
                     <span>Rate</span></a><br>
                     <a th:href="@{/about-movie/{id}(id=${readyReview.imdbID})}" class="btn btn-warning">
