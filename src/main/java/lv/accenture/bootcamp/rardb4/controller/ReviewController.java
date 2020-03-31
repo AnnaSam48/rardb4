@@ -71,8 +71,8 @@ public class ReviewController {
                     movie.getImdbID(), matchedReview.getReviewID(), matchedReview.getReviewRating(),
                     matchedReview.getReviewTitle(), movie.getTitle(),
                     movie.getPoster(), matchedReview.getReviewText(),
-                    matchedReview.getUserRatingForMovie(), matchedReview.getUsername()
-            );
+                    matchedReview.getUserRatingForMovie(), matchedReview.getUsername(),
+                    matchedReview.getUserId());
 
             readyReviews.add(readyReview);
         }

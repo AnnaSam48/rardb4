@@ -53,11 +53,7 @@
               th:object="${review}" method="post">
 
             <div class="row">
-                <input type="hidden" th:field="*{username}" class="form-control" id="username">
-                <input type="hidden" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
-                <input type="hidden" th:field="*{reviewText}" class="form-control" id="reviewText">
-                <input type="hidden" th:field="*{movieID}" class="form-control" id="movieID">
-                <input type="hidden" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
+
 
                 <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
                     <label for="ratingValue" class="col-form-label">Review Rating (1-10)</label>

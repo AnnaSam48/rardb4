@@ -9,6 +9,7 @@ import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
+import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -78,10 +79,12 @@ public class MovieController {
         } else {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            User user = userService.findUserByUserName(auth.getName());
-            String username = user.getUserName();
+            UserWithId userWithId = (UserWithId) auth.getPrincipal();
+            String username = userWithId.getUsername();
+            Long userId = userWithId.getUserId();
 
             reviewToAdd.setUsername(username);
+            reviewToAdd.setUserId(userId);
             reviewToAdd.setMovieID(id);
 
             reviewRepository.save(reviewToAdd);

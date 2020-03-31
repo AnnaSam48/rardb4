@@ -15,16 +15,13 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-//    @Length(min = 2, max = 256, message="Please enter title:")
-//    @NotNull(message = "Please enter your review title (it should be at least 2 characters long):")
     private String reviewTitle;
     private String movieID;
-//    @Length(min = 10, max = 3000, message ="Please write review (at least 10 characters):")
-//    @NotNull(message = "Please enter your review!")
     @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
     private String username;
+    private Long userId;
 
     //TODO SERIOUS : Such approach let user do as much rates as he wants (and even on it's own review). Need rework here
     private int reviewRating;
@@ -46,6 +43,7 @@ public class Review implements Serializable {
         this.username = userName;
         this.reviewRating = reviewRating;
     }
+
 
 
     public Long getReviewID() {
@@ -112,4 +110,8 @@ public class Review implements Serializable {
     public void setRatingValue(int ratingValue) {
         this.ratingValue = ratingValue;
     }
+
+    public Long getUserId() { return userId; }
+
+    public void setUserId(Long userId) { this.userId = userId; }
 }

@@ -20,12 +20,13 @@ public class ReadyReview {
     private String reviewText;
     private int userRatingForMovie;
     private String userName;
+    private Long userID;
 
 
 
     public ReadyReview(String imdbID, Long reviewID, int reviewRating, String reviewTitle,
                        String movieTitle, String poster, String reviewText, int userRatingForMovie,
-                       String userName) {
+                       String userName, Long userID) {
 
         this.imdbID = imdbID;
         this.reviewID = reviewID;
@@ -36,6 +37,7 @@ public class ReadyReview {
         this.reviewText = reviewText;
         this.userRatingForMovie = userRatingForMovie;
         this.userName = userName;
+        this.userID = userID;
     }
 
 
@@ -109,5 +111,13 @@ public class ReadyReview {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 }

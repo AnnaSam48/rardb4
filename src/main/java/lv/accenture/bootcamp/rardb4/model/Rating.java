@@ -12,16 +12,17 @@ public class Rating implements Serializable {
     private Long id;
     private Long reviewId;
     private int value;
-    private String ratedByUser;
+    @Column(name="rated_by_user", columnDefinition = "BIGINT", nullable=false)
+    private Long ratedByUserId;
 
     public Rating() {
     }
 
-    public Rating(Long id, Long reviewId, int value, String ratedByUser) {
+    public Rating(Long id, Long reviewId, int value, Long ratedByUserId) {
         this.id = id;
         this.reviewId = reviewId;
         this.value = value;
-        this.ratedByUser = ratedByUser;
+        this.ratedByUserId = ratedByUserId;
     }
 
     public Long getId() {
@@ -48,11 +49,11 @@ public class Rating implements Serializable {
         this.value = value;
     }
 
-    public String getRatedByUser() {
-        return ratedByUser;
+    public Long getRatedByUserId() {
+        return ratedByUserId;
     }
 
-    public void setRatedByUser(String ratedByUser) {
-        this.ratedByUser = ratedByUser;
+    public void setRatedByUserId(Long ratedByUserId) {
+        this.ratedByUserId = ratedByUserId;
     }
 }
