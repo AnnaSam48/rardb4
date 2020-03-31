@@ -107,7 +107,6 @@ public class RatingController {
 
             //getting the new rating value
             newRatingValue = ratingToEdit.getValue();
-            System.out.println(newRatingValue);
             //setting the new rating value in review and rating classes
 
             newRating.setReviewId(id);
@@ -115,7 +114,7 @@ public class RatingController {
             newRating.setRatedByUserId(userRatingReview);
             ratingRepository.save(newRating);
 
-            
+
             Review reviewToAddRating = reviewRepository.findByReviewID(id).get();
             reviewToAddRating.setReviewID(id);
             reviewToAddRating.setReviewRating(ratingRepository.average(id));
