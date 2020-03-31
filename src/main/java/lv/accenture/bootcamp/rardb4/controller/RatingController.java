@@ -41,21 +41,21 @@ public class RatingController {
     @Autowired
     private RatingRepository ratingRepository;
 
-    @GetMapping("/reviews-search/rate-review/{id}")
-    public String editRatingPage(@PathVariable Long id, Model model) {
+    @GetMapping("/reviews-search/rate-review/{reviewId}")
+    public String editRatingPage(@PathVariable Long reviewId, Model model) {
         //Getting data from rating page
-        Optional<Review> reviewToBeRated = reviewRepository.findById(id);
-        List<Comment> allComments = commentRepository.findAllByReviewID(id);
+       // Optional<Review> reviewToBeRated = reviewRepository.findById(id);
+        List<Comment> allComments = commentRepository.findAllByReviewID(reviewId);
 
         model.addAttribute("comments", allComments);
-        model.addAttribute("review", reviewToBeRated.get());
+       // model.addAttribute("review", reviewToBeRated.get());
         model.addAttribute("commentOb", new Comment());
         return "rate-review";
     }
 
 
-    @PostMapping("/reviews-search/rate-review/{id}") //all the data from here
-    public String saveRatings(@PathVariable Long id, @Valid Review reviewToBeRated, BindingResult bindingResult) {
+    @PostMapping("/reviews-search/rate-review/{reviewId}") //all the data from here
+    public String saveRatings(@PathVariable Long reviewId, @Valid Rating ratingToEdit, BindingResult bindingResult) {
 
         //Getting the voter's userID
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -68,7 +68,7 @@ public class RatingController {
         int newRatingValue;
 
         //Getting list of all the ratings for review
-        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(reviewToBeRated.getReviewID());
+        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(reviewId);
 
         //Making a list of all users that have rated this review already
         List<Long> foundUserIDS = new ArrayList<>();
@@ -78,7 +78,7 @@ public class RatingController {
 
         //checking if voter is also the author of review
         try {
-            if (reviewToBeRated.getUserId()==(userRatingReview)) {
+            if (reviewRepository.findByReviewID(reviewId).get().getUserId()==(userRatingReview)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -104,18 +104,17 @@ public class RatingController {
         } else {
 
             //getting the new rating value
-            newRatingValue = reviewToBeRated.getRatingValue();
+            newRatingValue = ratingToEdit.getValue();
 
             //setting the new rating value in review and rating classes
 
-            newRating.setReviewId(id);
+            newRating.setReviewId(reviewId);
             newRating.setValue(newRatingValue);
             newRating.setRatedByUserId(userRatingReview);
             ratingRepository.save(newRating);
 
-            reviewToBeRated.setReviewID(id);
-            reviewToBeRated.setReviewRating(ratingRepository.average(id));
-            reviewRepository.save(reviewToBeRated);
+            reviewRepository.findByReviewID(reviewId).get().setReviewID(reviewId);
+            reviewRepository.findByReviewID(reviewId).get().setReviewRating(ratingRepository.average(reviewId));
 
             return "redirect:/";
         }
