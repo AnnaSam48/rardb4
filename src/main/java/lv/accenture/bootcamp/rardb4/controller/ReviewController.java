@@ -41,6 +41,8 @@ public class ReviewController {
     }
 
 
+
+
     @GetMapping("/reviews-search")
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);

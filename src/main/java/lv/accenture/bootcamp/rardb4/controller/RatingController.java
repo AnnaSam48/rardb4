@@ -1,6 +1,5 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
-import com.sun.istack.Nullable;
 import lv.accenture.bootcamp.rardb4.model.Comment;
 import lv.accenture.bootcamp.rardb4.model.Rating;
 import lv.accenture.bootcamp.rardb4.model.Review;
@@ -18,8 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+
 import java.util.*;
 
 @Controller
@@ -42,7 +40,6 @@ public class RatingController {
 
     @Autowired
     private RatingRepository ratingRepository;
-
 
     @GetMapping("/reviews-search/rate-review/{id}")
     public String editRatingPage(@PathVariable Long id, Model model) {
@@ -116,7 +113,7 @@ public class RatingController {
             ratingRepository.save(newRating);
 
             reviewToBeRated.setReviewID(id);
-            reviewToBeRated.setReviewRating(ratingRepository.average());
+            reviewToBeRated.setReviewRating(ratingRepository.average(id));
             reviewRepository.save(reviewToBeRated);
 
             return "redirect:/";
