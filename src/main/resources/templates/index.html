@@ -29,15 +29,15 @@
                 <th>Review title</th>
                 <th>Review</th>
             </tr>
-            <tr th:each="readyReview: ${reviews}">
-                <td th:text="${readyReview.reviewRating}"/>
-                <td th:text="${readyReview.username}"/>
-                <td th:text="${readyReview.reviewTitle}"/>
-                <td th:text="${readyReview.reviewText}"/>
+            <tr th:each="review: ${reviews}">
+                <td th:text="${review.reviewRating}"/>
+                <td th:text="${review.username}"/>
+                <td th:text="${review.reviewTitle}"/>
+                <td th:text="${review.reviewText}"/>
                 <td>
                     <div>
                         <a class="btn btn-info" sec:authorize="isAuthenticated()"
-                           th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}">
+                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">
                             Rate</a>
                     </div>
             </tr>

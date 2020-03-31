@@ -25,74 +25,62 @@ public class Review implements Serializable {
 
     //TODO SERIOUS : Such approach let user do as much rates as he wants (and even on it's own review). Need rework here
     private int reviewRating;
-    private int ratingValue;
+    //private int ratingValue;
 
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String reviewText, int userRatingForMovie,
-                  String movieID, String userName, int reviewRating) {
-
+    public Review(Long reviewID, String reviewTitle, String movieID, String reviewText, int userRatingForMovie, String username, Long userId, int reviewRating) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
-        this.reviewText = reviewText;
         this.movieID = movieID;
+        this.reviewText = reviewText;
         this.userRatingForMovie = userRatingForMovie;
-        this.username = userName;
+        this.username = username;
+        this.userId = userId;
         this.reviewRating = reviewRating;
     }
 
-
-
     public Long getReviewID() {
         return reviewID;
-    }
-
-    public String getMovieID() {
-        return movieID;
-    }
-
-    public String getReviewTitle() {
-        return reviewTitle;
-    }
-
-    public String getReviewText() {
-        return reviewText;
-    }
-
-    public int getUserRatingForMovie() {
-        return userRatingForMovie;
-    }
-
-
-    public int getReviewRating() {
-        return reviewRating;
     }
 
     public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
     }
 
+    public String getReviewTitle() {
+        return reviewTitle;
+    }
+
     public void setReviewTitle(String reviewTitle) {
         this.reviewTitle = reviewTitle;
+    }
+
+    public String getMovieID() {
+        return movieID;
     }
 
     public void setMovieID(String movieID) {
         this.movieID = movieID;
     }
 
+    public String getReviewText() {
+        return reviewText;
+    }
+
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
     }
 
-    public void setUserRatingForMovie(int userRatingForMovie) {
-        this.userRatingForMovie = userRatingForMovie;
+    public int getUserRatingForMovie() {
+        return userRatingForMovie;
     }
 
-    public void setReviewRating(int reviewRating) {
-        this.reviewRating = reviewRating;
+    public void setUserRatingForMovie(int userRatingForMovie) {
+        this.userRatingForMovie = userRatingForMovie;
     }
 
     public String getUsername() {
@@ -103,15 +91,33 @@ public class Review implements Serializable {
         this.username = username;
     }
 
-    public int getRatingValue() {
-        return ratingValue;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setRatingValue(int ratingValue) {
-        this.ratingValue = ratingValue;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getUserId() { return userId; }
+    public int getReviewRating() {
+        return reviewRating;
+    }
 
-    public void setUserId(Long userId) { this.userId = userId; }
+    public void setReviewRating(int reviewRating) {
+        this.reviewRating = reviewRating;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewID=" + reviewID +
+                ", reviewTitle='" + reviewTitle + '\'' +
+                ", movieID='" + movieID + '\'' +
+                ", reviewText='" + reviewText + '\'' +
+                ", userRatingForMovie=" + userRatingForMovie +
+                ", username='" + username + '\'' +
+                ", userId=" + userId +
+                ", reviewRating=" + reviewRating +
+                '}';
+    }
 }

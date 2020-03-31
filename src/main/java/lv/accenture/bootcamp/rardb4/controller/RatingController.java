@@ -56,8 +56,8 @@ public class RatingController {
     }
 
 
-    @PostMapping("/reviews-search/rate-review/{reviewId}") //all the data from here
-    public String saveRatings(@PathVariable Long reviewId, @Valid Rating ratingToEdit, BindingResult bindingResult) {
+    @PostMapping("/reviews-search/rate-review/{id}") //all the data from here
+    public String saveRatings(@PathVariable Long id, @Valid Rating ratingToEdit, BindingResult bindingResult) {
 
         //Getting the voter's userID
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -70,7 +70,7 @@ public class RatingController {
         int newRatingValue;
 
         //Getting list of all the ratings for review
-        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(reviewId);
+        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(id);
 
         //Making a list of all users that have rated this review already
         List<Long> foundUserIDS = new ArrayList<>();
@@ -80,7 +80,7 @@ public class RatingController {
 
         //checking if voter is also the author of review
         try {
-            if (reviewRepository.findByReviewID(reviewId).get().getUserId() == (userRatingReview)) {
+            if (reviewRepository.findByReviewID(id).get().getUserId() == (userRatingReview)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -107,16 +107,19 @@ public class RatingController {
 
             //getting the new rating value
             newRatingValue = ratingToEdit.getValue();
-
+            System.out.println(newRatingValue);
             //setting the new rating value in review and rating classes
 
-            newRating.setReviewId(reviewId);
+            newRating.setReviewId(id);
             newRating.setValue(newRatingValue);
             newRating.setRatedByUserId(userRatingReview);
             ratingRepository.save(newRating);
 
-            reviewRepository.findByReviewID(reviewId).get().setReviewID(reviewId);
-            reviewRepository.findByReviewID(reviewId).get().setReviewRating(ratingRepository.average(reviewId));
+            
+            Review reviewToAddRating = reviewRepository.findByReviewID(id).get();
+            reviewToAddRating.setReviewID(id);
+            reviewToAddRating.setReviewRating(ratingRepository.average(id));
+            reviewRepository.save(reviewToAddRating);
 
             return "redirect:/";
         }
