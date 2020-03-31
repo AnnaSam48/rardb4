@@ -48,6 +48,7 @@ article {
         <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
         <div><br></div>
         <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+        <div><br></div>
         <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/user/home/profile/edit}">Edit profile</a>
 
 

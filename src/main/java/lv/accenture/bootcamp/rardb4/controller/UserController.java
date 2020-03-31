@@ -50,6 +50,7 @@ public class UserController {
 
     @GetMapping("/user/home/profile")
     public ModelAndView userHomeProfile(Principal principal) {
+
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserByUserName(principal.getName());
         modelAndView.addObject("profilePic", user.getProfileIconURL());
@@ -63,36 +64,29 @@ public class UserController {
     }
 
     @GetMapping("user/home/profile/edit")
-    public String editUserPage(Model model) {
+    public String editUserPage(Model model, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserWithId userToEdit = (UserWithId) auth.getPrincipal();
-        model.addAttribute("review", userToEdit);
+        User user = userService.findUserByUserName(principal.getName());
+        Long userId = user.getId();
+        User userToEdit = userRepository.findById(userId);
+        // model.addAttribute("review", reviewToEdit.get());
+       // User userToEdit = userService.findUserByUserName(principal.getName());
+        model.addAttribute("user", userToEdit);
         return "user/edit-user";
     }
 
     @PostMapping("user/home/profile/edit")
-    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
+    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal, UserWithId userWithId) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
-
-        User userExists = userService.findUserByUserName(user.getUserName());
-        if (userExists != null) {
-            bindResult
-                    .rejectValue("userName", "error.user",
-                            "There is already a user registered with the user name provided");
-        }
-        editedUser.setUserName(user.getUserName());
-        editedUser.setName(user.getName());
-        editedUser.setEmail(user.getEmail());
-        editedUser.setProfileIconURL(user.getProfileIconURL());
-        editedUser.setPassword(user.getPassword());
         editedUser.setId(userId);
+        editedUser.setProfileIconURL("/static/img/500px-brands.svg");
         if (bindResult.hasErrors()) {
-            return "user/userProfile";
+            return "user/home/profile/edit";
         }
-        userService.saveUser(user);
+        userService.saveUser(editedUser);
+        userWithId.setUserId(userId);
         return "redirect:/user/home/profile";
     }
 }

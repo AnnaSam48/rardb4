@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <title>User Page</title>
+    <style>
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  background: #ccc;
+  padding: 30px;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 8;
+  -ms-flex: 8;
+  flex: 8;
+}
+/* Responsive layout
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+<header th:insert="layout/header.html :: header"></header>
+<section>
+    <nav>
+        <br>
+        <!--buttons -->
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/profile"> <span>My profile</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/user/home/reviews"> <span>My reviews</span></a>
+        <div><br></div>
+        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+
+
+    </nav>
+    <article>
+        <div class="container">
+            <h1>Edit Profile</h1>
+            <form th:object="${user}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-8">
+
+                        <!-- form to edit -->
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"/>
+
+                        <label for="lastName" class="col-form-label">Last name:</label>
+                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName">
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"/>
+
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="text" th:field="*{email}" class="form-control" id="email">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"/>
+
+                        <label for="userName" class="col-form-label">User Name:</label>
+                        <input type="text" th:field="*{userName}" class="form-control" id="userName">
+                        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"/>
+
+                        <label for="password" class="col-form-label">Password:</label>
+                        <input type="text" th:field="*{password}" class="form-control" id="password">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"/>
+
+
+
+                    </div>
+                    <div class="form-group col-md-8">
+                        <input type="submit" value="submit changes" class="btn btn-outline-primary">
+                        <a th:href="@{/user/home/profile}" class="btn btn-outline-primary">Return</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </article>
+</section>
+<footer th:insert="layout/footer.html :: footer"></footer>
+</body>
+</html>
