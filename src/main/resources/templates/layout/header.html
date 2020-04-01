@@ -116,16 +116,21 @@
         </div>
 
         <script>
-// Get the modal
-var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
+// Get modal after error
+var url = window.location.href;
+if(url.indexOf('?error=true') != -1) {
+    $('#id01').css('display','block');
+}
+// shorter name for modal path
+var login = document.getElementById('id01');
+
+// Close by click outside
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == login) {
+        login.style.display = "none";
     }
 }
-
 </script>
     </nav>
     </body>

@@ -78,13 +78,14 @@ public class UserController {
     public ModelAndView editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserByUserName(principal.getName());
+
         Long userId = user.getId();
         editedUser.setId(userId);
         editedUser.setProfileIconURL("/static/img/500px-brands.svg");
 
 
         User userExists = userService.findUserByUserName(editedUser.getUserName());
-        if (userExists != null) {
+        if (userExists != null && userExists!=user) {
             bindResult
                     .rejectValue("userName", "error.user",
                             "Sorry, user name already taken!");
