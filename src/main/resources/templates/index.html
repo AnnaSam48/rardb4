@@ -24,12 +24,16 @@
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table table-striped">
             <tr>
+                <th>Movie</th>
+                <th></th>
                 <th width="10%">Review rating</th>
                 <th>User</th>
                 <th>Review title</th>
                 <th>Review</th>
             </tr>
             <tr th:each="review: ${reviews}">
+                <td th:text="${review.movieTitle}"/>
+                <td><img th:src="${review.moviePicture}" height="120"/></td>
                 <td th:text="${review.reviewRating}"/>
                 <td>
                     <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
@@ -53,6 +57,34 @@
             </div>
         </div>
     </div>
+
+    <!-- Top 25 movies
+    <h4>highest rated movies:</h4><br>
+    <div th:if="${not #lists.isEmpty(reviews)}">
+        <table class="table table-striped">
+            <tr>
+                <th width="10%">Movie rating</th>
+                <th>Movie</th>
+                <th></th>
+            </tr>
+            <tr th:each="review: ${reviews}">
+                <td th:text="${review.userRatingForMovie}"/>
+                <td>
+                    <a th:href="@{/about-movie/{id}(id=${review.imdbID})}"
+                       th:text="${review.movieTitle}" style="color:black"></a>
+                </td>
+                <td><img th:src="${review.}" height="120"/></td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${not #lists.isEmpty(reviews)}">
+        <div class="card">
+            <div class="card-body">
+                There are no reviews.
+            </div>
+        </div>
+    </div>
+    -->
 
 
     <div>
