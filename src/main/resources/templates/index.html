@@ -28,7 +28,6 @@
                 <th>User</th>
                 <th>Review title</th>
                 <th>Review</th>
-                <th></th>
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
@@ -44,12 +43,6 @@
                        class="btn btn-outline-dark" th:text="${review.reviewText}">
                     </a>
                 </td>
-                <td>
-                    <div>
-                        <a class="btn btn-info" sec:authorize="isAuthenticated()"
-                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">
-                            Rate</a>
-                    </div>
             </tr>
         </table>
     </div>
