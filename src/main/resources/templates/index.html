@@ -32,8 +32,11 @@
                 <th>Review</th>
             </tr>
             <tr th:each="review: ${reviews}">
-                <td th:text="${review.movieTitle}"/>
-                <td><img th:src="${review.moviePicture}" height="120"/></td>
+                <td>
+                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}"
+                       th:text="${review.movieTitle}" style="color:black"></a>
+                </td>
+                <td><img th:src="${review.moviePicture}" height="100"/></td>
                 <td th:text="${review.reviewRating}"/>
                 <td>
                     <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
@@ -58,8 +61,9 @@
         </div>
     </div>
 
-    <!-- Top 25 movies
-    <h4>highest rated movies:</h4><br>
+    <!-- Top 25 movies -->
+    <!--
+    <h4>Highest rated movies:</h4><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table table-striped">
             <tr>
@@ -70,10 +74,10 @@
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.userRatingForMovie}"/>
                 <td>
-                    <a th:href="@{/about-movie/{id}(id=${review.imdbID})}"
+                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}"
                        th:text="${review.movieTitle}" style="color:black"></a>
                 </td>
-                <td><img th:src="${review.}" height="120"/></td>
+                <td><img th:src="${review.moviePicture}" height="100"/></td>
             </tr>
         </table>
     </div>

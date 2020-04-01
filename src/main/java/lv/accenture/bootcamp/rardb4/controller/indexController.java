@@ -35,6 +35,14 @@ public class indexController {
         return "index";
     }
 
+//    @GetMapping("/topMovies")
+//    public String topMovies(Model model){
+//
+//        List<Review> bestMovies = reviewRepository.findTop15ByOrderByUserRatingForMovie();
+//        model.addAttribute("reviews", bestMovies);
+//        return "index";
+//    }
+
 
     @GetMapping("/moreReviews")
     public String getMoreReviews(Model model) {
