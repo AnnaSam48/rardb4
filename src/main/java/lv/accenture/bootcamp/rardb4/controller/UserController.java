@@ -65,27 +65,36 @@ public class UserController {
 
     @GetMapping("user/home/profile/edit")
     public String editUserPage(Model model, Principal principal) {
-        ModelAndView modelAndView = new ModelAndView();
+        //Authentication authentication = new UsernamePasswordAuthenticationToken(userObject, userObject.getPassword(), userObject.getAuthorities());
+        //SecurityContextHolder.getContext().setAuthentication(authentication);
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         User userToEdit = userRepository.findById(userId);
-        // model.addAttribute("review", reviewToEdit.get());
-       // User userToEdit = userService.findUserByUserName(principal.getName());
         model.addAttribute("user", userToEdit);
         return "user/edit-user";
     }
 
     @PostMapping("user/home/profile/edit")
-    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
+    public ModelAndView editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         editedUser.setId(userId);
         editedUser.setProfileIconURL("/static/img/500px-brands.svg");
-        if (bindResult.hasErrors()) {
-            return "user/home/profile/edit";
+
+
+        User userExists = userService.findUserByUserName(editedUser.getUserName());
+        if (userExists != null) {
+            bindResult
+                    .rejectValue("userName", "error.user",
+                            "Sorry, user name already taken!");
         }
-        userService.saveUser(editedUser);
-        return "redirect:/user/home/profile";
+        if (bindResult.hasErrors()) {
+            modelAndView.setViewName("user/edit-user");
+        } else {
+            userService.saveUser(editedUser);
+            modelAndView.setViewName("redirect:/user/home/profile");
+        }
+        return modelAndView;
     }
 }
