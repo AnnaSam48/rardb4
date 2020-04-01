@@ -46,6 +46,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/reviews-on-movie/**").permitAll()
                 .antMatchers("/reviews-search/**").permitAll()
                 .antMatchers("/about-movie/**").permitAll()
+            .antMatchers("profile/profile-reviews/**").permitAll()
+            
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/error").permitAll()
                 .antMatchers("/reviews/delete-review/").authenticated()
