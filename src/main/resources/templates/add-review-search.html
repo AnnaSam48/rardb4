@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header th:insert="layout/header.html :: header"></header>
+<header th:insert="layout/header.html :: header"> </header>
 
 <div class="container">
     <h3 class="display-4">Search for movie you want to add review to</h3>
@@ -20,13 +20,12 @@
         <form th:action="@{/add-review-search/search}" method="get">
             <input type="text" name="keyword" id="keyword" th:value="${keyword}"/>
             <input type="submit" value="Search" class="btn btn-dark"/>
-
         </form>
     </div>
 
     <!-- Table with found movies from API-->
     <div th:if="${not #lists.isEmpty(movies)}">
-        <table class="table table-hover">
+        <table class="table table-hover" >
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">TITLE</th>
@@ -57,7 +56,6 @@
         </div>
     </div>
 </div>
-
-<footer th:insert="layout/footer.html :: footer"></footer>
+<footer th:insert="layout/footer.html :: footer"> </footer>
 </body>
 </html>
