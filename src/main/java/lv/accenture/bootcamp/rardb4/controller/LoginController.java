@@ -115,25 +115,35 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "/confirm-reset", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/confirm-reset", method = RequestMethod.GET)
     public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+        User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
+        user.setPassword(null);
+        user.setActive(false);
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("userAth/forgotPassword/reset");
+        return modelAndView;
+    }
 
-        if (token != null) {
-            User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
-            user.setActive(true);
+    @RequestMapping(value = "/confirm-reset", method = RequestMethod.POST)
+    public ModelAndView validateResetTokenPost(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
+        ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+        User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
+
+        if (token != null &&  user.getActive()!=true ) {
+
             userRepository.save(user);
-            modelAndView.addObject("user", user);
             modelAndView.addObject("email", user.getEmail());
             modelAndView.setViewName("userAth/forgotPassword/reset");
-        } else {
+        }
+        else {
             modelAndView.addObject("message", "The link is invalid or broken!");
             modelAndView.setViewName("userAth/forgotPassword/error");
         }
 
         return modelAndView;
     }
-
 
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     public ModelAndView resetUserPassword(ModelAndView modelAndView, User user) {
@@ -153,29 +163,4 @@ public class LoginController {
     }
 
 
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public ConfirmationTokenRepository getConfirmationTokenRepository() {
-        return confirmationTokenRepository;
-    }
-
-    public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
-        this.confirmationTokenRepository = confirmationTokenRepository;
-    }
-
-    public EmailSenderService getEmailSenderService() {
-        return emailSenderService;
-    }
-
-    public void setEmailSenderService(EmailSenderService emailSenderService) {
-        this.emailSenderService = emailSenderService;
-    }
-
 }
-
