@@ -42,7 +42,8 @@ article {
     <article class="container mx-auto">
         <br>
 
-        <h3>Reviews by </h3> <h1 th:utext="${username}"></h1>
+        <h3>Reviews by </h3> <h1 th:utext="${username}"></h1> <br>
+
         <div th:if="${not #lists.isEmpty(reviews)}">
             <table class="table table-hover">
                 <tr>

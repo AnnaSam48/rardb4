@@ -22,10 +22,7 @@ public class Review implements Serializable {
     private int userRatingForMovie;
     private String username;
     private Long userId;
-
-    //TODO SERIOUS : Such approach let user do as much rates as he wants (and even on it's own review). Need rework here
     private int reviewRating;
-    //private int ratingValue;
 
 
 
@@ -103,9 +100,7 @@ public class Review implements Serializable {
         return reviewRating;
     }
 
-    public void setReviewRating(int reviewRating) {
-        this.reviewRating = reviewRating;
-    }
+    public void setReviewRating(int reviewRating) { this.reviewRating = reviewRating; }
 
     @Override
     public String toString() {
