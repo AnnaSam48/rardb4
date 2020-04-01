@@ -16,13 +16,13 @@ public class OtherUsersReviewController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @GetMapping("/user/profile-reviews/{username}")
+    @GetMapping("/profile/profile-reviews/{username}")
     public String showAllReviews(@PathVariable String username, Model model) {
 
         List<Review> allReviewsByUser = reviewRepository.findAllByUsername(username);
         model.addAttribute("reviews", allReviewsByUser);
 
-        return "user/profile-reviews";
+        return "profile/profile-reviews";
     }
 
 }

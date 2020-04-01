@@ -33,7 +33,7 @@
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewRating}"/>
                 <td>
-                    <a th:href="@{user/profile-reviews/{username}(username=${review.username})}">
+                    <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
                         <span th:text="${review.username}"></span>
                     </a>
                 </td>

@@ -32,19 +32,23 @@
             <tr th:each="readyReview: ${reviews}">
                 <td th:text="${readyReview.reviewRating}"/>
                 <td th:text="${readyReview.reviewTitle}"/>
-                <td th:text="${readyReview.Title}"/>
+                <td>
+                    <a th:href="@{/about-movie/{id}(id=${readyReview.imdbID})}"
+                       th:text="${readyReview.Title}" style="color:green"></a>
+                </td>
                 <td><img th:src="${readyReview.Poster}" height="120"/></td>
-                <td th:text="${readyReview.reviewText}"/>
+                <td>
+                    <a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}"
+                       type="button":focus style="border:none!important"
+                       class="btn btn-outline-dark" th:text="${readyReview.reviewText}">
+                    </a>
+                </td>
                 <td th:text="${readyReview.userRatingForMovie}"/>
                 <td>
-                    <a th:href="@{user/profile-reviews/{username}(username=${readyReview.userName})}">
+                    <a th:href="@{profile/profile-reviews/{username}(username=${readyReview.userName})}">
                         <span th:text="${readyReview.userName}"></span>
                     </a>
                 </td>
-                <td><a th:href="@{/reviews-search/rate-review/{id}(id=${readyReview.reviewID})}" class="btn btn-info">
-                    <span>Rate</span></a><br>
-                    <a th:href="@{/about-movie/{id}(id=${readyReview.imdbID})}" class="btn btn-warning">
-                        <span>About movie</span></a></td>
             </tr>
         </table>
     </div>
