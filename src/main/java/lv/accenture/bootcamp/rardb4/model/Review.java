@@ -17,6 +17,8 @@ public class Review implements Serializable {
     private Long reviewID;
     private String reviewTitle;
     private String movieID;
+    private String movieTitle;
+    private String moviePicture;
     @Column(columnDefinition = "text", nullable=false)
     private String reviewText;
     private int userRatingForMovie;
@@ -101,6 +103,14 @@ public class Review implements Serializable {
     }
 
     public void setReviewRating(int reviewRating) { this.reviewRating = reviewRating; }
+
+    public String getMovieTitle() { return movieTitle; }
+
+    public void setMovieTitle(String movieTitle) { this.movieTitle = movieTitle; }
+
+    public String getMoviePicture() { return moviePicture; }
+
+    public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
 
     @Override
     public String toString() {
