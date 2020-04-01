@@ -1,16 +1,22 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.model.ConfirmationToken;
 import lv.accenture.bootcamp.rardb4.model.Role;
 import lv.accenture.bootcamp.rardb4.model.User;
+import lv.accenture.bootcamp.rardb4.repository.ConfirmationTokenRepository;
+import lv.accenture.bootcamp.rardb4.repository.UserRepository;
+import lv.accenture.bootcamp.rardb4.service.EmailSenderService;
 import lv.accenture.bootcamp.rardb4.service.UserService;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -23,6 +29,16 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
+    @Autowired
+    private DelegatingPasswordEncoder delegatingPasswordEncoder;
 
     @GetMapping(value = {"/login"})
     public ModelAndView login(BindingResult bindingResult) {
@@ -30,7 +46,6 @@ public class LoginController {
         modelAndView.setViewName("login");
         return modelAndView;
     }
-
 
 
     @GetMapping(value = "/registration")
@@ -65,21 +80,102 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping("/password/forgot")
-    public String getFooter() {
-        return "userAth/forgotPassword.html";
-    }
 
-    @GetMapping(value = "/admin/home")
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("admin/home");
+    @RequestMapping(value = "/password/forgot", method = RequestMethod.GET)
+    public ModelAndView displayResetPassword(ModelAndView modelAndView, User user) {
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("userAth/forgotPassword/forgot");
         return modelAndView;
     }
 
 
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
+    public ModelAndView forgotUserPassword(ModelAndView modelAndView, User user) {
+        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+        if (existingUser != null) {
+
+            ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
+            confirmationTokenRepository.save(confirmationToken);
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(existingUser.getEmail());
+            mailMessage.setSubject("Complete Password Reset!");
+            mailMessage.setFrom("javafunboot@gmail.com");
+            mailMessage.setText("To complete the password reset process, please click here: "
+                    + "http://localhost:8080/confirm-reset?token=" + confirmationToken.getConfirmationToken());
+            emailSenderService.sendEmail(mailMessage);
+            modelAndView.addObject("message", "Request to reset password received. Check your inbox for the reset link.");
+            modelAndView.setViewName("userAth/forgotPassword/success");
+
+        } else {
+            modelAndView.addObject("message", "This email does not exist!");
+            modelAndView.setViewName("userAth/forgotPassword/error");
+        }
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/confirm-reset", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
+        ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+
+        if (token != null) {
+            User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
+            user.setActive(true);
+            userRepository.save(user);
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("email", user.getEmail());
+            modelAndView.setViewName("userAth/forgotPassword/reset");
+        } else {
+            modelAndView.addObject("message", "The link is invalid or broken!");
+            modelAndView.setViewName("userAth/forgotPassword/error");
+        }
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
+    public ModelAndView resetUserPassword(ModelAndView modelAndView, User user) {
+        if (user.getEmail() != null) {
+            User tokenUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+            tokenUser.setActive(true);
+            tokenUser.setPassword(delegatingPasswordEncoder.encode(user.getPassword()));
+            userRepository.save(tokenUser);
+            modelAndView.addObject("message", "Password successfully reset. You can now log in with the new credentials.");
+            modelAndView.setViewName("userAth/resetPassword/success");
+        } else {
+            modelAndView.addObject("message", "The link is invalid or broken!");
+            modelAndView.setViewName("userAth/forgotPassword/error");
+        }
+
+        return modelAndView;
+    }
+
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public ConfirmationTokenRepository getConfirmationTokenRepository() {
+        return confirmationTokenRepository;
+    }
+
+    public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
+        this.confirmationTokenRepository = confirmationTokenRepository;
+    }
+
+    public EmailSenderService getEmailSenderService() {
+        return emailSenderService;
+    }
+
+    public void setEmailSenderService(EmailSenderService emailSenderService) {
+        this.emailSenderService = emailSenderService;
+    }
+
 }
+

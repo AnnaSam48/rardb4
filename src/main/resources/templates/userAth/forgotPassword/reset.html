@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Forgot Password</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<header th:insert="layout/header.html :: header"></header>
+
+<div class="container" align="center">
+    <h2>Enter new password:</h2>
+    <form action="#" th:action="@{/reset-password}" th:object="${user}" method="post">
+        <div class="form-group" style="max-width:345px">
+            <div class="col-sm-9">
+                <input type="text" th:field="*{email}" placeholder="email" name="email" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group" style="max-width:345px">
+            <div class="col-sm-9">
+                <input type="password" th:field="*{password}"
+                       placeholder="Password" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group" style="max-width:345px">
+            <div class="col-sm-9">
+                <button type="reset" class="btn btn-primary btn-block">Cancel</button>
+            </div>
+        </div>
+        <div class="form-group" style="max-width:345px">
+            <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<footer th:insert="layout/footer.html :: footer"></footer>
+</body>
+</html>

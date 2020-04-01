@@ -8,17 +8,13 @@
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header th:insert="layout/header.html :: header"> </header>
+<header th:insert="layout/header.html :: header"></header>
 
 <div class="container" align="center">
-        <h1>To change password:</h1>
-    <br>
-        <p>
-            Please contact the administrator:<br>
-            <span class="fas fa-envelope"></span>
-            <a href="mailto:oursupere@email.com">OurSuperE@mail.com</a>
-        </p>
+
+    <span th:text="${message}"></span>
+
 </div>
-<footer th:insert="layout/footer.html :: footer"> </footer>
+<footer th:insert="layout/footer.html :: footer"></footer>
 </body>
 </html>
