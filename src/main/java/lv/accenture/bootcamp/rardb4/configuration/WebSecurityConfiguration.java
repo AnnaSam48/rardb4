@@ -17,7 +17,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DelegatingPasswordEncoder delegatingPasswordEncoder;
-    //  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Autowired
@@ -41,8 +40,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("userAth/registration").permitAll()
-                // .antMatchers("/reviews-search/**").permitAll()
+                .antMatchers("/userAth/**").permitAll()
+               .antMatchers("/password/forgot").permitAll()
+                .antMatchers("/moreReviews/**").permitAll()
                 .antMatchers("/reviews-on-movie/**").permitAll()
                 .antMatchers("/reviews-search/**").permitAll()
                 .antMatchers("/about-movie/**").permitAll()
@@ -59,8 +59,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage(loginPage)
                 .loginPage("/")
-
-                .failureUrl("/")
+                .failureUrl("/?error=true")
                 .defaultSuccessUrl("/")
                 .usernameParameter("user_name")
                 .passwordParameter("password")

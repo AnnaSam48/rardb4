@@ -62,19 +62,20 @@
 
 
         <!--Search form-->
-        <div id="id01" class="modal ">
-            <div class="container" style="max-width:345px">
-                <div style="background-color: #009999; padding: 15px;" class="modal-content animate" >
-                    <form th:action="@{/add-review-search/search}" method="get">
-                        <input type="text" name="keyword" id="keywwword" th:value="${keywwword}"/>
-                        <input type="submit" value="Search" class="btn btn-dark"/>
-                    </form>
+        <div id="id01" class="modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="container" style="max-width:345px">
+                    <div style="background-color: #009999; padding: 15px;" class="modal-content animate">
+                        <form th:action="@{/add-review-search/search}" method="get">
+                            <input type="text" name="keyword" id="keywwword" th:value="${keywwword}"/>
+                            <input type="submit" value="Search" class="btn btn-dark"/>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <script>
+            <script>
 // Get the modal
 var modal = document.getElementById('id01');
 
@@ -84,12 +85,13 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-        </script>
+
+            </script>
 
 
+        </div>
 
     </div>
-
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>
