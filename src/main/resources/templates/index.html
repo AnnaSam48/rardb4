@@ -22,7 +22,7 @@
     <!--Top 5 reviews-->
     <h3>Top movie reviews </h3><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table">
+        <table class="table table-striped">
             <tr>
                 <th width="10%">Review rating</th>
                 <th>User</th>
@@ -38,7 +38,12 @@
                     </a>
                 </td>
                 <td th:text="${review.reviewTitle}"/>
-                <td th:text="${review.reviewText}"/>
+                <td>
+                    <a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+                       type="button":focus style="border:none!important"
+                       class="btn btn-outline-dark" th:text="${review.reviewText}">
+                    </a>
+                </td>
                 <td>
                     <div>
                         <a class="btn btn-info" sec:authorize="isAuthenticated()"
