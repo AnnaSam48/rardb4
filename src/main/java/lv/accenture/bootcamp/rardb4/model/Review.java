@@ -1,13 +1,8 @@
 package lv.accenture.bootcamp.rardb4.model;
 
-import org.hibernate.validator.constraints.Length;
-
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
+
 
 @Entity
 public class Review implements Serializable {
@@ -25,13 +20,14 @@ public class Review implements Serializable {
     private String username;
     private Long userId;
     private int reviewRating;
+   // private  int movieRating;
 
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String movieID, String reviewText, int userRatingForMovie, String username, Long userId, int reviewRating) {
+    public Review(Long reviewID, String reviewTitle, String movieID, String reviewText, int userRatingForMovie, String username, Long userId, int reviewRating, int movieRating) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.movieID = movieID;
@@ -40,6 +36,7 @@ public class Review implements Serializable {
         this.username = username;
         this.userId = userId;
         this.reviewRating = reviewRating;
+     //   this.movieRating = movieRating;
     }
 
     public Long getReviewID() {
@@ -111,6 +108,10 @@ public class Review implements Serializable {
     public String getMoviePicture() { return moviePicture; }
 
     public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
+
+    //public int getMovieRating() { return movieRating; }
+
+   // public void setMovieRating(int movieRating) { this.movieRating = movieRating; }
 
     @Override
     public String toString() {

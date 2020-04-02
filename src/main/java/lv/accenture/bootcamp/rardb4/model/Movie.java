@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 import javax.persistence.Id;
+import javax.validation.constraints.Null;
 
 @Entity
 public class Movie implements Serializable {
@@ -34,6 +36,7 @@ public class Movie implements Serializable {
     private String DVD;
     private String BoxOffice;
     private String Production;
+    private int movieRating;
 
     public Movie() {
     }
@@ -209,4 +212,8 @@ public class Movie implements Serializable {
     public void setProduction(String production) {
         Production = production;
     }
+
+    public int getMovieRating() { return movieRating; }
+
+    public void setMovieRating(int movieRating) { this.movieRating = movieRating; }
 }

@@ -14,18 +14,14 @@ import java.util.Optional;
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
-   // Streamable<Review> findByMovieTitleContaining(String movieTitle);
-  //  Streamable<Review> findByUsername(String username);
+
 
     List<Review> findTop5ByOrderByReviewRatingDesc();
+    List<Review> findTop5ByOrderByUserRatingForMovieDesc();
     List<Review> findAllByOrderByReviewRatingDesc();
-
     List<Review> findAllByUsername(String username);
     List<Review> findAllByMovieID(String movieID);
     Optional<Review> findByReviewID(Long reviewID);
-
-
-
 
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);

@@ -1,12 +1,16 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -19,12 +23,8 @@ public class indexController {
     ReviewRepository reviewRepository;
 
     @Autowired
-    RatingRepository ratingRepository;
-
-    @Autowired
     UserRepository userRepository;
-    @Autowired
-    CommentRepository commentRepository;
+
 
 
     @GetMapping("/")
@@ -35,13 +35,15 @@ public class indexController {
         return "index";
     }
 
-//    @GetMapping("/topMovies")
-//    public String topMovies(Model model){
-//
-//        List<Review> bestMovies = reviewRepository.findTop15ByOrderByUserRatingForMovie();
-//        model.addAttribute("reviews", bestMovies);
-//        return "index";
-//    }
+
+    @GetMapping("/topMovies")
+    public String topMovies(Model model) {
+
+        //Create a list with top 15 Movies
+        List<Review> bestMovies = reviewRepository.findTop5ByOrderByUserRatingForMovieDesc();
+        model.addAttribute("movies", bestMovies);
+        return "index";
+    }
 
 
     @GetMapping("/moreReviews")

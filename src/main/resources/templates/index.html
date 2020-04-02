@@ -62,33 +62,29 @@
     </div>
 
     <!-- Top 25 movies -->
-    <!--
+
     <h4>Highest rated movies:</h4><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table table-striped">
             <tr>
-                <th width="10%">Movie rating</th>
+                <th width="10%">User's rating for movie:</th>
                 <th>Movie</th>
                 <th></th>
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.userRatingForMovie}"/>
-                <td>
-                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}"
-                       th:text="${review.movieTitle}" style="color:black"></a>
-                </td>
+                <td th:text="${review.movieTitle}"/>
                 <td><img th:src="${review.moviePicture}" height="100"/></td>
             </tr>
         </table>
     </div>
-    <div th:unless="${not #lists.isEmpty(reviews)}">
+    <div th:unless="${not #lists.isEmpty(review)}">
         <div class="card">
             <div class="card-body">
                 There are no reviews.
             </div>
         </div>
     </div>
-    -->
 
 
     <div>

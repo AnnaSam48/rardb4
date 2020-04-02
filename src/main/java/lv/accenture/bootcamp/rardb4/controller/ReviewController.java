@@ -55,7 +55,7 @@ public class ReviewController {
 
         Iterable<Movie> matchedMovies = movieRepository.findAllById(movieIDS);
 
-        // Make Map<> of them, where Key is imdbId and value the movie
+        // Make Map<> of them, where Key is imdbId and Value the movie
         // so we can get them quickly later
         Map<String, Movie> movieMap = new HashMap<>();
         for (Movie matchedMovie : matchedMovies) {
