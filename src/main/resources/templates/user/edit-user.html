@@ -41,6 +41,9 @@ article {
 
 
 
+
+
+
     </style>
 
 </head>
@@ -67,10 +70,11 @@ article {
                     <div class="form-group col-md-8">
 
                         <!-- form to edit -->
+                        <!--
                         <label for="userName" class="col-form-label">User name:</label>
                         <input type="text" th:field="*{userName}" class="form-control" id="userName">
                         <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"/>
-                        <br>
+                         <br>-->
                         <label for="name" class="col-form-label">Name:</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name">
                         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"/>

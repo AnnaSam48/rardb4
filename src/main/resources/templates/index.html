@@ -2,54 +2,109 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="icon" type="image/png" href="/img/box-of-popcorn.png" />
+    <link rel="icon" type="image/png" href="/img/box-of-popcorn.png"/>
     <title>RARDB4 index</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <style>
+    div#a1{
+    padding-left: 70px;
+    }
+     div#a2{
+    padding-left: 40px;
+    padding-right: 70px;
+    }
+ul#menu li {
+  display:inline;
+}
+img#men{
+ border-radius: 10px;
+ width: 100px;
+}
+
+
+
+
+
+    </style>
 </head>
 <body>
 <header th:insert="layout/header.html :: header"></header>
-<div class="container">
+<ul class="container">
 
     <!--Button-->
     <div>
         <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
     </div>
 
+    <!--Movie line-->
+    <ul id="menu" class="column">
+        <li th:each="review: ${reviews}">
+            <a th:href="@{/about-movie/{id}(id=${review.movieID})}"><img id="men" th:src="${review.moviePicture}"></a>
+        </li>
+    </ul>
+</ul>
 
-    <!--Top 5 reviews-->
+<!--Top 5 reviews-->
+<div id="a1" class="w3-container  w3-cell">
     <h3>Top movie reviews </h3><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
         <table class="table table-striped">
             <tr>
-                <th width="15%">Movie</th>
+                <th width="5%"><h6>Movie</h6></th>
+                <th width="5%"></th>
+               <th width="3%"><h6>Review rating</h6></th>
+                <th width="5%"><h6>User</h6></th>
+                <th width="5%"><h6>Review title</h6></th>
+                  <th width="20%"><h6>Review</h6></th>
+              </tr>
+              <tr th:each="review: ${reviews}">
+                  <td>
+                      <a class="small" th:href="@{/about-movie/{id}(id=${review.movieID})}"
+                         th:text="${review.movieTitle}" style="color:black"></a>
+                  </td>
+                  <td><img th:src="${review.moviePicture}" height="100"/></td>
+                  <td class="small" th:text="${review.reviewRating}"/>
+                  <td>
+                      <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
+                          <span class="small" th:text="${review.username}"></span>
+                      </a>
+                  </td>
+                  <td class="small" th:text="${review.reviewTitle}"/>
+                  <td>
+                      <a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+                         type="button" :focus style="border:none!important"
+                         class="btn btn-outline-dark" th:text="${review.reviewText}">
+                      </a>
+                  </td>
+              </tr>
+          </table>
+      </div>
+      <div th:unless="${not #lists.isEmpty(reviews)}">
+          <div class="card">
+              <div class="card-body">
+                  There are no reviews.
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Top 25 movies -->
+<div id="a2" class="w3-container  w3-cell">
+    <h4>Highest rated by Users:</h4><br>
+    <div th:if="${not #lists.isEmpty(reviews)}">
+        <table class="table">
+            <tr>
+                <th width="5%"><h6>Rating</h6></th>
+                <th width="10%"><h6>Movie</h6></th>
                 <th width="10%"></th>
-                <th width="10%">Review rating</th>
-                <th width="10%">User</th>
-                <th width="15%">Review title</th>
-                <th>Review</th>
             </tr>
             <tr th:each="review: ${reviews}">
-                <td>
-                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}"
-                       th:text="${review.movieTitle}" style="color:black"></a>
-                </td>
+                <td class="small" th:text="${review.userRatingForMovie}"/>
+                <td class="small" th:text="${review.movieTitle}"/>
                 <td><img th:src="${review.moviePicture}" height="100"/></td>
-                <td th:text="${review.reviewRating}"/>
-                <td>
-                    <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
-                        <span th:text="${review.username}"></span>
-                    </a>
-                </td>
-                <td th:text="${review.reviewTitle}"/>
-                <td>
-                    <a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
-                       type="button":focus style="border:none!important"
-                       class="btn btn-outline-dark" th:text="${review.reviewText}">
-                    </a>
-                </td>
             </tr>
         </table>
     </div>
@@ -60,40 +115,15 @@
             </div>
         </div>
     </div>
-
-    <!-- Top 25 movies -->
-
-    <h4>Highest rated movies:</h4><br>
-    <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table table-striped">
-            <tr>
-                <th width="10%">User's rating for movie:</th>
-                <th>Movie</th>
-                <th></th>
-            </tr>
-            <tr th:each="review: ${reviews}">
-                <td th:text="${review.userRatingForMovie}"/>
-                <td th:text="${review.movieTitle}"/>
-                <td><img th:src="${review.moviePicture}" height="100"/></td>
-            </tr>
-        </table>
-    </div>
-    <div th:unless="${not #lists.isEmpty(review)}">
-        <div class="card">
-            <div class="card-body">
-                There are no reviews.
-            </div>
-        </div>
-    </div>
-
-
-    <div>
-        <a class="btn btn-warning"
-           th:href="@{/moreReviews}">More</a>
-    </div>
-
-
+</div>
+<div id="a1">
+    <a class="btn btn-warning"
+       th:href="@{/moreReviews}">More</a>
+</div>
+<div>
+    <br></div>
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
+
 </body>
 </html>
