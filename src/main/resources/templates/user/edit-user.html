@@ -6,7 +6,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
-    <title>User Page</title>
+    <title>RARDB4 User Page</title>
     <style>
 /* Container for flexboxes */
 section {
@@ -79,11 +79,11 @@ article {
                         <input type="text" th:field="*{email}" class="form-control" id="email">
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"/>
                         <br>
-
+<!--
                         <label for="password" class="col-form-label">Password:</label>
                         <input type="text" th:field="*{password}" class="form-control" id="password">
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"/>
-           
+ -->
                     </div>
                     <div class="form-group col-md-8">
                         <input type="submit" value="submit changes" class="btn btn-outline-primary">
