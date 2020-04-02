@@ -1,34 +1,33 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 public class Comment implements Serializable {
 
-    //TODO : Class is already called Comment, therefore no need to put it in name of inner fields
-    // (e.g commentID, commentText etc...) - DONE
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="commentid")
     private Long id;
     private Long reviewID;
 
-    //TODO: Simple paragraph of text makes MysqlDataTruncation: Data truncation: Data too long for column 'review_text' at row 1 Exception
-    @Column(name = "comment_text", columnDefinition = "text")// is this fixing TODO??
+    @Column(name = "comment_text", columnDefinition = "text")
     private String text;
     @Column(name ="comment_username")
     private String username;
-
-    //TODO: it's not best practise to keep date/time in String (Think about timezones & user-preferred formats)
-    private String timestamp;
-
+    @CreationTimestamp
+    private Timestamp timestamp;
 
 
     public Comment() {
     }
 
-    public Comment(Long id, Long reviewID, String text, String username, String timeStamp) {
+    public Comment(Long id, Long reviewID, String text, String username, Timestamp timeStamp) {
         this.id = id;
         this.reviewID = reviewID;
         this.text = text;
@@ -68,11 +67,11 @@ public class Comment implements Serializable {
         this.username = username;
     }
 
-    public String getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 }
