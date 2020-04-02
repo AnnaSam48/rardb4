@@ -36,14 +36,12 @@ public class CommentController {
         if (bindingResult.hasErrors()) {
             return "rate-review";
         }
-        //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         String username =  user.getUserName();
 
         commentToAdd.setReviewID(id);
         commentToAdd.setUsername(username);
-        //commentToAdd.setTimestamp(timestamp);
         commentRepository.save(commentToAdd);
 
         String path = "redirect:/reviews-search/rate-review/" + id.toString();
