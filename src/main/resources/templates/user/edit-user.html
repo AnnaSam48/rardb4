@@ -61,12 +61,16 @@ article {
     </nav>
     <article>
         <div class="container">
-            <h3 th:utext="${user.userName}"></h3><h2> Edit Profile</h2>
+            <h2> Edit Profile</h2>
             <form th:object="${user}" method="post">
                 <div class="row">
                     <div class="form-group col-md-8">
 
                         <!-- form to edit -->
+                        <label for="userName" class="col-form-label">User name:</label>
+                        <input type="text" th:field="*{userName}" class="form-control" id="userName">
+                        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"/>
+                        <br>
                         <label for="name" class="col-form-label">Name:</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name">
                         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"/>
@@ -79,11 +83,11 @@ article {
                         <input type="text" th:field="*{email}" class="form-control" id="email">
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"/>
                         <br>
-<!--
+
                         <label for="password" class="col-form-label">Password:</label>
                         <input type="text" th:field="*{password}" class="form-control" id="password">
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"/>
- -->
+
                     </div>
                     <div class="form-group col-md-8">
                         <input type="submit" value="submit changes" class="btn btn-outline-primary">

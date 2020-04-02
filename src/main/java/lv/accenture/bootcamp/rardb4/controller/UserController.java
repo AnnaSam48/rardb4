@@ -11,6 +11,7 @@ import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,8 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private DelegatingPasswordEncoder delegatingPasswordEncoder;
 
 
     @Autowired
@@ -47,6 +50,7 @@ public class UserController {
         modelAndView.setViewName("user/home");
         return modelAndView;
     }
+
     @GetMapping(value = "/admin/home")
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
@@ -68,15 +72,12 @@ public class UserController {
         modelAndView.addObject("nameUser", user.getName());
         modelAndView.addObject("last", user.getLastName());
         modelAndView.addObject("email", user.getEmail());
-        modelAndView.addObject("userMessage", "Content Available Only for Users");
         modelAndView.setViewName("user/userProfile");
         return modelAndView;
     }
 
     @GetMapping("user/home/profile/edit")
     public String editUserPage(Model model, Principal principal) {
-        //Authentication authentication = new UsernamePasswordAuthenticationToken(userObject, userObject.getPassword(), userObject.getAuthorities());
-        //SecurityContextHolder.getContext().setAuthentication(authentication);
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         User userToEdit = userRepository.findById(userId);
@@ -85,29 +86,17 @@ public class UserController {
     }
 
     @PostMapping("user/home/profile/edit")
-    public ModelAndView editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
-        ModelAndView modelAndView = new ModelAndView();
+    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         editedUser.setId(userId);
         editedUser.setProfileIconURL("/static/img/500px-brands.svg");
-        editedUser.setUserName(user.getUserName());
-      /*  if username would be edited
-
-      User userExists = userService.findUserByUserName(editedUser.getUserName());
-        if (userExists != null && userExists!=user) {
-            bindResult
-                    .rejectValue("userName", "error.user",
-                            "Sorry, user name already taken!");
-        }
-
-       */
         if (bindResult.hasErrors()) {
-            modelAndView.setViewName("user/edit-user");
-        } else {
-            userService.saveUser(editedUser);
-            modelAndView.setViewName("redirect:/user/home/profile");
+            return "user/edit-user";
         }
-        return modelAndView;
+        userService.saveUser(editedUser);
+        return "redirect:/user/home/profile";
     }
+
+
 }

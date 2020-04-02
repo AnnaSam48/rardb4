@@ -120,7 +120,6 @@ public class LoginController {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
         User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
         user.setPassword(null);
-        user.setActive(false);
         modelAndView.addObject("user", user);
         modelAndView.setViewName("userAth/forgotPassword/reset");
         return modelAndView;
