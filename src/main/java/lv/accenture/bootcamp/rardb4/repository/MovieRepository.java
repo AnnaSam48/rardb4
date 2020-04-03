@@ -9,4 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MovieRepository extends CrudRepository<Movie, String> {
+
+    Movie findByImdbID(String id);
 }

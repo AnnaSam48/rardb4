@@ -101,29 +101,30 @@ public class MovieController {
             }else {
 
 
-            try {
-                List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
-                for (Review existingReview : existingReviews) {
-                    if (existingReview.getUserId() == userId) {
-                        throw new IllegalArgumentException();
-                    } else {
+                try {
+                    List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
+                    for (Review existingReview : existingReviews) {
+                        if (existingReview.getUserId() == userId) {
+                            throw new IllegalArgumentException();
+                        } else {
 
-                        reviewToAdd.setUsername(username);
-                        reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-                        reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
-                        reviewToAdd.setUserId(userId);
-                        reviewToAdd.setMovieID(id);
+                            Movie movie = moviesRepository.findByImdbID(id);
+                            reviewToAdd.setUsername(username);
+                            reviewToAdd.setMoviePicture(movie.getPoster());
+                            reviewToAdd.setMovieTitle(movie.getTitle());
+                            reviewToAdd.setUserId(userId);
+                            reviewToAdd.setMovieID(id);
 
-                        //  reviewRepository.save(reviewToAdd);
+                            //  reviewRepository.save(reviewToAdd);
 
-                        modelAndView.setViewName("movie-added");
+                            modelAndView.setViewName("movie-added");
 
+                        }
                     }
-                }
-            } catch (IllegalArgumentException e) {
-                modelAndView.setViewName("same-movie-error");
+                } catch (IllegalArgumentException e) {
+                    modelAndView.setViewName("same-movie-error");
 
-            }}
+                }}
 
 
         }
