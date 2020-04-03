@@ -20,6 +20,7 @@ nav {
   background: #ccc;
   padding: 30px;
 }
+body{ background-color: #dfebe9;}
 
 /* Style the content */
 article {
@@ -46,8 +47,9 @@ article {
         <br>
 
         <h3>Reviews by </h3>
-        <h1 th:utext="${username}"></h1> <br>
-
+        <h1 th:utext="${username}"></h1>
+        <h2 th:text="${reviewRatingByUsername}"></h2>
+        <br>
         <div th:if="${not #lists.isEmpty(reviews)}">
             <!--Review info-->
             <div th:each="review: ${reviews}">

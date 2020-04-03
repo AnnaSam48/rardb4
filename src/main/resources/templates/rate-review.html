@@ -9,9 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color: #dfebe9">
 <header th:insert="layout/header.html :: header"></header>
-
 <div class="container">
 
 
@@ -38,7 +37,7 @@
                 <tr>
                     <th width="5%">User</th>
                     <th width="20%">Comment</th>
-                   <!-- <th width="10%">Date</th>-->
+                    <th width="10%">Date</th>
                 </tr>
                 </thead>
 
@@ -46,7 +45,7 @@
                 <tr th:each="comment: ${comments}">
                     <td th:text="${comment.username}"/>
                     <td th:text="${comment.text}"/>
-                 <!--   <td th:text="${comment.timestamp}"/> -->
+                    <td th:text="${comment.timestamp}"/>
                 </tr>
                 </tbody>
             </table>

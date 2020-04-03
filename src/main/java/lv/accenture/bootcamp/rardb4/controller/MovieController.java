@@ -90,6 +90,10 @@ public class MovieController {
                 moviesRepository.save(movieToAdd);
             }
 
+            reviewToAdd.setMovieID(id);
+            reviewToAdd.setUsername(username);
+            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
 
             //check if user has already has the review about this movie
             List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
@@ -100,17 +104,11 @@ public class MovieController {
                     }
                 }
             } catch (IllegalArgumentException e) {
-                modelAndView.addObject("error", "Sorry, you already made review about this movie. You can edit it, form user profile");
-                modelAndView.setViewName("add-review-search");
-                //  return "same-movie-error";
+                modelAndView.setViewName("same-movie-error");
+
             }
 
-            reviewToAdd.setUsername(username);
-            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
             reviewToAdd.setUserId(userId);
-            reviewToAdd.setMovieID(id);
-
             reviewRepository.save(reviewToAdd);
 
             Movie movieToShow = movieAPIService.getMovieByID(id);

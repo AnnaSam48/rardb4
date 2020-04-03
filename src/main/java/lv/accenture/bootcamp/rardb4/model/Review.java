@@ -20,6 +20,8 @@ public class Review implements Serializable {
     private String username;
     private Long userId;
     private int reviewRating;
+    @Column(columnDefinition = "BIGINT")
+    private Integer reviewRatingByUsername;
 
 
     public Review() {
@@ -106,6 +108,9 @@ public class Review implements Serializable {
 
     public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
 
+    public Integer getReviewRatingByUsername() { return reviewRatingByUsername; }
+
+    public void setReviewRatingByUsername(Integer reviewRatingByUsername) { this.reviewRatingByUsername = reviewRatingByUsername; }
 
     @Override
     public String toString() {

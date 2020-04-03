@@ -39,10 +39,10 @@ public class indexController {
 
 
     @GetMapping("/movies")
-    public String allMovies(Model model) {
+    public String bestMovies(Model model) {
 
         //Create a list with top 15 Movies
-        List<Review> allMovies = reviewRepository.findAll();
+        List<Review> allMovies = reviewRepository.findAllByOrderByUserRatingForMovieDesc();
         model.addAttribute("reviews", allMovies);
         return "index";
     }
