@@ -21,7 +21,7 @@ public class OtherUsersReviewController {
     @Autowired
     private RatingRepository ratingRepository;
 
-    @GetMapping("/profile/profile-reviews/{username}")
+    @GetMapping("/reviews/profile/profile-reviews/{username}")
     public String showAllReviews(@PathVariable String username, Model model) {
 
 

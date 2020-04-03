@@ -43,7 +43,7 @@ public class RatingController {
     @Autowired
     private RatingRepository ratingRepository;
 
-    @GetMapping("/reviews-search/rate-review/{id}")
+    @GetMapping("/reviews/reviews-search/rate-review/{id}")
     public String editRatingPage(@PathVariable Long id, Model model) {
         //Getting data from rating page
         Optional<Review> reviewToBeRated = reviewRepository.findById(id);
@@ -58,7 +58,7 @@ public class RatingController {
     }
 
 
-    @PostMapping("/reviews-search/rate-review/{id}") //all the data from here
+    @PostMapping("/reviews/reviews-search/rate-review/{id}") //all the data from here
     public String saveRatings(@PathVariable Long id, @Valid Rating ratingToEdit, BindingResult bindingResult) {
 
         //Getting the voter's userID
@@ -124,7 +124,7 @@ public class RatingController {
         }
     }
 
-    @GetMapping("/rating-submitting-error")
+    @GetMapping("/reviews/rating-submitting-error")
     public String submitError() {
         return "rating-submit-error";
     }
