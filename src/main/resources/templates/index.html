@@ -35,7 +35,7 @@ img#men{
 <section>
 
     <article class="container mx-auto">
-        <ul class="container">
+
             <div><br></div>
 
             <!--Button-->
@@ -43,10 +43,13 @@ img#men{
                 <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
             </div>
 
+            <div><br></div>
+        <ul class="container">
             <!--Movie line-->
             <ul id="menu" class="column">
                 <li th:each="review: ${reviews}">
-                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}"><img id="men"
+                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}">
+                        <img id="men"
                                                                                  th:src="${review.moviePicture}"></a>
                 </li>
             </ul>
