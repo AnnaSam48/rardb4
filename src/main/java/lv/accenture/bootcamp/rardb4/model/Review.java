@@ -2,6 +2,7 @@ package lv.accenture.bootcamp.rardb4.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -21,6 +22,7 @@ public class Review implements Serializable {
     private Long userId;
     private int reviewRating;
     @Column(columnDefinition = "BIGINT")
+    @NotNull  
     private Integer reviewRatingByUsername;
 
 

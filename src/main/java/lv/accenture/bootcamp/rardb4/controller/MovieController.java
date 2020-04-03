@@ -2,9 +2,7 @@ package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.MovieAPI.MovieAPIService;
 import lv.accenture.bootcamp.rardb4.model.Movie;
-import lv.accenture.bootcamp.rardb4.model.Rating;
 import lv.accenture.bootcamp.rardb4.model.Review;
-import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
@@ -106,6 +104,14 @@ public class MovieController {
             } catch (IllegalArgumentException e) {
                 modelAndView.setViewName("same-movie-error");
 
+            }
+            try {
+                if(reviewToAdd.getReviewTitle().length()<2
+                    || reviewToAdd.getReviewText().length()<2){
+                    throw new IllegalArgumentException();
+                }
+            }catch(IllegalArgumentException ee){
+                modelAndView.setViewName("input-text-error");
             }
 
             reviewToAdd.setUserId(userId);
