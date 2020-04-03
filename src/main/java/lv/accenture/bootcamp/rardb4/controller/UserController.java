@@ -32,14 +32,11 @@ import java.util.*;
 
 @Controller
 public class UserController {
-    @Autowired
-    MovieRepository movieRepository;
 
-    @Autowired
-    ReviewRepository reviewRepository;
 
     @Autowired
     UserRepository userRepository;
+
     @Autowired
     private DelegatingPasswordEncoder delegatingPasswordEncoder;
 
@@ -92,13 +89,11 @@ public class UserController {
     }
 
     @PostMapping("user/home/profile/edit") //not working in the best way
-    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
+    public String editUser(@Valid User editedUser, Principal principal) {
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         editedUser.setId(userId);
         editedUser.setProfileIconURL("/static/img/500px-brands.svg");
-
-
         editedUser.setUserName(user.getUserName());
         userService.saveUser(editedUser);
         return "redirect:/user/home/profile";
@@ -114,7 +109,7 @@ public class UserController {
     }
 
 
- /*   @PostMapping("user/profile/updatePassword")
+ /*   @PostMapping("user/profile/updatePassword") //not working
     public String changeUserPassword(User user) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userService.findUserByUserName(auth.getName());

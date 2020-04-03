@@ -14,7 +14,7 @@
     <h2>To change password:</h2>
     <br>
 
-    <form action="#" th:action="@{/forgot-password}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/identity/forgot-password}" th:object="${user}" method="post">
         <div class="form-group" style="max-width:345px">
             <div class="col-sm-9">
                 <input type="text" th:field="*{email}" placeholder="email" name="email" class="form-control"/>

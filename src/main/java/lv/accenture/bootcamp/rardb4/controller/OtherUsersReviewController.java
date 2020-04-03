@@ -1,7 +1,6 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.model.Review;
-import lv.accenture.bootcamp.rardb4.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +17,7 @@ public class OtherUsersReviewController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @Autowired
-    private RatingRepository ratingRepository;
+
 
     @GetMapping("/reviews/profile/profile-reviews/{username}")
     public String showAllReviews(@PathVariable String username, Model model) {
