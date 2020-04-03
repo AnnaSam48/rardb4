@@ -12,13 +12,7 @@
     <style>
 
    body{ background-color: #dfebe9;}
-    div#a1{
-    padding-left: 70px;
-    }
-     div#a2{
-    padding-left: 40px;
-    padding-right: 70px;
-    }
+
 ul#menu li {
   display:inline;
 }
@@ -56,17 +50,17 @@ img#men{
         </ul>
 
         <!--Top 5 reviews-->
-        <div id="a1" class="w3-container  w3-cell">
+        <div class="container">
             <h3>Top movie reviews </h3><br>
             <div th:if="${not #lists.isEmpty(reviews)}">
                 <table class="table table-striped">
                     <tr>
-                        <th width="5%"><h6>Movie</h6></th>
+                        <th width="15%"><h6>Movie</h6></th>
                         <th width="5%"></th>
-                        <th width="3%"><h6>Review rating</h6></th>
+                        <th width="13%"><h6>Review rating</h6></th>
                         <th width="5%"><h6>User</h6></th>
                         <th width="5%"><h6>Review title</h6></th>
-                        <th width="20%"><h6>Review</h6></th>
+                        <th width="30%"><h6>Review</h6></th>
                     </tr>
                     <tr th:each="review: ${reviews}">
                         <td>
@@ -98,32 +92,8 @@ img#men{
                 </div>
             </div>
         </div>
-        <!-- All movies -->
-        <div id="a2" class="w3-container  w3-cell">
-            <h4>All Movies:</h4><br>
-            <div th:if="${not #lists.isEmpty(reviews)}">
-                <table class="table">
-                    <tr>
-                        <th width="5%"><h6>Rating</h6></th>
-                        <th width="10%"><h6>Movie</h6></th>
-                        <th width="10%"></th>
-                    </tr>
-                    <tr th:each="review: ${reviews}">
-                        <td class="small" th:text="${review.userRatingForMovie}"/>
-                        <td class="small" th:text="${review.movieTitle}"/>
-                        <td><img th:src="${review.moviePicture}" height="100"/></td>
-                    </tr>
-                </table>
-            </div>
-            <div th:unless="${not #lists.isEmpty(reviews)}">
-                <div class="card">
-                    <div class="card-body">
-                        There are no reviews.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="ab">
+
+        <div >
             <div><a class="btn btn-warning" th:href="@{/moreReviews}">More</a></div>
         </div>
         <div>
