@@ -76,10 +76,10 @@ article {
                     <td th:text="${review.reviewRating}"/>
 
                     <td><a class="btn btn-outline-primary"
-                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a>
+                           th:href="@{/reviews/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a>
 
                         <a class="btn btn-outline-primary"
-                           th:href="@{reviews-search/edit-review/{id}(id=${review.reviewID})}">Edit</a>
+                           th:href="@{/user/home/reviews-search/edit-review/{id}(id=${review.reviewID})}">Edit</a>
                         <a class="btn btn-outline-primary"
                            th:href="@{/user/delete-review/{id}(id=${review.reviewID})}">Delete</a>
                     </td>

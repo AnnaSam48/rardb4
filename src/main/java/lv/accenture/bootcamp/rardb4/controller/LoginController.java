@@ -101,7 +101,7 @@ public class LoginController {
             mailMessage.setSubject("Complete Password Reset!");
             mailMessage.setFrom("javafunboot@gmail.com");
             mailMessage.setText("To complete Your password reset process, please follow the link: "
-                    + "http://localhost:8080/confirm-reset?token=" + confirmationToken.getConfirmationToken());
+                    + "http://localhost:8080/identity/confirm-reset?token=" + confirmationToken.getConfirmationToken());
             emailSenderService.sendEmail(mailMessage);
             modelAndView.addObject("message", "Request to reset password received. Check your inbox for the reset link.");
             modelAndView.setViewName("userAth/forgotPassword/success");
