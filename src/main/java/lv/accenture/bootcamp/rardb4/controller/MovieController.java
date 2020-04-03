@@ -2,7 +2,9 @@ package lv.accenture.bootcamp.rardb4.controller;
 
 import lv.accenture.bootcamp.rardb4.MovieAPI.MovieAPIService;
 import lv.accenture.bootcamp.rardb4.model.Movie;
+import lv.accenture.bootcamp.rardb4.model.Rating;
 import lv.accenture.bootcamp.rardb4.model.Review;
+import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
@@ -71,50 +73,39 @@ public class MovieController {
     @PostMapping(value = "/add-review-search/add-review-movie/{id}")
     //Model and view for notification that submitted pops up at same page
     public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
-        //get  user
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserWithId userWithId = (UserWithId) auth.getPrincipal();
-        String username = userWithId.getUsername();
-        Long userId = userWithId.getUserId();
-
-
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("add-review-search");
         } else {
+
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            UserWithId userWithId = (UserWithId) auth.getPrincipal();
+            String username = userWithId.getUsername();
+            Long userId = userWithId.getUserId();
 
             if (!moviesRepository.existsById(id)) {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);
             }
 
-            reviewToAdd.setMovieID(id);
-            reviewToAdd.setUsername(username);
-            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
 
-            //check if user has already has the review about this movie
-            List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
+         /*   List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
             try {
                 for (Review existingReview : existingReviews) {
                     if (existingReview.getUserId() == userId) {
                         throw new IllegalArgumentException();
                     }
                 }
-            } catch (IllegalArgumentException e) {
-                modelAndView.setViewName("same-movie-error");
-
+            }catch (IllegalArgumentException e){
+                return "same-movie-error";
             }
-            try {
-                if(reviewToAdd.getReviewTitle().length()<2
-                    || reviewToAdd.getReviewText().length()<2){
-                    throw new IllegalArgumentException();
-                }
-            }catch(IllegalArgumentException ee){
-                modelAndView.setViewName("input-text-error");
-            }
-
+*/
+            reviewToAdd.setUsername(username);
+            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
             reviewToAdd.setUserId(userId);
+            reviewToAdd.setMovieID(id);
+
             reviewRepository.save(reviewToAdd);
 
             Movie movieToShow = movieAPIService.getMovieByID(id);

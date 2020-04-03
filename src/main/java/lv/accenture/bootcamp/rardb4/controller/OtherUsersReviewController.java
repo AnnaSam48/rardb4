@@ -27,8 +27,6 @@ public class OtherUsersReviewController {
 
         List<Review> reviewsByUser = reviewRepository.findAllByUsername(username);
         for(Review reviewByUser:reviewsByUser) {
-            int usersAverageReviewRating = ratingRepository.userAverage(username);
-            reviewByUser.setReviewRatingByUsername(usersAverageReviewRating);
             reviewRepository.save(reviewByUser);
         }
         model.addAttribute("reviews", reviewsByUser);

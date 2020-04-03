@@ -21,15 +21,15 @@ public class Review implements Serializable {
     private String username;
     private Long userId;
     private int reviewRating;
-    @Column(columnDefinition = "BIGINT")
-    @NotNull  
-    private Integer reviewRatingByUsername;
+
 
 
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String movieID, String reviewText, int userRatingForMovie, String username, Long userId, int reviewRating, int movieRating) {
+    public Review(Long reviewID, String reviewTitle, String movieID, String reviewText,
+                  int userRatingForMovie, String username, Long userId, int reviewRating,
+                  int movieRating) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.movieID = movieID;
@@ -110,9 +110,6 @@ public class Review implements Serializable {
 
     public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
 
-    public Integer getReviewRatingByUsername() { return reviewRatingByUsername; }
-
-    public void setReviewRatingByUsername(Integer reviewRatingByUsername) { this.reviewRatingByUsername = reviewRatingByUsername; }
 
     @Override
     public String toString() {
