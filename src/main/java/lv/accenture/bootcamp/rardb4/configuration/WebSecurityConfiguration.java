@@ -39,25 +39,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-
                 .antMatchers("/reviews/**").permitAll()
-
-                .antMatchers("/updateUserInfo").permitAll()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/userAth/**").permitAll()
-                .antMatchers("/password/forgot").permitAll()
-
-                .antMatchers("/forgot-password").permitAll()
-                .antMatchers("/confirm-reset").permitAll()
-                .antMatchers("/reset-password").permitAll()
+                .antMatchers("/identity/**").permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/error").permitAll()
-
-
-
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")
-
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()

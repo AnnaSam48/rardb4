@@ -48,7 +48,7 @@ public class LoginController {
     }
 
 
-    @GetMapping(value = "/registration")
+    @GetMapping(value = "/identity/registration")
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
@@ -57,7 +57,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/registration")
+    @PostMapping(value = "/identity/registration")
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByUserName(user.getUserName());
@@ -81,7 +81,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "/password/forgot", method = RequestMethod.GET)
+    @RequestMapping(value = "/identity/password/forgot", method = RequestMethod.GET)
     public ModelAndView displayResetPassword(ModelAndView modelAndView, User user) {
         modelAndView.addObject("user", user);
         modelAndView.setViewName("userAth/forgotPassword/forgot");
@@ -89,7 +89,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
+    @RequestMapping(value = "/identity/forgot-password", method = RequestMethod.POST)
     public ModelAndView forgotUserPassword(ModelAndView modelAndView, User user) {
         User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
         if (existingUser != null) {
@@ -115,7 +115,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "/confirm-reset", method = RequestMethod.GET)
+    @RequestMapping(value = "/identity/confirm-reset", method = RequestMethod.GET)
     public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
         User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
@@ -125,7 +125,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/confirm-reset", method = RequestMethod.POST)
+    @RequestMapping(value = "/identity/confirm-reset", method = RequestMethod.POST)
     public ModelAndView validateResetTokenPost(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
         User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
@@ -144,7 +144,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
+    @RequestMapping(value = "/identity/reset-password", method = RequestMethod.POST)
     public ModelAndView resetUserPassword(ModelAndView modelAndView, User user) {
         if (user.getEmail() != null) {
             User tokenUser = userRepository.findByEmailIgnoreCase(user.getEmail());
