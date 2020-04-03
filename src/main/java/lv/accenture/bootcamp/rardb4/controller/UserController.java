@@ -88,12 +88,14 @@ public class UserController {
         return "user/edit-user";
     }
 
-    @PostMapping("user/home/profile/edit") //not working in the best way
-    public String editUser(@Valid User editedUser, Principal principal) {
+    @PostMapping("user/home/profile/edit")
+    public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         editedUser.setId(userId);
         editedUser.setProfileIconURL("/static/img/500px-brands.svg");
+
+
         editedUser.setUserName(user.getUserName());
         userService.saveUser(editedUser);
         return "redirect:/user/home/profile";
