@@ -103,32 +103,41 @@ public class MovieController {
 
                 try {
                     List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
-
                     for (Review existingReview : existingReviews) {
                         if (existingReview.getUserId() == userId) {
                             throw new IllegalArgumentException();
                         } else {
 
-                            Movie movie = moviesRepository.findByImdbID(id);
                             reviewToAdd.setUsername(username);
-                            reviewToAdd.setMoviePicture(movie.getPoster());
-                            reviewToAdd.setMovieTitle(movie.getTitle());
+                            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+                            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
                             reviewToAdd.setUserId(userId);
                             reviewToAdd.setMovieID(id);
 
+                            //  reviewRepository.save(reviewToAdd);
+
                             modelAndView.setViewName("movie-added");
+
                         }
                     }
-                    reviewRepository.save(reviewToAdd);
-
-                    
                 } catch (IllegalArgumentException e) {
                     modelAndView.setViewName("same-movie-error");
 
                 }}
+            reviewToAdd.setUsername(username);
+            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
+            reviewToAdd.setUserId(userId);
+            reviewToAdd.setMovieID(id);
+
+            //  reviewRepository.save(reviewToAdd);
+
+            modelAndView.setViewName("movie-added");
+
+
         }
 
-        //modelAndView.addObject("review", new Review());
+        modelAndView.addObject("review", new Review());
         return modelAndView;
     }
 
