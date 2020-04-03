@@ -13,16 +13,10 @@ import java.util.List;
 public interface RatingRepository extends CrudRepository<Rating,Long> {
 
     String averageRatingValue = "SELECT AVG(r.value) FROM Rating r WHERE r.reviewId = :reviewID";
-    String averageRatingForOtherUser = "SELECT AVG(r.reviewRating) FROM Review r WHERE r.username = :username";
 
 
     @Query(averageRatingValue)
     int average(@Param(value = "reviewID") Long reviewID);
-
-    @Query(averageRatingForOtherUser)
-    int userAverage(@Param(value = "username") String username);
-
-    List<Rating> findByReviewId(@Param(value="reviewId") Long reviewId);
 
     List<Rating>findAllByReviewId(Long reviewId);
 

@@ -23,7 +23,6 @@ public class Review implements Serializable {
     private int reviewRating;
 
 
-
     public Review() {
     }
 

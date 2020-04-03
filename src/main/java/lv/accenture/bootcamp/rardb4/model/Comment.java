@@ -32,7 +32,6 @@ public class Comment implements Serializable {
         this.reviewID = reviewID;
         this.text = text;
         this.username = username;
-//        this.timestamp = timeStamp;
     }
 
     public Long getId() {

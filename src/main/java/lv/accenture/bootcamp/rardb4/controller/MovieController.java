@@ -86,14 +86,7 @@ public class MovieController {
             if (!moviesRepository.existsById(id)) {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);
-                reviewToAdd.setUsername(username);
-                reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-                reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
-                reviewToAdd.setUserId(userId);
-                reviewToAdd.setMovieID(id);
-
-                reviewRepository.save(reviewToAdd);
-
+                
                 Movie movieToShow = movieAPIService.getMovieByID(id);
               //  modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
                 modelAndView.addObject("movie", movieToShow);
