@@ -41,8 +41,8 @@ public class MovieController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-   @Autowired
-   private RatingRepository ratingRepository;
+    @Autowired
+    private RatingRepository ratingRepository;
 
     @Autowired
     private UserService userService;
@@ -90,32 +90,21 @@ public class MovieController {
                 moviesRepository.save(movieToAdd);
             }
 
-/*
+
             //check if user has already has the review about this movie
-            try {
-                if (reviewRepository.findByReviewID(id).get().getUserId() == (userId)) {
-                    throw new IllegalArgumentException();
-                }
-            } catch (IllegalArgumentException e) {
-                modelAndView.addObject("successReview", "Sorry, you already made review about this movie. You can edit it, form user profile");
-                modelAndView.setViewName("add-review-search");
-
-            }
-
- */
-
-
-         /*   List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
+            List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
             try {
                 for (Review existingReview : existingReviews) {
                     if (existingReview.getUserId() == userId) {
                         throw new IllegalArgumentException();
                     }
                 }
-            }catch (IllegalArgumentException e){
-                return "same-movie-error";
+            } catch (IllegalArgumentException e) {
+                modelAndView.addObject("error", "Sorry, you already made review about this movie. You can edit it, form user profile");
+                modelAndView.setViewName("add-review-search");
+                //  return "same-movie-error";
             }
-*/
+
             reviewToAdd.setUsername(username);
             reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
             reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
