@@ -86,11 +86,11 @@ public class MovieController {
             if (!moviesRepository.existsById(id)) {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);
-                
-                Movie movieToShow = movieAPIService.getMovieByID(id);
-              //  modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
-                modelAndView.addObject("movie", movieToShow);
-                modelAndView.addObject("review", new Review());
+                reviewToAdd.setUsername(username);
+                reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+                reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
+                reviewToAdd.setUserId(userId);
+                reviewToAdd.setMovieID(id);
 
                 modelAndView.setViewName("movie-added");
             }
@@ -112,14 +112,7 @@ public class MovieController {
                         reviewToAdd.setMovieID(id);
 
                         reviewRepository.save(reviewToAdd);
-
-                        Movie movieToShow = movieAPIService.getMovieByID(id);
-                       // modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
-                        modelAndView.addObject("movie", movieToShow);
-                        modelAndView.addObject("review", new Review());
-
                         modelAndView.setViewName("movie-added");
-
 
                     }
                 }
