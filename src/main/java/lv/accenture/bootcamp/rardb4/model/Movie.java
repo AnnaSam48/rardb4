@@ -36,7 +36,6 @@ public class Movie implements Serializable {
     private String DVD;
     private String BoxOffice;
     private String Production;
-    private int movieRating;
 
     public Movie() {
     }
@@ -212,8 +211,4 @@ public class Movie implements Serializable {
     public void setProduction(String production) {
         Production = production;
     }
-
-    public int getMovieRating() { return movieRating; }
-
-    public void setMovieRating(int movieRating) { this.movieRating = movieRating; }
 }

@@ -88,6 +88,18 @@ public class MovieController {
                 moviesRepository.save(movieToAdd);
             }
 
+
+         /*   List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
+            try {
+                for (Review existingReview : existingReviews) {
+                    if (existingReview.getUserId() == userId) {
+                        throw new IllegalArgumentException();
+                    }
+                }
+            }catch (IllegalArgumentException e){
+                return "same-movie-error";
+            }
+*/
             reviewToAdd.setUsername(username);
             reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
             reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());

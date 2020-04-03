@@ -24,7 +24,7 @@ public class CommentController {
 
     @Autowired
     private UserRepository userRepository;
-
+//
     @Autowired
     private CommentRepository commentRepository;
 
@@ -42,6 +42,7 @@ public class CommentController {
 
         commentToAdd.setReviewID(id);
         commentToAdd.setUsername(username);
+      //  commentToAdd.setTimestamp();
         commentRepository.save(commentToAdd);
 
         String path = "redirect:/reviews-search/rate-review/" + id.toString();

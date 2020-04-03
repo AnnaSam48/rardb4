@@ -91,7 +91,7 @@ img#men{
           </div>
       </div>
   </div>
-  <!-- Top 25 movies -->
+  <!-- All movies -->
 <div id="a2" class="w3-container  w3-cell">
     <h4>Highest rated by Users:</h4><br>
     <div th:if="${not #lists.isEmpty(reviews)}">
@@ -116,12 +116,12 @@ img#men{
         </div>
     </div>
 </div>
-<div id="a1">
+<div id="ab">
     <a class="btn btn-warning"
        th:href="@{/moreReviews}">More</a>
 </div>
 <div>
-    <br></div>
+    <br>
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 

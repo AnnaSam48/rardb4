@@ -15,9 +15,9 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     String searchByMovie = "SELECT r FROM Review r JOIN Movie m ON r.movieID = m.imdbID WHERE m.Title LIKE %:movieTitle%";
 
-
+    List<Review> findAll();
+    List<Review> findAllByOrderByUserRatingForMovieDesc();
     List<Review> findTop5ByOrderByReviewRatingDesc();
-    List<Review> findTop5ByOrderByUserRatingForMovieDesc();
     List<Review> findAllByOrderByReviewRatingDesc();
     List<Review> findAllByUsername(String username);
     List<Review> findAllByMovieID(String movieID);

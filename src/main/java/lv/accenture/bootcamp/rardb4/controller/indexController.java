@@ -4,10 +4,12 @@ import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -36,12 +38,12 @@ public class indexController {
     }
 
 
-    @GetMapping("/topMovies")
-    public String topMovies(Model model) {
+    @GetMapping("/movies")
+    public String allMovies(Model model) {
 
         //Create a list with top 15 Movies
-        List<Review> bestMovies = reviewRepository.findTop5ByOrderByUserRatingForMovieDesc();
-        model.addAttribute("movies", bestMovies);
+        List<Review> allMovies = reviewRepository.findAll();
+        model.addAttribute("reviews", allMovies);
         return "index";
     }
 

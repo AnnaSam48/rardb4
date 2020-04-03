@@ -86,7 +86,6 @@ public class RatingController {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("Sorry, you can't rate your own review!");
             return "rating-submit-error";
         }
 
@@ -99,7 +98,6 @@ public class RatingController {
             }
 
         } catch (IllegalArgumentException ee) {
-            System.out.println("Sorry, you can only vote once!");
             return "rating-submit-error";
         }
         if (bindingResult.hasErrors()) {

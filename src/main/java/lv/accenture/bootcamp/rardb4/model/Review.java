@@ -20,8 +20,6 @@ public class Review implements Serializable {
     private String username;
     private Long userId;
     private int reviewRating;
-   // private  int movieRating;
-
 
 
     public Review() {
@@ -36,7 +34,6 @@ public class Review implements Serializable {
         this.username = username;
         this.userId = userId;
         this.reviewRating = reviewRating;
-     //   this.movieRating = movieRating;
     }
 
     public Long getReviewID() {
@@ -109,9 +106,6 @@ public class Review implements Serializable {
 
     public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
 
-    //public int getMovieRating() { return movieRating; }
-
-   // public void setMovieRating(int movieRating) { this.movieRating = movieRating; }
 
     @Override
     public String toString() {

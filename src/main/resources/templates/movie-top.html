@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h4>Highest rated by Users:</h4><br>
+    <div th:if="${not #lists.isEmpty(reviews)}">
+        <table class="table">
+            <tr>
+                <th width="5%"><h6>Rating</h6></th>
+                <th width="10%"><h6>Movie</h6></th>
+                <th width="10%"></th>
+            </tr>
+            <tr th:each="review: ${reviews}">
+                <td class="small" th:text="${review.userRatingForMovie}"/>
+                <td class="small" th:text="${review.movieTitle}"/>
+                <td><img th:src="${review.moviePicture}" height="100"/></td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${not #lists.isEmpty(reviews)}">
+        <div class="card">
+            <div class="card-body">
+                There are no reviews.
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

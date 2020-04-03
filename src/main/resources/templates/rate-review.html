@@ -17,21 +17,28 @@
 
     <!--Review info-->
     <div>
-        <div>
-        <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
-            <h6>Review text: <span th:text="${review.reviewText}"/></h6>
+        <div class="col">
+            <p style="float:left;margin-right:50px">
+                <img th:src="${review.moviePicture}" width="200px">
+            </p>
         </div>
-        <br><br>
+        <div>
+              <h4>Movie: <span th:text="${review.movieTitle}"/></h4>
+              <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
+              <h5>Review: <span th:text="${review.reviewText}"/></h5>
+        </div>
+        <br>
 
         <!--All Comments to the review-->
         <div>
             <h3>Comments:</h3>
+            <br>
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th width="5%">User</th>
                     <th width="20%">Comment</th>
-                    <th width="10%">Date</th>
+                   <!-- <th width="10%">Date</th>-->
                 </tr>
                 </thead>
 
@@ -39,7 +46,7 @@
                 <tr th:each="comment: ${comments}">
                     <td th:text="${comment.username}"/>
                     <td th:text="${comment.text}"/>
-                    <td th:text="${comment.timestamp}"/>
+                 <!--   <td th:text="${comment.timestamp}"/> -->
                 </tr>
                 </tbody>
             </table>

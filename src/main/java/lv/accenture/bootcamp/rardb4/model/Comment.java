@@ -20,8 +20,8 @@ public class Comment implements Serializable {
     private String text;
     @Column(name ="comment_username")
     private String username;
-    @CreationTimestamp
-    private Timestamp timestamp;
+//    @CreationTimestamp
+//    private Timestamp timestamp;
 
 
     public Comment() {
@@ -32,7 +32,7 @@ public class Comment implements Serializable {
         this.reviewID = reviewID;
         this.text = text;
         this.username = username;
-        this.timestamp = timeStamp;
+//        this.timestamp = timeStamp;
     }
 
     public Long getId() {
@@ -67,11 +67,11 @@ public class Comment implements Serializable {
         this.username = username;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
+//    public Timestamp getTimestamp() {
+//        return timestamp;
+//    }
+//
+//    public void setTimestamp(Timestamp timestamp) {
+//        this.timestamp = timestamp;
+//    }
 }
