@@ -22,7 +22,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     List<Review> findAllByUsername(String username);
     List<Review> findAllByMovieID(String movieID);
     Optional<Review> findByReviewID(Long reviewID);
-
+    List<Review> findTop10ByOrderByUserRatingForMovieDesc();
     @Query(searchByMovie)
     List<Review> findByMovieTitle(@Param(value="movieTitle") String movieTitle);
 
