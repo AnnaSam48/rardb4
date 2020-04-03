@@ -1,37 +1,29 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
-import lv.accenture.bootcamp.rardb4.model.Movie;
+
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
 import java.util.*;
 
 @Controller
 public class indexController {
 
     @Autowired
-    MovieRepository movieRepository;
-
-    @Autowired
     ReviewRepository reviewRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
 
 
     @GetMapping("/")
     public String toBestRatedReviews(Model model) {
+        //Create a line with top 15 Movies
+        List<Review> allMovies = reviewRepository.findTop10ByOrderByUserRatingForMovieDesc();
+        model.addAttribute("allMovies", allMovies);
 
+        //Create table with best reviews
         List<Review> bestReviews = reviewRepository.findTop5ByOrderByReviewRatingDesc();
         model.addAttribute("reviews", bestReviews);
         return "index";
@@ -41,23 +33,22 @@ public class indexController {
     @GetMapping("/movies")
     public String bestMovies(Model model) {
 
-        //Create a list with top 15 Movies
+        //Create a table with all movies by user rating
         List<Review> allMovies = reviewRepository.findAllByOrderByUserRatingForMovieDesc();
-        model.addAttribute("reviews", allMovies);
-        return "index";
+        model.addAttribute("movies", allMovies);
+        return "movie";
     }
 
 
     @GetMapping("/moreReviews")
     public String getMoreReviews(Model model) {
-
+        //Create a table with all reviews
         List<Review> bestReviews = reviewRepository.findAllByOrderByReviewRatingDesc();
         model.addAttribute("reviews", bestReviews);
-
         return "index";
-
     }
 
+    //header and footer
     @GetMapping("/header")
     public String getHeader() {
         return "header.html";
@@ -67,6 +58,7 @@ public class indexController {
     public String getFooter() {
         return "footer.html";
     }
+
 }
 
 
