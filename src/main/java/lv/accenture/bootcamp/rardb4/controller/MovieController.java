@@ -86,33 +86,54 @@ public class MovieController {
             if (!moviesRepository.existsById(id)) {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);
+                reviewToAdd.setUsername(username);
+                reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+                reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
+                reviewToAdd.setUserId(userId);
+                reviewToAdd.setMovieID(id);
+
+                reviewRepository.save(reviewToAdd);
+
+                Movie movieToShow = movieAPIService.getMovieByID(id);
+              //  modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
+                modelAndView.addObject("movie", movieToShow);
+                modelAndView.addObject("review", new Review());
+
+                modelAndView.setViewName("movie-added");
             }
 
 
-         /*   List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
             try {
+                List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
                 for (Review existingReview : existingReviews) {
                     if (existingReview.getUserId() == userId) {
                         throw new IllegalArgumentException();
                     }
+
+                    else {
+
+                        reviewToAdd.setUsername(username);
+                        reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
+                        reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
+                        reviewToAdd.setUserId(userId);
+                        reviewToAdd.setMovieID(id);
+
+                        reviewRepository.save(reviewToAdd);
+
+                        Movie movieToShow = movieAPIService.getMovieByID(id);
+                       // modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
+                        modelAndView.addObject("movie", movieToShow);
+                        modelAndView.addObject("review", new Review());
+
+                        modelAndView.setViewName("movie-added");
+
+
+                    }
                 }
-            }catch (IllegalArgumentException e){
-                return "same-movie-error";
+            } catch (IllegalArgumentException e) {
+                modelAndView.setViewName("same-movie-error");
             }
-*/
-            reviewToAdd.setUsername(username);
-            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
-            reviewToAdd.setUserId(userId);
-            reviewToAdd.setMovieID(id);
 
-            reviewRepository.save(reviewToAdd);
-
-            Movie movieToShow = movieAPIService.getMovieByID(id);
-            modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
-            modelAndView.addObject("movie", movieToShow);
-            modelAndView.addObject("review", new Review());
-            modelAndView.setViewName("add-review-movie");
 
         }
         return modelAndView;
@@ -120,7 +141,7 @@ public class MovieController {
 
     @GetMapping("/add-review-movie/reviewSubmitted")
     public String resultSubmitted() {
-        return "reviewSubmitted";
+        return "movie-added.html";
     }
 
     @GetMapping("/about-movie/{id}")
