@@ -34,12 +34,6 @@ public class ReviewController {
     CommentRepository commentRepository;
 
 
-    @GetMapping("/reviews/delete-review/{id}")
-    public String deleteReview(@PathVariable Long id) {
-        reviewRepository.deleteById(id);
-        return "redirect:/user/home/reviews";
-    }
-
     @GetMapping("/reviews/reviews-search")
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);

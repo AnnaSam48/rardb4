@@ -45,14 +45,14 @@ public class UserReviewsController {
         return "user/userReviews";
     }
 
-    @GetMapping("user/home/reviews-search/edit-review/{id}")
+    @GetMapping("/user/home/reviews-search/edit-review/{id}")
     public String editUserReviews(@PathVariable Long id, Model model) {
         Optional<Review> reviewToEdit = reviewRepository.findByReviewID(id);
         model.addAttribute("review", reviewToEdit.get());
         return "user/edit-review";
     }
 
-    @PostMapping("user/home/reviews-search/edit-review/{id}")
+    @PostMapping("/user/home/reviews-search/edit-review/{id}")
     public String editReview(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
