@@ -37,6 +37,8 @@ article {
 }
 
 
+
+
     </style>
 </head>
 <body>
@@ -52,24 +54,36 @@ article {
         <div th:if="${not #lists.isEmpty(reviews)}">
             <!--Review info-->
             <div th:each="review: ${reviews}">
-                <div class="col">
-                    <p style="float:left;margin-right:50px">
-                        <img th:src="${review.moviePicture}" width="100px">
-                    </p>
-                </div>
-                <div>
-                    <h4>Movie: <span th:text="${review.movieTitle}"/></h4>
-                    <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
-                    <h5>Review:</h5>
-                    <p th:text="${review.reviewText}"></p>
+                <div class="container">
                     <div class="col">
-                        <div class="row">
-                            <h5>Movie rating by user:<span STYLE="color: purple; font-size:30pt"
-                                                           th:text="${review.userRatingForMovie}"/></h5>
+                        <div class="col">
+                            <p style="float:left;margin-right:50px">
+                                <img th:src="${review.moviePicture}" width="100px">
+                            </p>
                         </div>
-                        <div class="row">
-                            <h5>Review rating:<span STYLE="color: red; font-size:30pt"
-                                                    th:text="${review.reviewRating}"/></h5>
+                        <div>
+                            <h4>Movie: <span th:text="${review.movieTitle}"/></h4>
+                            <h4>Title: <span th:text="${review.reviewTitle}"/></h4>
+                            <h5>Review:</h5>
+                            <p th:text="${review.reviewText}"></p>
+                            <div class="col">
+                                <div class="row">
+                                    <h5>Movie rating by user:<span STYLE="color: purple; font-size:30pt"
+                                                                   th:text="${review.userRatingForMovie}"/></h5>
+                                </div>
+                                <div class="row">
+                                    <h5>Review rating:<span STYLE="color: red; font-size:30pt"
+                                                            th:text="${review.reviewRating}"/></h5>
+                                </div>
+                                <div class="row">
+                                    <a class="btn btn-outline-primary"
+                                       th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">More</a>
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <br>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
