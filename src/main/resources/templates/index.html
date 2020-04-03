@@ -22,6 +22,7 @@ img#men{
 }
 
 
+
     </style>
 </head>
 <body>
@@ -30,25 +31,28 @@ img#men{
 
     <article class="container mx-auto">
 
-            <div><br></div>
+        <div><br></div>
 
-            <!--Button-->
-            <div>
-                <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
-            </div>
+        <!--Button-->
+        <div>
+            <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+        </div>
 
-            <div><br></div>
+        <div><br></div>
         <ul class="container">
             <!--Movie line-->
             <ul id="menu" class="column">
-                <li th:each="review: ${reviews}">
+                <li th:each="review:${allMovies}">
                     <a th:href="@{/about-movie/{id}(id=${review.movieID})}">
-                        <img id="men"
-                                                                                 th:src="${review.moviePicture}"></a>
+                        <img id="men" th:src="${review.moviePicture}"></a>
                 </li>
             </ul>
         </ul>
 
+        <!--all movies, by rating button -->
+        <div>
+            <a class="btn btn-light" th:href="@{/movies}">All Movies</a>
+        </div>
         <!--Top 5 reviews-->
         <div class="container">
             <h3>Top movie reviews </h3><br>
@@ -92,9 +96,9 @@ img#men{
                 </div>
             </div>
         </div>
-
-        <div >
-            <div><a class="btn btn-warning" th:href="@{/moreReviews}">More</a></div>
+<!--more reviews -->
+        <div>
+            <div><a class="btn btn-info" th:href="@{/moreReviews}">More</a></div>
         </div>
         <div>
             <br>
