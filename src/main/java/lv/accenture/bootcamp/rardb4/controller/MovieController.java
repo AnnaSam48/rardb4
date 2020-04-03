@@ -92,13 +92,6 @@ public class MovieController {
                 reviewToAdd.setUserId(userId);
                 reviewToAdd.setMovieID(id);
 
-                reviewRepository.save(reviewToAdd);
-
-                Movie movieToShow = movieAPIService.getMovieByID(id);
-              //  modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
-                modelAndView.addObject("movie", movieToShow);
-                modelAndView.addObject("review", new Review());
-
                 modelAndView.setViewName("movie-added");
             }
 
@@ -119,14 +112,7 @@ public class MovieController {
                         reviewToAdd.setMovieID(id);
 
                         reviewRepository.save(reviewToAdd);
-
-                        Movie movieToShow = movieAPIService.getMovieByID(id);
-                       // modelAndView.addObject("successReview", "Your review was submitted! Thank you!");
-                        modelAndView.addObject("movie", movieToShow);
-                        modelAndView.addObject("review", new Review());
-
                         modelAndView.setViewName("movie-added");
-
 
                     }
                 }
