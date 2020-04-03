@@ -121,6 +121,7 @@ public class MovieController {
                     }
                     reviewRepository.save(reviewToAdd);
 
+                    
                 } catch (IllegalArgumentException e) {
                     modelAndView.setViewName("same-movie-error");
 
