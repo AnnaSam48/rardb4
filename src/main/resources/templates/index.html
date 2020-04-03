@@ -26,99 +26,110 @@ img#men{
  border-radius: 10px;
  width: 100px;
 }
+
+
     </style>
 </head>
 <body>
 <header th:insert="layout/header.html :: header"></header>
-<ul class="container">
+<section>
 
-    <!--Button-->
-    <div>
-        <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
-    </div>
+    <article class="container mx-auto">
+        <ul class="container">
+            <div><br></div>
 
-    <!--Movie line-->
-    <ul id="menu" class="column">
-        <li th:each="review: ${reviews}">
-            <a th:href="@{/about-movie/{id}(id=${review.movieID})}"><img id="men" th:src="${review.moviePicture}"></a>
-        </li>
-    </ul>
-</ul>
+            <!--Button-->
+            <div>
+                <a class="btn btn-info" sec:authorize="isAuthenticated()" th:href="@{/add-review-search}">Add review</a>
+            </div>
 
-<!--Top 5 reviews-->
-<div id="a1" class="w3-container  w3-cell">
-    <h3>Top movie reviews </h3><br>
-    <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table table-striped">
-            <tr>
-                <th width="5%"><h6>Movie</h6></th>
-                <th width="5%"></th>
-               <th width="3%"><h6>Review rating</h6></th>
-                <th width="5%"><h6>User</h6></th>
-                <th width="5%"><h6>Review title</h6></th>
-                  <th width="20%"><h6>Review</h6></th>
-              </tr>
-              <tr th:each="review: ${reviews}">
-                  <td>
-                      <a class="small" th:href="@{/about-movie/{id}(id=${review.movieID})}"
-                         th:text="${review.movieTitle}" style="color:black"></a>
-                  </td>
-                  <td><img th:src="${review.moviePicture}" height="100"/></td>
-                  <td class="small" th:text="${review.reviewRating}"/>
-                  <td>
-                      <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
-                          <span class="small" th:text="${review.username}"></span>
-                      </a>
-                  </td>
-                  <td class="small" th:text="${review.reviewTitle}"/>
-                  <td>
-                      <a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
-                         type="button" :focus style="border:none!important"
-                         class="btn btn-outline-dark" th:text="${review.reviewText}">
-                      </a>
-                  </td>
-              </tr>
-          </table>
-      </div>
-      <div th:unless="${not #lists.isEmpty(reviews)}">
-          <div class="card">
-              <div class="card-body">
-                  There are no reviews.
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- All movies -->
-<div id="a2" class="w3-container  w3-cell">
-    <h4>All Movies:</h4><br>
-    <div th:if="${not #lists.isEmpty(reviews)}">
-        <table class="table">
-            <tr>
-                <th width="5%"><h6>Rating</h6></th>
-                <th width="10%"><h6>Movie</h6></th>
-                <th width="10%"></th>
-            </tr>
-            <tr th:each="review: ${reviews}">
-                <td class="small" th:text="${review.userRatingForMovie}"/>
-                <td class="small" th:text="${review.movieTitle}"/>
-                <td><img th:src="${review.moviePicture}" height="100"/></td>
-            </tr>
-        </table>
-    </div>
-    <div th:unless="${not #lists.isEmpty(reviews)}">
-        <div class="card">
-            <div class="card-body">
-                There are no reviews.
+            <!--Movie line-->
+            <ul id="menu" class="column">
+                <li th:each="review: ${reviews}">
+                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}"><img id="men"
+                                                                                 th:src="${review.moviePicture}"></a>
+                </li>
+            </ul>
+        </ul>
+
+        <!--Top 5 reviews-->
+        <div id="a1" class="w3-container  w3-cell">
+            <h3>Top movie reviews </h3><br>
+            <div th:if="${not #lists.isEmpty(reviews)}">
+                <table class="table table-striped">
+                    <tr>
+                        <th width="5%"><h6>Movie</h6></th>
+                        <th width="5%"></th>
+                        <th width="3%"><h6>Review rating</h6></th>
+                        <th width="5%"><h6>User</h6></th>
+                        <th width="5%"><h6>Review title</h6></th>
+                        <th width="20%"><h6>Review</h6></th>
+                    </tr>
+                    <tr th:each="review: ${reviews}">
+                        <td>
+                            <a class="small" th:href="@{/about-movie/{id}(id=${review.movieID})}"
+                               th:text="${review.movieTitle}" style="color:black"></a>
+                        </td>
+                        <td><img th:src="${review.moviePicture}" height="100"/></td>
+                        <td class="small" th:text="${review.reviewRating}"/>
+                        <td>
+                            <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
+                                <span class="small" th:text="${review.username}"></span>
+                            </a>
+                        </td>
+                        <td class="small" th:text="${review.reviewTitle}"/>
+                        <td>
+                            <a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+                               type="button" :focus style="border:none!important"
+                               class="btn btn-outline-dark" th:text="${review.reviewText}">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div th:unless="${not #lists.isEmpty(reviews)}">
+                <div class="card">
+                    <div class="card-body">
+                        There are no reviews.
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div id="ab">
-    <div> <a class="btn btn-warning" th:href="@{/moreReviews}">More</a></div>
-</div>
-<div>
-    <br>
-</div>
+        <!-- All movies -->
+        <div id="a2" class="w3-container  w3-cell">
+            <h4>All Movies:</h4><br>
+            <div th:if="${not #lists.isEmpty(reviews)}">
+                <table class="table">
+                    <tr>
+                        <th width="5%"><h6>Rating</h6></th>
+                        <th width="10%"><h6>Movie</h6></th>
+                        <th width="10%"></th>
+                    </tr>
+                    <tr th:each="review: ${reviews}">
+                        <td class="small" th:text="${review.userRatingForMovie}"/>
+                        <td class="small" th:text="${review.movieTitle}"/>
+                        <td><img th:src="${review.moviePicture}" height="100"/></td>
+                    </tr>
+                </table>
+            </div>
+            <div th:unless="${not #lists.isEmpty(reviews)}">
+                <div class="card">
+                    <div class="card-body">
+                        There are no reviews.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ab">
+            <div><a class="btn btn-warning" th:href="@{/moreReviews}">More</a></div>
+        </div>
+        <div>
+            <br>
+        </div>
+
+
+    </article>
+</section>
 <footer th:insert="layout/footer.html :: footer"></footer>
 
 </body>
