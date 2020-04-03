@@ -33,10 +33,10 @@ We use [GitHub](https://github.com/) for versioning. For the versions available,
 
 ## Authors
 
-* **Liene Apsalone** - *Initial work till finish*
-* **Krista Bokanova** - *Initial work till finish*
-* **Inna Tišina (Meškauska)** - *Initial work till finish*
-* **Anna Samborska** - *Initial work till finish*
+* **Liene Apsalone** - *Visual side of the web page*
+* **Krista Bokanova** - *Security, functionality, user service and authentication, login visualization, user and admin pages, visual side of the web page*
+* **Inna Tišina (Meškauska)**  -*Movie info gathering and showing work with API and it's response, comment and rating value input*
+* **Anna Samborska** - *Review info gathering, sorting and showing, review rating data gathering, storing and showing, visuals on website*
 
 ## Acknowledgments
 
