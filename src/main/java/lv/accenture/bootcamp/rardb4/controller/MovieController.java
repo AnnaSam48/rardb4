@@ -92,19 +92,21 @@ public class MovieController {
                 reviewToAdd.setUserId(userId);
                 reviewToAdd.setMovieID(id);
 
+                reviewRepository.save(reviewToAdd);
+
+                Movie movieToShow = movieAPIService.getMovieByID(id);
+
+                modelAndView.addObject("movie", movieToShow);
                 modelAndView.setViewName("movie-added");
-            }
+            }else {
 
 
             try {
                 List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
                 for (Review existingReview : existingReviews) {
                     if (existingReview.getUserId() == userId) {
-                        modelAndView.setViewName("same-movie-error");
                         throw new IllegalArgumentException();
-                    }
-
-                    else {
+                    } else {
 
                         reviewToAdd.setUsername(username);
                         reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
@@ -112,17 +114,21 @@ public class MovieController {
                         reviewToAdd.setUserId(userId);
                         reviewToAdd.setMovieID(id);
 
-                        reviewRepository.save(reviewToAdd);
+                        //  reviewRepository.save(reviewToAdd);
+
                         modelAndView.setViewName("movie-added");
 
                     }
                 }
             } catch (IllegalArgumentException e) {
                 modelAndView.setViewName("same-movie-error");
-            }
+
+            }}
 
 
         }
+
+        modelAndView.addObject("review", new Review());
         return modelAndView;
     }
 
