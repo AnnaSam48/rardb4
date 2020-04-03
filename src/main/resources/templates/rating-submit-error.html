@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="icon" type="image/png" href="/img/box-of-popcorn.png" />
+    <link rel="icon" type="image/png" href="/img/box-of-popcorn.png"/>
     <title>RARDB4 Review Submitting Error</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <style>
+        .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+    </style>
 </head>
 <body id="app-body" style="background-color: #dfebe9">
 <header th:insert="layout/header.html :: header"></header>
-<div class="container">
-    <h1>Sorry, you can't rate your own review or same review multiple times!</h1>
+<div class="center">
+    <div class="font-italic ">
+        <h5>Sorry, you can't rate your own review or same review multiple times!</h5>
+    </div>
 </div>
+
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>
 </html>
