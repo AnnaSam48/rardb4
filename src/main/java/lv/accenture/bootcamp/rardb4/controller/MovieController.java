@@ -73,20 +73,36 @@ public class MovieController {
     @PostMapping(value = "/add-review-search/add-review-movie/{id}")
     //Model and view for notification that submitted pops up at same page
     public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
+        //get  user
         ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserWithId userWithId = (UserWithId) auth.getPrincipal();
+        String username = userWithId.getUsername();
+        Long userId = userWithId.getUserId();
+
+
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("add-review-search");
         } else {
-
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            UserWithId userWithId = (UserWithId) auth.getPrincipal();
-            String username = userWithId.getUsername();
-            Long userId = userWithId.getUserId();
 
             if (!moviesRepository.existsById(id)) {
                 Movie movieToAdd = movieAPIService.getMovieByID(id);
                 moviesRepository.save(movieToAdd);
             }
+
+/*
+            //check if user has already has the review about this movie
+            try {
+                if (reviewRepository.findByReviewID(id).get().getUserId() == (userId)) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                modelAndView.addObject("successReview", "Sorry, you already made review about this movie. You can edit it, form user profile");
+                modelAndView.setViewName("add-review-search");
+
+            }
+
+ */
 
 
          /*   List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
