@@ -40,26 +40,24 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
 
+                .antMatchers("/reviews/**").permitAll()
+
                 .antMatchers("/updateUserInfo").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/userAth/**").permitAll()
                 .antMatchers("/password/forgot").permitAll()
-                .antMatchers("/profile/profile-reviews/**").permitAll()
+
                 .antMatchers("/forgot-password").permitAll()
-                .antMatchers("/moreReviews/**").permitAll()
-                .antMatchers("/reviews-on-movie/**").permitAll()
-                .antMatchers("/reviews-search/**").permitAll()
-                .antMatchers("/about-movie/**").permitAll()
-                .antMatchers("profile/profile-reviews/**").permitAll()
                 .antMatchers("/confirm-reset").permitAll()
                 .antMatchers("/reset-password").permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/error").permitAll()
-                .antMatchers("/reviews/delete-review/").authenticated()
+
+
+
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")
-                .antMatchers("/user/home/**").hasAuthority("USER")
-                .antMatchers("user/home/profile").hasAuthority("USER")
+
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()

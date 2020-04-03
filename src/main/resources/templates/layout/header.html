@@ -18,7 +18,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
-                <form class="form-inline my-2 my-lg-0" th:action="@{/reviews-search}" method="get">
+                <form class="form-inline my-2 my-lg-0" th:action="@{/reviews/reviews-search}" method="get">
                     <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"
                            class="form-control mr-sm-2" placeholder="Movie Title">
                     <button class="btn btn-light" type="submit">Search</button>
@@ -27,7 +27,6 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="/"><i class="fas fa-home"></i>Home
-                        <span class="sr-only">(current)</span>
                     </a>
                 </li>
 
@@ -35,14 +34,12 @@
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/user/home">
                         <i class="fas fa-user"></i>
-                        <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <!--new user -->
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAnonymous()" href="/registration">
                         <i class="fas fa-id-card"></i>New User
-                        <span class="sr-only">(current)</span>
                     </a>
                 </li>
             </ul>

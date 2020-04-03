@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 public class ConfirmationToken {
-	
+	private static final int EXPIRATION = 10;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="token_id")
@@ -14,7 +14,7 @@ public class ConfirmationToken {
 
 	@Column(name="confirmation_token")
 	private String confirmationToken;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 	

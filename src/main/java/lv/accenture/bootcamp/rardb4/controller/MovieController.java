@@ -137,7 +137,7 @@ public class MovieController {
         return "movie-added.html";
     }
 
-    @GetMapping("/about-movie/{id}")
+    @GetMapping("/reviews/about-movie/{id}")
     public String aboutMovie(@PathVariable String id, Model model) { //this id is the same id in URL
         Optional<Movie> movieToShow = moviesRepository.findById(id);
 

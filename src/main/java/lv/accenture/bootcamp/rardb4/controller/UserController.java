@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
+import lv.accenture.bootcamp.rardb4.configuration.SecurityConfiguration;
 import lv.accenture.bootcamp.rardb4.model.ReadyReview;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.model.User;
@@ -9,15 +10,20 @@ import lv.accenture.bootcamp.rardb4.repository.UserRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
 import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -85,18 +91,69 @@ public class UserController {
         return "user/edit-user";
     }
 
-    @PostMapping("user/home/profile/edit")
+    @PostMapping("user/home/profile/edit") //not working in the best way
     public String editUser(@Valid User editedUser, BindingResult bindResult, Principal principal) {
         User user = userService.findUserByUserName(principal.getName());
         Long userId = user.getId();
         editedUser.setId(userId);
         editedUser.setProfileIconURL("/static/img/500px-brands.svg");
-        if (bindResult.hasErrors()) {
-            return "user/edit-user";
-        }
+
+
+        editedUser.setUserName(user.getUserName());
         userService.saveUser(editedUser);
         return "redirect:/user/home/profile";
     }
 
+    @GetMapping("user/profile/updatePassword")
+    public String passwordChange(Model model, Principal principal) {
+        User user = userService.findUserByUserName(principal.getName());
+        Long userId = user.getId();
+        User userToEdit = userRepository.findById(userId);
+        model.addAttribute("user", userToEdit);
+        return "user/updatePassword";
+    }
+
+
+ /*   @PostMapping("user/profile/updatePassword")
+    public String changeUserPassword(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userService.findUserByUserName(auth.getName());
+
+        currentUser.setId(currentUser.getId());
+
+        SecurityConfiguration securityConfig = new SecurityConfiguration();
+        PasswordEncoder passwordEncoders =
+                PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+        String password = currentUser.getPassword();
+        String newPassword =currentUser.getPassword();
+        String confirmPassword =currentUser.getPassword();
+
+        if (null != newPassword)
+            if (passwordEncoders.matches(newPassword, confirmPassword)) {
+                if (password != null && !password.isEmpty() && !password.equals("")) {
+                    currentUser.setPassword(delegatingPasswordEncoder.encode(newPassword));
+
+                }
+                currentUser.setEmail(currentUser.getEmail());
+            } else {
+                return "/error";
+            }
+
+
+        currentUser.setName(currentUser.getName());
+        currentUser.setLastName(currentUser.getLastName());
+        currentUser.setUserName(currentUser.getUserName());
+
+
+        userService.saveUser(currentUser);
+
+
+        //user.setPassword(delegatingPasswordEncoder.encode(user.getPassword()));
+        //userService.saveUser(user);
+        return "redirect:/user/home/profile";
+        //new GenericResponse(messages.getMessage("message.updatePasswordSuc", null, locale));
+    }
+*/
 
 }

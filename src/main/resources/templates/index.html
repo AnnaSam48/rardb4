@@ -43,7 +43,7 @@ img#men{
             <!--Movie line-->
             <ul id="menu" class="column">
                 <li th:each="review:${allMovies}">
-                    <a th:href="@{/about-movie/{id}(id=${review.movieID})}">
+                    <a th:href="@{/reviews/about-movie/{id}(id=${review.movieID})}">
                         <img id="men" th:src="${review.moviePicture}"></a>
                 </li>
             </ul>
@@ -51,7 +51,7 @@ img#men{
 
         <!--all movies, by rating button -->
         <div>
-            <a class="btn btn-light" th:href="@{/movies}">All Movies</a>
+            <a class="btn btn-light" th:href="@{/reviews/movies}">All Movies</a>
         </div>
         <!--Top 5 reviews-->
         <div class="container">
@@ -68,19 +68,19 @@ img#men{
                     </tr>
                     <tr th:each="review: ${reviews}">
                         <td>
-                            <a class="small" th:href="@{/about-movie/{id}(id=${review.movieID})}"
+                            <a class="small" th:href="@{/reviews/about-movie/{id}(id=${review.movieID})}"
                                th:text="${review.movieTitle}" style="color:black"></a>
                         </td>
                         <td><img th:src="${review.moviePicture}" height="100"/></td>
                         <td class="small" th:text="${review.reviewRating}"/>
                         <td>
-                            <a th:href="@{profile/profile-reviews/{username}(username=${review.username})}">
+                            <a th:href="@{/reviews/profile/profile-reviews/{username}(username=${review.username})}">
                                 <span class="small" th:text="${review.username}"></span>
                             </a>
                         </td>
                         <td class="small" th:text="${review.reviewTitle}"/>
                         <td>
-                            <a th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+                            <a th:href="@{/reviews/reviews-search/rate-review/{id}(id=${review.reviewID})}"
                                type="button" :focus style="border:none!important"
                                class="btn btn-outline-dark" th:text="${review.reviewText}">
                             </a>
@@ -98,7 +98,7 @@ img#men{
         </div>
 <!--more reviews -->
         <div>
-            <div><a class="btn btn-info" th:href="@{/moreReviews}">More</a></div>
+            <div><a class="btn btn-info" th:href="@{/reviews/moreReviews}">More</a></div>
         </div>
         <div>
             <br>

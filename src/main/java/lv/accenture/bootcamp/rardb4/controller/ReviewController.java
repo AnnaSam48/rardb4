@@ -40,7 +40,7 @@ public class ReviewController {
         return "redirect:/user/home/reviews";
     }
 
-    @GetMapping("/reviews-search")
+    @GetMapping("/reviews/reviews-search")
     public String searchReviewsByMovieTitle(@RequestParam String movieTitle, Model model) {
         List<Review> matchedReviews = reviewRepository.findByMovieTitle(movieTitle);
 

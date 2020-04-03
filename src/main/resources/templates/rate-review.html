@@ -56,7 +56,7 @@
     <!--Add Review form-->
     <div>
         <form action="#"
-              th:action="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+              th:action="@{/reviews/reviews-search/rate-review/{id}(id=${review.reviewID})}"
               th:object="${rating}" method="post">
 
             <div class="form-group col-md-8" sec:authorize="isAuthenticated()">
@@ -84,7 +84,7 @@
     <!--Add comment Form-->
     <div>
         <form action="#" sec:authorize="isAuthenticated()"
-              th:action="@{/reviews-search/rate-review/comment/{id}(id=${review.reviewID})}"
+              th:action="@{/reviews/reviews-search/rate-review/comment/{id}(id=${review.reviewID})}"
               th:object="${commentOb}" method="post">
             <div class="row">
                 <div class="form-group col-md-8">

@@ -31,7 +31,7 @@ public class CommentController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/reviews-search/rate-review/comment/{id}")
+    @PostMapping("/reviews/reviews-search/rate-review/comment/{id}")
     public String addComment(@PathVariable Long id, @Valid Comment commentToAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "rate-review";
@@ -44,7 +44,7 @@ public class CommentController {
         commentToAdd.setUsername(username);
         commentRepository.save(commentToAdd);
 
-        String path = "redirect:/reviews-search/rate-review/" + id.toString();
+        String path = "redirect:/reviews/reviews-search/rate-review/" + id.toString();
 
         return path;
     }

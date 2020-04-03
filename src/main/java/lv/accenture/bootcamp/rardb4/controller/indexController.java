@@ -30,7 +30,7 @@ public class indexController {
     }
 
 
-    @GetMapping("/movies")
+    @GetMapping("/reviews/movies")
     public String bestMovies(Model model) {
 
         //Create a table with all movies by user rating
@@ -40,7 +40,7 @@ public class indexController {
     }
 
 
-    @GetMapping("/moreReviews")
+    @GetMapping("/reviews/moreReviews")
     public String getMoreReviews(Model model) {
         //Create a table with all reviews
         List<Review> bestReviews = reviewRepository.findAllByOrderByReviewRatingDesc();
