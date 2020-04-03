@@ -47,6 +47,7 @@ article {
 
 
 
+
     </style>
 
 </head>
@@ -90,7 +91,6 @@ article {
                         <input type="text" th:field="*{email}" class="form-control" id="email">
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"/>
                         <br>
-
                         <label for="password" class="col-form-label">To eddit user, you have to change Password:</label>
                         <input type="password" th:field="*{password}" class="form-control" id="password">
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"/>
