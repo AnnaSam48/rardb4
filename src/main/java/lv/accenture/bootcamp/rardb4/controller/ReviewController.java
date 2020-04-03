@@ -1,7 +1,7 @@
 
 package lv.accenture.bootcamp.rardb4.controller;
 
-import lv.accenture.bootcamp.rardb4.model.Comment;
+
 import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.ReadyReview;
 import lv.accenture.bootcamp.rardb4.model.Review;
@@ -9,13 +9,10 @@ import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
+
 import java.util.*;
 
 @Controller

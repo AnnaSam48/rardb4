@@ -54,7 +54,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/admin/home")
+    @GetMapping(value = "/admin/home") //didn't have extra time to make admin interface
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

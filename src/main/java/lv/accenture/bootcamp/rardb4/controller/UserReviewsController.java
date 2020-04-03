@@ -6,7 +6,6 @@ import lv.accenture.bootcamp.rardb4.model.User;
 import lv.accenture.bootcamp.rardb4.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb4.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb4.service.UserService;
-import lv.accenture.bootcamp.rardb4.service.UserWithId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
