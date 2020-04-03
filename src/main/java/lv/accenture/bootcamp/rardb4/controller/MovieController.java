@@ -105,7 +105,9 @@ public class MovieController {
                     List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
                     for (Review existingReview : existingReviews) {
                         if (existingReview.getUserId() == userId) {
-                            throw new IllegalArgumentException();
+                            modelAndView.setViewName("same-movie-error");
+                           // throw new IllegalArgumentException();
+                            return modelAndView;
                         } else {
 
                             reviewToAdd.setUsername(username);
