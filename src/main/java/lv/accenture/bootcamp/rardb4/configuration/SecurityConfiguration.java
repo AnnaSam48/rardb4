@@ -14,6 +14,4 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Bean
     public DelegatingPasswordEncoder passwordEncoder(){return (DelegatingPasswordEncoder) passwordEncoders;}
-
-
 }
