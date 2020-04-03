@@ -103,6 +103,7 @@ public class MovieController {
 
                 try {
                     List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
+
                     for (Review existingReview : existingReviews) {
                         if (existingReview.getUserId() == userId) {
                             throw new IllegalArgumentException();
@@ -115,21 +116,18 @@ public class MovieController {
                             reviewToAdd.setUserId(userId);
                             reviewToAdd.setMovieID(id);
 
-                            //  reviewRepository.save(reviewToAdd);
-
                             modelAndView.setViewName("movie-added");
-
                         }
                     }
+                    reviewRepository.save(reviewToAdd);
+
                 } catch (IllegalArgumentException e) {
                     modelAndView.setViewName("same-movie-error");
 
                 }}
-
-
         }
 
-        modelAndView.addObject("review", new Review());
+        //modelAndView.addObject("review", new Review());
         return modelAndView;
     }
 
