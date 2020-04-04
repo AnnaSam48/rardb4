@@ -7,7 +7,7 @@ This program uses OMDB API to gather information about movie and store it in int
 ### Prerequisites
 
 This aplication needs latest maven version installed as well as Spring Thymleaf, 
-Spring Web Services (JPA), MySQLServer, Spring Security;
+Spring Web Services (JPA), MySQLServer, Spring Security.
 To be able to launch the app, you need to make rardb4 database with query: "CREAT DATABASE rardb4"
 Also you'll need to acquire OMDB API key and store it in application.properties file.
 
