@@ -12,7 +12,7 @@ To be able to launch the app, you need to make rardb4 database with query: "CREA
 Also you'll need to acquire OMDB API key and store it in application.properties file.
 
 Note! There already added datbase in main/resources/data.sql for your conveniece, that you can use. Simply uncomment and run it 
-step by step.
+step by step. Password = username.
 
 ## Built With
 
