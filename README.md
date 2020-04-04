@@ -20,7 +20,7 @@ step by step. password = username.
 * [Eclipse](https://www.eclipse.org/downloads/packages/release/kepler/sr1/eclipse-ide-java-developers) -  integrated development 
   environment  for Java.
 * [Java](https://java.com/en/download/faq/develop.xml) - Dependency Management.
-* [MySQLServer](https://dev.mysql. com/downloads/mysql/) - Open Source SQL database management system.
+* [MySQLServer](https://dev.mysql.com) - Open Source SQL database management system.
 * [Spring Security](https://spring.io/projects/spring-security) - Spring Security is a powerful and highly customizable
   authentication and access-control framework.
 * [Spring Web Services](https://spring.io/projects/spring-ws) - Spring Web Services (Spring-WS) is a product of the Spring
