@@ -55,13 +55,6 @@ public class UserReviewsController {
     @PostMapping("/user/home/reviews-search/edit-review/{id}")
     public String editReview(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
         editedReview.setReviewID(id);
-        editedReview.setUserId(editedReview.getUserId());
-        editedReview.setUsername(editedReview.getUsername());
-//        editedReview.setMovieID(editedReview.getMovieID());
-//        editedReview.setMovieTitle(editedReview.getMovieTitle());
-//        editedReview.setMoviePicture(editedReview.getMoviePicture());
-//        editedReview.setReviewRating(editedReview.getReviewRating());
-
         if (bindResult.hasErrors()) {
             return "user/edit-review";
         }

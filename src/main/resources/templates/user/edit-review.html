@@ -50,10 +50,17 @@ article {
     <h1>Edit Review</h1>
 
   <form
-          th:action="@{/user/home/reviews-search/edit-review/{id}}"
+          th:action="@{/user/home/reviews-search/edit-review/{id}(id=${review.reviewID})}"
           th:object="${review}" method="post">
         <div class="row">
             <div class="form-group col-md-8">
+                <input type="hidden" th:field="${review.movieID}"class="form-control" id="movieID">
+                <input type="hidden" th:field="${review.movieTitle}"class="form-control" id="movieTitle">
+                <input type="hidden" th:field="${review.moviePicture}" class="form-control" id="moviePicture">
+                <input type="hidden" th:field="${review.reviewRating}" class="form-control" id="reviewRating">
+                <input type="hidden" th:field="${review.username}" class="form-control" id="username">
+                <input type="hidden" th:field="${review.userId}"class="form-control" id="userId">
+
 
                 <label for="userRatingForMovie" class="col-form-label">Rate movie:</label>
                 <input type="text" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
