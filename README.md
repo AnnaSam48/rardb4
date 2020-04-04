@@ -42,7 +42,7 @@ We use [GitHub](https://github.com/) for versioning. For the versions available,
 * **Liene Apsalone** - *Visual side of the web page*
 * **Krista Bokanova** - *Security, functionality, user service and authentication, login visualization, user and admin pages, review editing functionality, SQL queries, visual side of the web page*
 * **Inna Tišina (Meškauska)**  -*Movie info gathering and showing work with API and it's response,movie info page, comment and rating value input, SQL queries, visuals on website*
-* **Anna Samborska** - *Review info gathering, sorting and showing, review rating data gathering, storing and showing, SQL queries, visuals on website,  readme file writting*
+* **Anna Samborska** - *Review info gathering, sorting and showing, review editting functionality, review rating data gathering, storing and showing, SQL queries, visuals on website, readme file writting*
 
 ## Acknowledgments
 
