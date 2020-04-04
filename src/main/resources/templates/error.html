@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
+    <style>
+        .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+    </style>
 </head>
 <body style="background-color: #dfebe9">
 <header th:insert="layout/header.html :: header"></header>
-<div class="container" align="center">
-    <h4>Error occurred</h4>
-    <p>
-        An error has occurred. Please contact the administrator
-    </p>
+<div class="center">
+
+    <div class="font-italic ">
+        <h5>Error occurred<!<br><br><br> Please contact the administrator.</h5>
+    </div>
 </div>
 <footer th:insert="layout/footer.html :: footer"></footer>
 </body>

@@ -19,12 +19,6 @@ import java.text.SimpleDateFormat;
 @Controller
 public class CommentController {
 
-    @Value("${simple.date.format}")
-    private String dateformat;
-
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private CommentRepository commentRepository;
 

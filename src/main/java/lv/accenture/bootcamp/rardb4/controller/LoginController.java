@@ -37,6 +37,7 @@ public class LoginController {
 
     @Autowired
     private EmailSenderService emailSenderService;
+
     @Autowired
     private DelegatingPasswordEncoder delegatingPasswordEncoder;
 
@@ -47,7 +48,7 @@ public class LoginController {
         return modelAndView;
     }
 
-
+//register user
     @GetMapping(value = "/identity/registration")
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
@@ -56,7 +57,7 @@ public class LoginController {
         modelAndView.setViewName("userAth/registration");
         return modelAndView;
     }
-
+    //register user
     @PostMapping(value = "/identity/registration")
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
@@ -81,6 +82,10 @@ public class LoginController {
     }
 
 
+
+    //change password life cycle
+
+
     @RequestMapping(value = "/identity/password/forgot", method = RequestMethod.GET)
     public ModelAndView displayResetPassword(ModelAndView modelAndView, User user) {
         modelAndView.addObject("user", user);
@@ -100,6 +105,8 @@ public class LoginController {
             mailMessage.setTo(existingUser.getEmail());
             mailMessage.setSubject("Complete Password Reset!");
             mailMessage.setFrom("javafunboot@gmail.com");
+
+            //message that is sent (with link)
             mailMessage.setText("To complete Your password reset process, please follow the link: "
                     + "http://localhost:8080/identity/confirm-reset?token=" + confirmationToken.getConfirmationToken());
             emailSenderService.sendEmail(mailMessage);

@@ -25,20 +25,17 @@ import java.util.*;
 @Controller
 public class RatingController {
 
-    @Autowired
-    UserRepository userRepository;
+
 
     @Autowired
     private CommentRepository commentRepository;
 
-    @Autowired
-    private MovieRepository movieRepository;
+
 
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @Autowired
-    private UserService userService;
+
 
     @Autowired
     private RatingRepository ratingRepository;
