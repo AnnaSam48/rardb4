@@ -106,7 +106,6 @@ public class MovieController {
                     for (Review existingReview : existingReviews) {
                         if (existingReview.getUserId() == userId) {
                             modelAndView.setViewName("same-movie-error");
-                           // throw new IllegalArgumentException();
                             return modelAndView;
                         } else {
 
@@ -115,8 +114,6 @@ public class MovieController {
                             reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
                             reviewToAdd.setUserId(userId);
                             reviewToAdd.setMovieID(id);
-
-                            //  reviewRepository.save(reviewToAdd);
 
                             modelAndView.setViewName("movie-added");
 

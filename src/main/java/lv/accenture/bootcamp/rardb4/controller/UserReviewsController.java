@@ -50,14 +50,20 @@ public class UserReviewsController {
         model.addAttribute("review", reviewToEdit.get());
         return "user/edit-review";
     }
+    //
 
     @PostMapping("/user/home/reviews-search/edit-review/{id}")
     public String editReview(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        String username = user.getUserName();
-        editedReview.setUsername(username);
         editedReview.setReviewID(id);
+        editedReview.setUserId(editedReview.getUserId());
+        editedReview.setUsername(editedReview.getUsername());
+        editedReview.setMovieID(editedReview.getMovieID());
+        editedReview.setMovieTitle(editedReview.getMovieTitle());
+        editedReview.setMoviePicture(editedReview.getMoviePicture());
+        editedReview.setReviewRating(editedReview.getReviewRating());
+        editedReview.getReviewText();
+        editedReview.getReviewText();
+        editedReview.getUserRatingForMovie();
         if (bindResult.hasErrors()) {
             return "user/edit-review";
         }
