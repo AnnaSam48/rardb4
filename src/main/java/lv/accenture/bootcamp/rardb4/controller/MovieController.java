@@ -132,7 +132,7 @@ public class MovieController {
             reviewToAdd.setUserId(userId);
             reviewToAdd.setMovieID(id);
 
-            //  reviewRepository.save(reviewToAdd);
+             reviewRepository.save(reviewToAdd);
 
             modelAndView.setViewName("movie-added");
 

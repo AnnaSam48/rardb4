@@ -7,12 +7,12 @@
     <title>RARDB4 About Movie</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/92d7fa70c9.js" crossorigin="anonymous"></script>
 </head>
 <body style="background-color: #dfebe9">
 <header th:insert="layout/header.html :: header"> </header>
+
 <div class="container">
     <!--Info about movie-->
     <div class="row">
@@ -84,7 +84,7 @@
                 <td>
                     <div>
                         <a class="btn btn-info" sec:authorize="isAuthenticated()"
-                           th:href="@{/reviews-search/rate-review/{id}(id=${review.reviewID})}">
+                           th:href="@{/reviews/reviews-search/rate-review/{id}(id=${review.reviewID})}">
                             Rate</a>
                     </div></td>
             </tr>
