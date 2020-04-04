@@ -1,7 +1,7 @@
 # RARDB4 Group's She Goes Tech Java Bootcamp final work - movie review website.
 This is movie review website, that lets it's users read movie reviews from other users, read basic info about movies, that have been writen the 
 review about. If user is a registered he/she/nb can write reviews, rate the movies, they've seen, rate other user's reviews and comment on
-them, they can look at other users profile and therefore get inspiration choosing their next movie.
+them, they can look at other user's profile and therefore get inspiration choosing their next movie.
 This program uses [OMDB API key](http://www.omdbapi.com/apikey.aspx) to gather information about movie and store it in internal database.
 
 ### Prerequisites
