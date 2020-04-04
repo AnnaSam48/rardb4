@@ -23,7 +23,7 @@ public class User {
     @Column(name = "user_id")
     private Long id;
     @Column(name = "user_name")
-    @Length(min = 5, message = "*Your user name must have at least 5 characters")
+    @Length(min = 5, max=200, message = "*Your user name must have at least 5 characters")
     @NotEmpty(message = "*Please provide a user name")
     private String userName;
     @Column(name = "email")
@@ -31,7 +31,7 @@ public class User {
     @NotEmpty(message = "*Please provide an email")
     private String email;
     @Column(name = "password")
-    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @Length(min = 5, max=200, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
     private String password;
     @Column(name = "name")
@@ -52,9 +52,9 @@ public class User {
         this.userName=userName;
     }
 
-    public User(Long id, @Length(min = 5, message = "*Your user name must have at least 5 characters") @NotEmpty(message = "*Please provide a user name")
+    public User(Long id, @Length(min = 5, max=200, message = "*Your user name must have at least 5 characters") @NotEmpty(message = "*Please provide a user name")
             String userName, @Email(message = "*Please provide a valid Email")@NotEmpty(message = "*Please provide an email")
-            String email, @Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password")
+            String email, @Length(min = 5, max=200, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password")
             String password, @NotEmpty(message = "*Please provide your name") String name, @NotEmpty(message = "*Please provide your last name") String lastName,
                 Boolean active, String profileIconURL, Set<Role> roles) {
         this.id = id;

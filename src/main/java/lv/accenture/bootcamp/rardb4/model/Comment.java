@@ -29,7 +29,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Long id, Long reviewID, String text, String username, Timestamp timeStamp) {
+    public Comment(Long id, Long reviewID,@Length(max=65535, message = "*Your comment can't be longer than 65,535 characters.") String text, String username, Timestamp timeStamp) {
         this.id = id;
         this.reviewID = reviewID;
         this.text = text;

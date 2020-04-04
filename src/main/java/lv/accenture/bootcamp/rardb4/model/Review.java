@@ -5,8 +5,6 @@ import org.hibernate.validator.constraints.Length;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 
 
 @Entity
@@ -22,7 +20,7 @@ public class Review implements Serializable {
     private String movieTitle;
     private String moviePicture;
     @Column(columnDefinition = "text", nullable=false)
-    @Length(min =2, max=65535, message = "*Your review should be at least two characters long, but no longer than 65,535 characters.")
+    @Length(min =2, max=65535, message = "*Your review should be at least two characters long, but no longer than 65 535 characters.")
     @NotEmpty(message = "*Please type in your review")
     private String reviewText;
     private int userRatingForMovie;
@@ -34,11 +32,11 @@ public class Review implements Serializable {
     public Review() {
     }
 
-    public Review(Long reviewID, @Length(min = 2,
-                  message = "*Your review title should be at least two characters long.")
+    public Review(Long reviewID, @Length(min = 2, max=200,
+                  message = "*Your review title should be at least two characters long, but no longer than 200 characters.")
                   @NotEmpty(message = "*Please type in your review title") String reviewTitle,
-                  String movieID, @Length(min = 2, message = "*Your review should be at least two characters long.")
-                  @NotEmpty(message = "*Please type in your review") String reviewText,
+                  String movieID, @Length(min = 2, max=65535, message = "*Your review should be at least two characters long," +
+                   "but no longer than 65 535 characters.") @NotEmpty(message = "*Please type in your review") String reviewText,
                   int userRatingForMovie, String username, Long userId, int reviewRating) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
