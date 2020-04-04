@@ -1,7 +1,10 @@
 package lv.accenture.bootcamp.rardb4.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
@@ -11,11 +14,15 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
+    @Length(min =2, message = "*Your review title should be at least two characters long.")
+    @NotEmpty(message = "*Please type in your review title")
     private String reviewTitle;
     private String movieID;
     private String movieTitle;
     private String moviePicture;
     @Column(columnDefinition = "text", nullable=false)
+    @Length(min =2, message = "*Your review should be at least two characters long.")
+    @NotEmpty(message = "*Please type in your review")
     private String reviewText;
     private int userRatingForMovie;
     private String username;
@@ -26,9 +33,12 @@ public class Review implements Serializable {
     public Review() {
     }
 
-    public Review(Long reviewID, String reviewTitle, String movieID, String reviewText,
-                  int userRatingForMovie, String username, Long userId, int reviewRating,
-                  int movieRating) {
+    public Review(Long reviewID, @Length(min = 2,
+                  message = "*Your review title should be at least two characters long.")
+                  @NotEmpty(message = "*Please type in your review title") String reviewTitle,
+                  String movieID, @Length(min = 2, message = "*Your review should be at least two characters long.")
+                  @NotEmpty(message = "*Please type in your review") String reviewText,
+                  int userRatingForMovie, String username, Long userId, int reviewRating) {
         this.reviewID = reviewID;
         this.reviewTitle = reviewTitle;
         this.movieID = movieID;

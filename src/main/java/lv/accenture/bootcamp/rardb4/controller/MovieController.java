@@ -75,7 +75,7 @@ public class MovieController {
     public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("add-review-search");
+            modelAndView.setViewName("input-text-error");
         } else {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
