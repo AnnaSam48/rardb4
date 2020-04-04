@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+
 @Controller
 public class UserReviewsController {
 
@@ -52,9 +53,25 @@ public class UserReviewsController {
     }
     //
 
-    @PostMapping("/user/home/reviews-search/edit-review/{id}")
+    @PostMapping("/user/home/reviews-search/edit-review/{id}") //edit Review is working
     public String editReview(@PathVariable Long id, @Valid Review editedReview, BindingResult bindResult) {
+
+        Review oldReview = reviewRepository.findById(id).get(); //getting an old Review to get all additional values from it (which we don't have in the html form)
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        String username = user.getUserName();
+        Long userId = user.getId();
+
         editedReview.setReviewID(id);
+        editedReview.setMovieID(oldReview.getMovieID());
+        editedReview.setUsername(username);
+        editedReview.setMoviePicture(oldReview.getMoviePicture());
+        editedReview.setMovieTitle(oldReview.getMovieTitle());
+        editedReview.setUsername(oldReview.getUsername());
+        editedReview.setUserId(userId);
+
+
         if (bindResult.hasErrors()) {
             return "user/edit-review";
         }

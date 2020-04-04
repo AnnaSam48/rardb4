@@ -75,7 +75,7 @@ public class MovieController {
     public ModelAndView addReview(@PathVariable String id, @Valid Review reviewToAdd, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("input-text-error");
+            modelAndView.setViewName("add-review-search");
         } else {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -103,40 +103,32 @@ public class MovieController {
 
                 try {
                     List<Review> existingReviews = reviewRepository.findAllByMovieID(id);
+
                     for (Review existingReview : existingReviews) {
                         if (existingReview.getUserId() == userId) {
-                            modelAndView.setViewName("same-movie-error");
-                            return modelAndView;
+                            throw new IllegalArgumentException();
                         } else {
 
+                            Movie movie = moviesRepository.findByImdbID(id);
                             reviewToAdd.setUsername(username);
-                            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-                            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
+                            reviewToAdd.setMoviePicture(movie.getPoster());
+                            reviewToAdd.setMovieTitle(movie.getTitle());
                             reviewToAdd.setUserId(userId);
                             reviewToAdd.setMovieID(id);
 
                             modelAndView.setViewName("movie-added");
-
                         }
                     }
+                    reviewRepository.save(reviewToAdd);
+
+
                 } catch (IllegalArgumentException e) {
                     modelAndView.setViewName("same-movie-error");
 
                 }}
-            reviewToAdd.setUsername(username);
-            reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
-            reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
-            reviewToAdd.setUserId(userId);
-            reviewToAdd.setMovieID(id);
-
-             reviewRepository.save(reviewToAdd);
-
-            modelAndView.setViewName("movie-added");
-
-
         }
 
-        modelAndView.addObject("review", new Review());
+        //modelAndView.addObject("review", new Review());
         return modelAndView;
     }
 
