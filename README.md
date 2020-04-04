@@ -39,12 +39,13 @@ We use [GitHub](https://github.com/) for versioning. For the versions available,
 ## Authors
 
 * **Liene Apsalone** - *Visual side of the web page*
-* **Krista Bokanova** - *Security, functionality, user service and authentication, login visualization, user and admin pages,review editting functionallity, visual side of the web page*
-* **Inna Tišina (Meškauska)**  -*Movie info gathering and showing work with API and it's response,movie info page, comment and rating value input, visuals on website*
-* **Anna Samborska** - *Review info gathering, readme file writting, sorting and showing, review rating data gathering, storing and showing, visuals on website*
+* **Krista Bokanova** - *Security, functionality, user service and authentication, login visualization, user and admin pages, review editting functionallity, SQL queries, visual side of the web page*
+* **Inna Tišina (Meškauska)**  -*Movie info gathering and showing work with API and it's response,movie info page, comment and rating value input, SQL queries, visuals on website*
+* **Anna Samborska** - *Review info gathering, sorting and showing, review rating data gathering, storing and showing, SQL queries, visuals on website,  readme file writting*
 
 ## Acknowledgments
 
 * **Jurijs Grabovskis** - *SGT Java 1st & 2nd group teacher and mentor and major help with this project*
+* **Zanda Dāme** - *SGT project coordinator at Accenture keeping team up date with all the info and makeing sure that the team had everything they needed from technical and support side*  
 * **[Accenture Latvia](https://www.accenture.com/lv-en)** - *provider of the opportunity to learn how to make this project*
 * **[Riga TechGirls](http://www.rigatechgirls.org/)** - *provider of the opportunity to learn how to make this project* 
