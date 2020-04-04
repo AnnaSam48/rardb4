@@ -11,7 +11,7 @@ Spring Web Services (JPA), MySQLServer, Spring Security;
 To be able to launch the app, you need to make rardb4 database with query: "CREAT DATABASE rardb4"
 Also you'll need to acquire OMDB API key and store it in application.properties file.
 
-Note! There already added datbase in main/resources/data.sql for your conveniece, that you can use. Simply uncomment and run it 
+Note! There is already added datbase in main/resources/data.sql for your conveniece, that you can use. Simply uncomment and run it 
 step by step. password = username.
 
 ## Built With
