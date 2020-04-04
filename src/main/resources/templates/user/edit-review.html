@@ -50,7 +50,7 @@ article {
     <h1>Edit Review</h1>
 
   <form
-          th:action="@{/reviews/reviews-search/rate-review/{id}(id=${review.reviewID})}"
+          th:action="@{/user/home/reviews-search/edit-review/{id}(id=${review.reviewID})}"
           th:object="${review}" method="post">
         <div class="row">
             <div class="form-group col-md-8">
@@ -71,6 +71,8 @@ article {
             </div>
         </div>
     </form>
+
+
 </div>
 </section>
 <footer th:insert="layout/footer.html :: footer"></footer>
