@@ -1,15 +1,16 @@
 # RARDB4 Group's She Goes Tech Java Bootcamp final work - movie review website.
 This is movie review website, that lets it's users read movie reviews from other users, read basic info about movies, that have been writen the 
-review about. If user is a registered user he/she/nb can write reviews, rate the movies, they've seen, rate other user's reviews and comment on
+review about. If user is a registered he/she/nb can write reviews, rate the movies, they've seen, rate other user's reviews and comment on
 them, they can look at other users profile and therefore get inspiration choosing their next movie.
 This program uses [OMDB API key](http://www.omdbapi.com/apikey.aspx) to gather information about movie and store it in internal database.
 
 ### Prerequisites
 
 This aplication needs latest maven version installed as well as Spring Thymleaf, 
-Spring Web Services (JPA), MySQLServer, Spring Security.
+Spring Web Services (JPA), MySQLServer, Spring Security, JavaJDK.
 To be able to launch the app, you need to make rardb4 database with query: "CREAT DATABASE rardb4"
 Also you'll need to acquire OMDB API key and store it in application.properties file.
+
 
 Note! There is already added datbase in main/resources/data.sql for your conveniece, that you can use. Simply uncomment and run it 
 step by step. Password to already created users account = username.
@@ -39,7 +40,7 @@ We use [GitHub](https://github.com/) for versioning. For the versions available,
 ## Authors
 
 * **Liene Apsalone** - *Visual side of the web page*
-* **Krista Bokanova** - *Security, functionality, user service and authentication, login visualization, user and admin pages, review editting functionallity, SQL queries, visual side of the web page*
+* **Krista Bokanova** - *Security, functionality, user service and authentication, login visualization, user and admin pages, review editing functionality, SQL queries, visual side of the web page*
 * **Inna Tišina (Meškauska)**  -*Movie info gathering and showing work with API and it's response,movie info page, comment and rating value input, SQL queries, visuals on website*
 * **Anna Samborska** - *Review info gathering, sorting and showing, review rating data gathering, storing and showing, SQL queries, visuals on website,  readme file writting*
 
