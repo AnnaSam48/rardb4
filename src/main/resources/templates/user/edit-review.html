@@ -62,8 +62,21 @@ article {
                 <input type="hidden" th:field="${review.userId}"class="form-control" id="userId">
 
 
-                <label for="userRatingForMovie" class="col-form-label">Rate movie:</label>
-                <input type="text" th:field="*{userRatingForMovie}" class="form-control" id="userRatingForMovie">
+       
+                    <label for="userRatingForMovie" class="col-form-label">Rate movie (1-10)</label>
+                    <select th:field="*{userRatingForMovie}" id="userRatingForMovie">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 <label for="reviewTitle" class="col-form-label">Review Title:</label>
                 <input type="text" th:field="*{reviewTitle}" class="form-control" id="reviewTitle">
                 <span th:if="${#fields.hasErrors('reviewTitle')}" th:errors="*{reviewTitle}" class="text-danger"/>
