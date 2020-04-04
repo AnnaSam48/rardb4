@@ -57,13 +57,11 @@ public class UserReviewsController {
         editedReview.setReviewID(id);
         editedReview.setUserId(editedReview.getUserId());
         editedReview.setUsername(editedReview.getUsername());
-        editedReview.setMovieID(editedReview.getMovieID());
-        editedReview.setMovieTitle(editedReview.getMovieTitle());
-        editedReview.setMoviePicture(editedReview.getMoviePicture());
-        editedReview.setReviewRating(editedReview.getReviewRating());
-        editedReview.getReviewText();
-        editedReview.getReviewText();
-        editedReview.getUserRatingForMovie();
+//        editedReview.setMovieID(editedReview.getMovieID());
+//        editedReview.setMovieTitle(editedReview.getMovieTitle());
+//        editedReview.setMoviePicture(editedReview.getMoviePicture());
+//        editedReview.setReviewRating(editedReview.getReviewRating());
+
         if (bindResult.hasErrors()) {
             return "user/edit-review";
         }
