@@ -1,6 +1,7 @@
 package lv.accenture.bootcamp.rardb4.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Comment implements Serializable {
     private Long reviewID;
 
     @Column(name = "comment_text", columnDefinition = "text")
+    @Length(max=65535, message = "*Your comment can't be longer than 65,535 characters.")
     private String text;
     @Column(name ="comment_username")
     private String username;

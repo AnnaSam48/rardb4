@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 
 @Entity
@@ -14,14 +15,14 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reviewID;
-    @Length(min =2, message = "*Your review title should be at least two characters long.")
+    @Length(min =2, max=200, message = "*Your review title should be at least two characters long, but no longer than 200 characters.")
     @NotEmpty(message = "*Please type in your review title")
     private String reviewTitle;
     private String movieID;
     private String movieTitle;
     private String moviePicture;
     @Column(columnDefinition = "text", nullable=false)
-    @Length(min =2, message = "*Your review should be at least two characters long.")
+    @Length(min =2, max=65535, message = "*Your review should be at least two characters long, but no longer than 65,535 characters.")
     @NotEmpty(message = "*Please type in your review")
     private String reviewText;
     private int userRatingForMovie;
