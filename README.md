@@ -2,7 +2,7 @@
 This is movie review website, that lets it's users read movie reviews from other users, read basic info about movies, that have been writen the 
 review about. If user is a registered user he/she/nb can write reviews, rate the movies, they've seen, rate other user's reviews and comment on
 them, they can look at other users profile and therefore get inspiration choosing their next movie.
-This program uses OMDB API to gather information about movie and store it in internal database.
+This program uses [OMDB API](http://www.omdbapi.com/) to gather information about movie and store it in internal database.
 
 ### Prerequisites
 
@@ -12,7 +12,7 @@ To be able to launch the app, you need to make rardb4 database with query: "CREA
 Also you'll need to acquire OMDB API key and store it in application.properties file.
 
 Note! There is already added datbase in main/resources/data.sql for your conveniece, that you can use. Simply uncomment and run it 
-step by step. password = username.
+step by step. Password to already created users account = username.
 
 ## Built With
 
