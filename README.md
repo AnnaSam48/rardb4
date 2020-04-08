@@ -35,7 +35,7 @@ on the site are contributed and maintained by our users.
 ## Versioning
 
 We use [GitHub](https://github.com/) for versioning. For the versions available, see the
-[tags on this repository](https://github.com/AnnaSam48/ProjectX). 
+[tags on this repository](https://github.com/AnnaSam48/rardb4). 
 
 ## Authors
 
