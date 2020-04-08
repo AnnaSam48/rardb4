@@ -89,7 +89,9 @@ public class MovieController {
                 reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
                 reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
                 reviewToAdd.setAlreadyRatedThisReview("");
-                setReviewDetails(id, reviewToAdd, username, userId);
+                reviewToAdd.setUsername(username);
+                reviewToAdd.setUserId(userId);
+                reviewToAdd.setMovieID(id);
 
                 reviewRepository.save(reviewToAdd);
 
@@ -112,7 +114,9 @@ public class MovieController {
                             reviewToAdd.setMoviePicture(movie.getPoster());
                             reviewToAdd.setMovieTitle(movie.getTitle());
                             reviewToAdd.setAlreadyRatedThisReview("");
-                            setReviewDetails(id, reviewToAdd, username, userId);
+                            reviewToAdd.setUsername(username);
+                            reviewToAdd.setUserId(userId);
+                            reviewToAdd.setMovieID(id);
 
                             modelAndView.setViewName("movie-added");
                         }
@@ -143,12 +147,5 @@ public class MovieController {
         model.addAttribute("reviews", reviewsByMovie);
         model.addAttribute("movie", movieToShow.get()); //with what data we are working with
         return "about-movie";
-    }
-
-    private void setReviewDetails(@PathVariable String id, @Valid Review reviewToAdd, String username, Long userId) {
-        reviewToAdd.setUserRatingForMovie(reviewToAdd.getUserRatingForMovie());
-        reviewToAdd.setUsername(username);
-        reviewToAdd.setUserId(userId);
-        reviewToAdd.setMovieID(id);
     }
 }
