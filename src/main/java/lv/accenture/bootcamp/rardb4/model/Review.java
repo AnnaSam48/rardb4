@@ -27,6 +27,8 @@ public class Review implements Serializable {
     private String username;
     private Long userId;
     private int reviewRating;
+    private int movieAverage;
+    private String alreadyRatedThisReview;
 
 
     public Review() {
@@ -118,6 +120,15 @@ public class Review implements Serializable {
 
     public void setMoviePicture(String moviePicture) { this.moviePicture = moviePicture; }
 
+    public int getMovieAverage() { return movieAverage; }
+
+    public void setMovieAverage(int movieAverage) { this.movieAverage = movieAverage; }
+
+    public String getAlreadyRatedThisReview() { return alreadyRatedThisReview; }
+
+    public void setAlreadyRatedThisReview(String alreadyRatedThisReview) {
+        this.alreadyRatedThisReview = alreadyRatedThisReview;
+    }
 
     @Override
     public String toString() {

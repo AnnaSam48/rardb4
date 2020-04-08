@@ -26,15 +26,12 @@ import java.util.*;
 public class RatingController {
 
 
-
     @Autowired
     private CommentRepository commentRepository;
 
 
-
     @Autowired
     private ReviewRepository reviewRepository;
-
 
 
     @Autowired
@@ -42,9 +39,29 @@ public class RatingController {
 
     @GetMapping("/reviews/reviews-search/rate-review/{id}")
     public String editRatingPage(@PathVariable Long id, Model model) {
-        //Getting data from rating page
+
+        //Getting  data from rating page
+        //user data
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserWithId userWithId = (UserWithId) auth.getPrincipal();
+        Long userRatingReview = userWithId.getUserId();
+
+        //Review and
         Optional<Review> reviewToBeRated = reviewRepository.findById(id);
         List<Comment> allComments = commentRepository.findAllByReviewID(id);
+
+        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(id);
+        //Making a list of all users that have rated this review already
+        List<Long> foundUserIDS = new ArrayList<>();
+        for (Rating matchedRating : matchedRatings) {
+            foundUserIDS.add(matchedRating.getRatedByUserId());
+        }
+        for (Long foundUserID : foundUserIDS) {
+            if (foundUserID == (userRatingReview)) {
+                reviewToBeRated.get().setAlreadyRatedThisReview("You have already rated this review");
+            }
+        }
+
 
         model.addAttribute("comments", allComments);
         model.addAttribute("review", reviewToBeRated.get());
@@ -63,19 +80,9 @@ public class RatingController {
         UserWithId userWithId = (UserWithId) auth.getPrincipal();
         Long userRatingReview = userWithId.getUserId();
 
-
         //Getting new Rating object
         Rating newRating = new Rating();
         int newRatingValue;
-
-        //Getting list of all the ratings for review
-        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(id);
-
-        //Making a list of all users that have rated this review already
-        List<Long> foundUserIDS = new ArrayList<>();
-        for (Rating matchedRating : matchedRatings) {
-            foundUserIDS.add(matchedRating.getRatedByUserId());
-        }
 
         //checking if voter is also the author of review
         try {
@@ -88,12 +95,10 @@ public class RatingController {
 
         //checking if voter has already rated review before
         try {
-            for (Long foundUserID : foundUserIDS) {
-                if (foundUserID == (userRatingReview)) {
-                    throw new IllegalArgumentException();
-                }
-            }
 
+            if (!reviewRepository.findByReviewID(id).get().getAlreadyRatedThisReview().equals("")) {
+                throw new IllegalArgumentException();
+            }
         } catch (IllegalArgumentException ee) {
             return "rating-submit-error";
         }

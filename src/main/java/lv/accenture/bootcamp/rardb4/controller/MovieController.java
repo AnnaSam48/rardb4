@@ -88,6 +88,7 @@ public class MovieController {
                 moviesRepository.save(movieToAdd);
                 reviewToAdd.setMoviePicture(movieAPIService.getMovieByID(id).getPoster());
                 reviewToAdd.setMovieTitle(movieAPIService.getMovieByID(id).getTitle());
+                reviewToAdd.setAlreadyRatedThisReview("");
                 setReviewDetails(id, reviewToAdd, username, userId);
 
                 reviewRepository.save(reviewToAdd);
@@ -110,6 +111,7 @@ public class MovieController {
                             Movie movie = moviesRepository.findByImdbID(id);
                             reviewToAdd.setMoviePicture(movie.getPoster());
                             reviewToAdd.setMovieTitle(movie.getTitle());
+                            reviewToAdd.setAlreadyRatedThisReview("");
                             setReviewDetails(id, reviewToAdd, username, userId);
 
                             modelAndView.setViewName("movie-added");

@@ -1,6 +1,7 @@
 package lv.accenture.bootcamp.rardb4.controller;
 
 
+import lv.accenture.bootcamp.rardb4.model.Movie;
 import lv.accenture.bootcamp.rardb4.model.Review;
 import lv.accenture.bootcamp.rardb4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class indexController {
 
     @Autowired
     ReviewRepository reviewRepository;
+
+    @Autowired
+    MovieRepository movieRepository;
 
 
     @GetMapping("/")
