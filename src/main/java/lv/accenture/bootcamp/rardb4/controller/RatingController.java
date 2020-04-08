@@ -58,7 +58,7 @@ public class RatingController {
         }
         for (Long foundUserID : foundUserIDS) {
             if (foundUserID == (userRatingReview)) {
-                reviewToBeRated.get().setAlreadyRatedThisReview("You have already rated this review");
+                reviewToBeRated.get().setAlreadyRatedThisReview("You have already rated this review.");
             }
         }
 
