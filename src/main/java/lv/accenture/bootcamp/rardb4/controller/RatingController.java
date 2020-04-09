@@ -37,29 +37,37 @@ public class RatingController {
     @Autowired
     private RatingRepository ratingRepository;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/reviews/reviews-search/rate-review/{id}")
     public String editRatingPage(@PathVariable Long id, Model model) {
 
         //Getting  data from rating page
-        //user data
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserWithId userWithId = (UserWithId) auth.getPrincipal();
-        Long userRatingReview = userWithId.getUserId();
-
-        //Review and
+        //Review and Comments
         Optional<Review> reviewToBeRated = reviewRepository.findById(id);
         List<Comment> allComments = commentRepository.findAllByReviewID(id);
 
-        List<Rating> matchedRatings = ratingRepository.findAllByReviewId(id);
-        //Making a list of all users that have rated this review already
-        List<Long> foundUserIDS = new ArrayList<>();
-        for (Rating matchedRating : matchedRatings) {
-            foundUserIDS.add(matchedRating.getRatedByUserId());
-        }
-        for (Long foundUserID : foundUserIDS) {
-            if (foundUserID == (userRatingReview)) {
-                reviewToBeRated.get().setAlreadyRatedThisReview("You have already rated this review.");
+        //user data
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.getPrincipal().equals("USER")) {
+
+            UserWithId userWithId = (UserWithId) auth.getPrincipal();
+            Long userRatingReview = userWithId.getUserId();
+
+            List<Rating> matchedRatings = ratingRepository.findAllByReviewId(id);
+            //Making a list of all users that have rated this review already
+            List<Long> foundUserIDS = new ArrayList<>();
+            for (Rating matchedRating : matchedRatings) {
+                foundUserIDS.add(matchedRating.getRatedByUserId());
             }
+            for (Long foundUserID : foundUserIDS) {
+                if (foundUserID == (userRatingReview)) {
+                    reviewToBeRated.get().setAlreadyRatedThisReview("You have already rated this review.");
+                }
+            }
+        }else{
+            reviewToBeRated.get().setAlreadyRatedThisReview("");
         }
 
 
