@@ -21,7 +21,7 @@
 
 
     <!--Review info-->
-    <div>
+    <div >
         <div class="col">
             <p style="float:left;margin-right:50px">
                 <img th:src="${review.moviePicture}" width="200px">
@@ -104,7 +104,7 @@
               th:object="${commentOb}" method="post">
             <div class="row">
                 <div class="form-group col-md-8">
-                    <label for="text" class="col-form-label">Your review</label>
+                    <label for="text" class="col-form-label">Your comment</label>
                     <textarea type="text" th:field="*{text}" class="form-control" id="text"></textarea>
                 </div>
 
